@@ -74,15 +74,15 @@ ranked_host.filter(col('host').contains('.shef.ac.uk')).show(30)
 rear = ranked_host.filter(col('rank') > 9)\
                     .groupBy('country')\
                     .agg(sum(col('count')).alias('count'))\
-                    .withColumn('host', lit('other institutions')).cache()
+                    .withColumn('host', lit('other institutions'))\
+			.withColumn('rank', lit(0)).cache()
 
 # combine top 9 and "others"
 unioned = top9_host.unionByName(rear, allowMissingColumns=True).cache()
 print("unioned")
-unioned.show(30)
+unioned.show(41)
 
 for country in ['UK', 'US', 'Australia']:
-
     unioned_c = unioned.select('host', 'count').filter(col('country')==country).cache()
     unioned_c.show(20)
     pd_df = unioned_c.toPandas()
@@ -90,7 +90,7 @@ for country in ['UK', 'US', 'Australia']:
     plt.pie(pd_df['count'], labels=pd_df['host'])
     plt.title(f"Pie chart of {country}")
     plt.savefig(f"{country}.png")
-    
+    plt.close()    
 
 spark.stop()
 
