@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import regexp_extract, count_distinct
+from pyspark.sql.functions import regexp_extract, col
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -33,14 +33,17 @@ df.show(10, False)
 
 # count total number of unique instituitions
 num_host = df.select('host').distinct().count()
-print(num_host)
-print(f"use countDistinct will be: {df.select(count_distinct('host'))}")
+print("total number of distinct hosts is %i.\n" % num_host)
 
 
 # top 9 most frequent visitors (9 per country)
 #hostcount_uk = df.select('host').groupBy('')
-hostcount = df.select('host').groupBy('host').count().sort('count', ascending=False)
+hostcount = df.select('host').groupBy('host').count().sort('count', ascending=False).cache()
 hostcount.show(10, False)
+
+hostcount.filter(col('host').contains('.ac.uk')).show(10, False)
+hostcount.filter(col('host').contains('.edu')).show(10, False)
+hostcount.filter(col('host').contains('.edu.au')).show(10, False)
 
 # find out the ranking of Univerisity of Sheffield (UK)
 # .shef.ac.uk
