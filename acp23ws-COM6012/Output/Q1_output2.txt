@@ -1,0 +1,152 @@
+25/05/04 21:42:00 INFO SparkContext: Running Spark version 3.5.4
+25/05/04 21:42:00 INFO SparkContext: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/04 21:42:00 INFO SparkContext: Java version 17.0.4
+25/05/04 21:42:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/04 21:42:13 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/04 21:42:14 INFO ResourceUtils: ==============================================================
+25/05/04 21:42:14 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/04 21:42:14 INFO ResourceUtils: ==============================================================
+25/05/04 21:42:14 INFO SparkContext: Submitted application: Question1
+25/05/04 21:42:16 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/04 21:42:16 INFO ResourceProfile: Limiting resource is cpu
+25/05/04 21:42:16 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/04 21:42:19 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/04 21:42:19 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/04 21:42:19 INFO SecurityManager: Changing view acls groups to: 
+25/05/04 21:42:19 INFO SecurityManager: Changing modify acls groups to: 
+25/05/04 21:42:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/04 21:42:25 INFO Utils: Successfully started service 'sparkDriver' on port 39865.
+25/05/04 21:42:27 INFO SparkEnv: Registering MapOutputTracker
+25/05/04 21:42:27 INFO SparkEnv: Registering BlockManagerMaster
+25/05/04 21:42:29 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/04 21:42:29 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/04 21:42:29 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/04 21:42:29 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-fe35855c-a95a-4d3e-925f-3a3ba99558dc
+25/05/04 21:42:29 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/04 21:42:30 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/04 21:42:37 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/04 21:42:37 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/04 21:42:37 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+25/05/04 21:42:39 INFO Executor: Starting executor ID driver on host node004.pri.stanage.alces.network
+25/05/04 21:42:39 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/04 21:42:39 INFO Executor: Java version 17.0.4
+25/05/04 21:42:39 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/04 21:42:39 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@6887787c for default.
+25/05/04 21:42:39 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 40048.
+25/05/04 21:42:39 INFO NettyBlockTransferService: Server created on node004.pri.stanage.alces.network:40048
+25/05/04 21:42:40 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/04 21:42:40 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node004.pri.stanage.alces.network, 40048, None)
+25/05/04 21:42:40 INFO BlockManagerMasterEndpoint: Registering block manager node004.pri.stanage.alces.network:40048 with 413.9 MiB RAM, BlockManagerId(driver, node004.pri.stanage.alces.network, 40048, None)
+25/05/04 21:42:40 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node004.pri.stanage.alces.network, 40048, None)
+25/05/04 21:42:40 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node004.pri.stanage.alces.network, 40048, None)
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+|host                |timestamp                 |request                                                     |HTTP reply code|bytes in the reply|country|
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+|199.72.81.55        |01/Jul/1995:00:00:01 -0400|GET /history/apollo/ HTTP/1.0                               |200            |6245              |other  |
+|unicomp6.unicomp.net|01/Jul/1995:00:00:06 -0400|GET /shuttle/countdown/ HTTP/1.0                            |200            |3985              |other  |
+|199.120.110.21      |01/Jul/1995:00:00:09 -0400|GET /shuttle/missions/sts-73/mission-sts-73.html HTTP/1.0   |200            |4085              |other  |
+|burger.letters.com  |01/Jul/1995:00:00:11 -0400|GET /shuttle/countdown/liftoff.html HTTP/1.0                |304            |0                 |other  |
+|199.120.110.21      |01/Jul/1995:00:00:11 -0400|GET /shuttle/missions/sts-73/sts-73-patch-small.gif HTTP/1.0|200            |4179              |other  |
+|burger.letters.com  |01/Jul/1995:00:00:12 -0400|GET /images/NASA-logosmall.gif HTTP/1.0                     |304            |0                 |other  |
+|burger.letters.com  |01/Jul/1995:00:00:12 -0400|GET /shuttle/countdown/video/livevideo.gif HTTP/1.0         |200            |0                 |other  |
+|205.212.115.106     |01/Jul/1995:00:00:12 -0400|GET /shuttle/countdown/countdown.html HTTP/1.0              |200            |3985              |other  |
+|d104.aa.net         |01/Jul/1995:00:00:13 -0400|GET /shuttle/countdown/ HTTP/1.0                            |200            |3985              |other  |
+|129.94.144.152      |01/Jul/1995:00:00:13 -0400|GET / HTTP/1.0                                              |200            |7074              |other  |
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+only showing top 10 rows
+
+total number of distinct hosts is 81622.
+
+Count of all hosts
++-------+--------------------+-----+
+|country|host                |count|
++-------+--------------------+-----+
+|other  |                    |19727|
+|other  |piweba3y.prodigy.com|17381|
+|other  |piweba4y.prodigy.com|11489|
+|other  |piweba1y.prodigy.com|9730 |
+|other  |alyssa.prodigy.com  |7766 |
+|other  |siltb10.orl.mmc.com |7573 |
+|other  |piweba2y.prodigy.com|5861 |
+|other  |edams.ksc.nasa.gov  |5403 |
+|other  |163.206.89.4        |4870 |
+|other  |news.ti.com         |4827 |
++-------+--------------------+-----+
+only showing top 10 rows
+
+Most frequent 9 hosts per country
++-------+--------------------+-----+----+
+|country|host                |count|rank|
++-------+--------------------+-----+----+
+|other  |                    |19727|1   |
+|other  |piweba3y.prodigy.com|17381|2   |
+|other  |piweba4y.prodigy.com|11489|3   |
+|other  |piweba1y.prodigy.com|9730 |4   |
+|other  |alyssa.prodigy.com  |7766 |5   |
+|other  |siltb10.orl.mmc.com |7573 |6   |
+|other  |piweba2y.prodigy.com|5861 |7   |
+|other  |edams.ksc.nasa.gov  |5403 |8   |
+|other  |163.206.89.4        |4870 |9   |
+|other  |news.ti.com         |4827 |10  |
++-------+--------------------+-----+----+
+only showing top 10 rows
+
++---------+----------------------------+-----+----+
+|country  |host                        |count|rank|
++---------+----------------------------+-----+----+
+|Australia|brother.cc.monash.edu.au    |549  |1   |
+|Australia|metabelis.rmit.edu.au       |378  |2   |
+|Australia|fatboy.gas.unsw.edu.au      |363  |3   |
+|Australia|miriworld.its.unimelb.edu.au|304  |4   |
+|Australia|ppp-2.vifp.monash.edu.au    |197  |5   |
+|Australia|morinda.cs.ntu.edu.au       |141  |6   |
+|Australia|oispc1.murdoch.edu.au       |123  |7   |
+|Australia|ge321.ssn.flinders.edu.au   |107  |8   |
+|Australia|metz.une.edu.au             |106  |9   |
+|UK       |poppy.hensa.ac.uk           |4095 |1   |
+|UK       |miranda.psychol.ucl.ac.uk   |556  |2   |
+|UK       |pcjmk.ag.rl.ac.uk           |544  |3   |
+|UK       |kayleigh.cs.man.ac.uk       |422  |4   |
+|UK       |pcmas.it.bton.ac.uk         |353  |5   |
+|UK       |hal.mic.dundee.ac.uk        |336  |6   |
+|UK       |piton.brunel.ac.uk          |270  |7   |
+|UK       |balti.cee.hw.ac.uk          |251  |8   |
+|UK       |hunter.ecs.soton.ac.uk      |231  |9   |
+|US       |currypc.fpl.msstate.edu     |1970 |1   |
+|US       |marina.cea.berkeley.edu     |1799 |2   |
+|US       |ariel.earth.nwu.edu         |1404 |3   |
+|US       |blazemonger.pc.cc.cmu.edu   |1046 |4   |
+|US       |nidhogg.srl.caltech.edu     |1013 |5   |
+|US       |pinta.csee.usf.edu          |639  |6   |
+|US       |walt.cfr.washington.edu     |615  |7   |
+|US       |farlink.ll.mit.edu          |572  |8   |
+|US       |dani.scp.caltech.edu        |559  |9   |
++---------+----------------------------+-----+----+
+only showing top 27 rows
+
++-------+--------------------+-----+----+
+|country|                host|count|rank|
++-------+--------------------+-----+----+
+|     UK| pc121102.shef.ac.uk|  179|  14|
+|     UK| pc005153.shef.ac.uk|   94|  38|
+|     UK| pc101042.shef.ac.uk|   62|  60|
+|     UK| pc142011.shef.ac.uk|   48|  81|
+|     UK| pc081196.shef.ac.uk|   40| 104|
+|     UK| pc021131.shef.ac.uk|   30| 149|
+|     UK|   astro1.shef.ac.uk|   25| 180|
+|     UK| pc025040.shef.ac.uk|   22| 206|
+|     UK| pc057055.shef.ac.uk|   20| 244|
+|     UK| pc017063.shef.ac.uk|   17| 298|
+|     UK|     sage.shef.ac.uk|   15| 333|
+|     UK| pc085089.shef.ac.uk|   14| 356|
+|     UK|    robin.shef.ac.uk|   12| 401|
+|     UK| pc021181.shef.ac.uk|    9| 488|
+|     UK| pc133188.shef.ac.uk|    8| 541|
+|     UK| pc021133.shef.ac.uk|    7| 586|
+|     UK|mac107070.shef.ac.uk|    6| 641|
+|     UK| pc101091.shef.ac.uk|    6| 641|
+|     UK| pc077010.shef.ac.uk|    4| 768|
+|     UK|goldfinch.shef.ac.uk|    1| 937|
+|     UK| pc057006.shef.ac.uk|    1| 937|
++-------+--------------------+-----+----+
+
