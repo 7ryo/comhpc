@@ -65,6 +65,7 @@ top9_host.show(27, False)
 
 # find out the ranking of Univerisity of Sheffield (UK)
 # .shef.ac.uk
+print("University of Sheffield:")
 ranked_host.filter(col('host').contains('.shef.ac.uk')).show(30)
 
 # visualize: show top 9 and "other"
@@ -77,13 +78,19 @@ rear = ranked_host.filter(col('rank') > 9)\
 
 # combine top 9 and "others"
 unioned = top9_host.unionByName(rear, allowMissingColumns=True).cache()
+print("unioned")
+unioned.show(30)
 
 for country in ['UK', 'US', 'Australia']:
-    pd_df = unioned.select('host', 'count').filter(col('country')==country).toPandas()
+
+    unioned_c = unioned.select('host', 'count').filter(col('country')==country).cache()
+    unioned_c.show(20)
+    pd_df = unioned_c.toPandas()
+    
     plt.pie(pd_df['count'], labels=pd_df['host'])
     plt.title(f"Pie chart of {country}")
     plt.savefig(f"{country}.png")
-    plt.show()
+    
 
 spark.stop()
 
