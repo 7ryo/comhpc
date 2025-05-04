@@ -17,9 +17,13 @@ logFile = spark.read.text("./Data/NASA_access_log_Jul95.gz").cache()
 
 hostUS = logFile.filter(logFile.value.contains(".edu")).count()
 hostUK = logFile.filter(logFile.value.contains(".ac.uk")).count()
-hostAU = logFile.filter(logFile.value.contains(".edu.au"))
+hostAU = logFile.filter(logFile.value.contains(".edu.au")).count()
 
+print("Hello from spark!")
 print("\n\n")
-print("Hosts from US: %i.\n", hostUS)
+print("Hosts from US: %i.\n" % hostUS)
+print("Hosts from UK: %i.\n" % hostUK)
+print("Hosts from Australia: %i.\n" % hostAU)
+
 
 spark.stop()
