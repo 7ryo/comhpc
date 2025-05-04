@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import regexp_extract, col, when, rank
+from pyspark.sql.functions import regexp_extract, col, when, rank, lit, sum
 from pyspark.sql.window import Window
+import matplotlib.pyplot as plt
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -66,4 +67,23 @@ top9_host.show(27, False)
 # .shef.ac.uk
 ranked_host.filter(col('host').contains('.shef.ac.uk')).show(30)
 
+# visualize: show top 9 and "other"
+# sum hosts ranked after 9
+## agg(sum(col('count')).alias('count')).withColumn('host', lit('other'))
+rear = ranked_host.filter(col('rank') > 9)\
+                    .groupBy('country')\
+                    .agg(sum(col('count')).alias('count'))\
+                    .withColumn('host', lit('other institutions')).cache()
+
+# combine top 9 and "others"
+unioned = top9_host.unionByName(rear, allowMissingColumns=True).show(35).cache()
+
+for country in ['UK', 'US', 'Australia']:
+    pd_df = unioned.select('host', 'count').filter(col('country')==country).toPandas()
+    plt.pie(pd_df['count'], labels=pd_df['host'])
+    plt.title(f"Pie chart of {country}")
+    plt.savefig(f"{country}.png")
+    plt.show()
+
 spark.stop()
+
