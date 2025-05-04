@@ -58,12 +58,12 @@ ranked_host = counted_host.withColumn("rank", rank().over(window_spec)).cache()
 ranked_host.show(10, False)
 
 top9_host = ranked_host.filter(col('rank') <= 9).orderBy('country', 'rank').cache()
-top9_host.show()
+top9_host.show(27, False)
 
 
 
 # find out the ranking of Univerisity of Sheffield (UK)
 # .shef.ac.uk
-ranked_host.filter(col('host').contains('.shef.ac.uk')).show()
+ranked_host.filter(col('host').contains('.shef.ac.uk')).show(30)
 
 spark.stop()
