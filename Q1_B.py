@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import regexp_extract, col
+from pyspark.sql.functions import regexp_extract, col, when, rank
+from pyspark.sql.window import Window
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -27,7 +28,12 @@ df = logFile.withColumn('host', regexp_extract('value', pattern, 1))\
             .withColumn('timestamp', regexp_extract('value', pattern, 2))\
             .withColumn('request', regexp_extract('value', pattern, 3))\
             .withColumn('HTTP reply code', regexp_extract('value', pattern, 4))\
-            .withColumn('bytes in the reply', regexp_extract('value', pattern, 5)).drop('value').cache()
+            .withColumn('bytes in the reply', regexp_extract('value', pattern, 5))\
+            .withColumn('country', when(col('host').endswith('.ac.uk'), "UK")\
+                                    .when(col('host').endswith('.edu'), "US")\
+                                    .when(col('host').contains('.edu.au'), "Australia")\
+                                    .otherwise("other"))\
+            .drop('value').cache()
 
 df.show(10, False)
 
@@ -38,12 +44,26 @@ print("total number of distinct hosts is %i.\n" % num_host)
 
 # top 9 most frequent visitors (9 per country)
 #hostcount_uk = df.select('host').groupBy('')
-hostcount = df.select('host').groupBy('host').count().sort('count', ascending=False).cache()
-hostcount.show(10, False)
+counted_host = df.select('country', 'host').groupBy('country', 'host').count().sort('count', ascending=False).cache()
 
-hostcount.filter(col('host').contains('.ac.uk')).show(10, False)
-hostcount.filter(col('host').contains('.edu')).show(10, False)
-hostcount.filter(col('host').contains('.edu.au')).show(10, False)
+print("Count of all hosts")
+counted_host.show(10, False)
+
+print("Most frequent 9 hosts per country")
+# counted_host.filter(col('host').contains('.ac.uk')).show(10, False)
+# counted_host.filter(col('host').endswith('.edu')).show(10, False)
+# counted_host.filter(col('host').contains('.edu.au')).show(10, False)
+window_spec = Window.partitionBy('country').orderBy(col('count').desc())
+ranked_host = counted_host.withColumn("rank", rank().over(window_spec)).cache()
+ranked_host.show(10, False)
+
+top9_host = ranked_host.filter(col('rank') <= 9).orderBy('country', 'rank').cache()
+top9_host.show()
+
+
 
 # find out the ranking of Univerisity of Sheffield (UK)
 # .shef.ac.uk
+ranked_host.filter(col('host').contains('.shef.ac.uk')).show()
+
+spark.stop()
