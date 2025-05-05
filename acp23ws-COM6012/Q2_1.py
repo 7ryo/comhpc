@@ -23,7 +23,7 @@ print("First 5 records:", df.head())
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 #from pyspark.pandas import DataFrame
-from pyspark.ml.feature import OneHotEncoder
+from pyspark.ml.feature import OneHotEncoder, VectorAssembler
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -44,24 +44,36 @@ features = ['metformin', 'repaglinide', 'nateglinide', 'chlorpropamide', 'glimep
 
 # convert df to spark df
 spark_df = spark.createDataFrame(df)
-spark_df.show(5)
+#spark_df.show(5)
 
 # 
-new_spark_df = spark_df.select(*features)
+new_spark_df = spark_df.select(*features, 'readmitted')
+#new_spark_df.show(5)
+
+# convert feature classes into numeric
+for f in features:
+	new_spark_df = new_spark_df.withColumn(f, F.when(F.col(f)=='No', 0).otherwise(1))
+
 new_spark_df.show(5)
 
-features_ohe = [f"{f}_ohe" for f in features]
-onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
-onehot_model = onehot_encoder.fit(new_spark_df)
-onehot_df = onehot_model.transform(new_spark_df).drop(*features)
-onehot_df.printSchema()
+vecAssembler = VectorAssembler(inputCols=features, outputCol='onehot')
+output = vecAssembler.transform(new_spark_df)
+output.show(5, False)
 
-onehot_df.show(5)
+#features_ohe = [f"{f}_ohe" for f in features]
+#onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
+#onehot_model = onehot_encoder.fit(new_spark_df)
+#onehot_df = onehot_model.transform(new_spark_df).drop(*features)
+#onehot_df.printSchema()
+
+#onehot_df.show(5)
+
+new_spark_df.printSchema()
 
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
 #             No: 0
-onehot_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="No", 0).otherwise(1))
+onehot_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
 onehot_df.printSchema()
 onehot_df.show(5)
 
