@@ -89,7 +89,7 @@ for country in ['UK', 'US', 'Australia']:
     plt.pie(pd_df['count'], explode=[0.1]*len(pd_df))
     plt.title(f"Pie chart of {country}")
     legend_txt = [f'{host}: {count}' for host, count in zip(pd_df['host'], pd_df['count'])]
-    plt.legend(legend_txt, loc='upper left', bbox_to_anchor=(1.2, 0.5))
+    plt.legend(legend_txt, loc='upper left', bbox_to_anchor=(1, 0.5))
     plt.tight_layout()
     plt.savefig(f"{country}.png")
 
