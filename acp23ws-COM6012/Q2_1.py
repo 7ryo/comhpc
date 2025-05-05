@@ -23,6 +23,7 @@ print("First 5 records:", df.head())
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 #from pyspark.pandas import DataFrame
+from pyspark.ml.feature import OneHotEncoder
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -41,25 +42,29 @@ features = ['metformin', 'repaglinide', 'nateglinide', 'chlorpropamide', 'glimep
             'examide', 'citoglipton', 'insulin', 'glyburide-metformin', 'glipizide-metformin', 
             'glimepiride-pioglitazone', 'metformin-rosiglitazone', 'metformin-pioglitazone']
 
+# convert df to spark df
 spark_df = spark.createDataFrame(df)
 spark_df.show(5)
-onehot_df = spark_df.select('encounter_id')
-onehot_df.show(5)
-#encoded_cols = [
-#    F.when(F.col(f) == "No", 0).otherwise(1).alias(f) for f in features[:3]
-#]
-#onehot_df = spark_df.select(*encoded_cols)
 
-onehot_df = spark_df.withColumn('metformin', F.when(F.col('metformin')=="No", 0).otherwise(1)).cache()
+# 
+new_spark_df = spark_df.select(*features)
+new_spark_df.show(5)
 
-#for f in features[:3]:
-#    onehot_df = spark_df.withColumn(f, F.when(F.col(f)=="No", 0)\
-#                                    .otherwise(1)).cache()
+features_ohe = [f"{f}_ohe" for f in features]
+onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
+onehot_model = onehot_encoder.fit(new_spark_df)
+onehot_df = onehot_model.transform(new_spark_df).drop(*features)
+onehot_df.printSchema()
+
 onehot_df.show(5)
 
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
 #             No: 0
+onehot_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="No", 0).otherwise(1))
+onehot_df.printSchema()
+onehot_df.show(5)
+
 
 # 3. select numeric feature from either 
 # “time_in_hospital” or "num_lab_procedures”
