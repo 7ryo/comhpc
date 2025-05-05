@@ -44,10 +44,18 @@ features = ['metformin', 'repaglinide', 'nateglinide', 'chlorpropamide', 'glimep
 spark_df = spark.createDataFrame(df)
 spark_df.show(5)
 onehot_df = spark_df.select('encounter_id')
-for f in features[:3]:
-    onehot_df = spark_df.withColumn(f, F.when(F.col(f)=="No", 0)\
-                                    .otherwise(1)).cache()
-onehot_df.head(10)
+onehot_df.show(5)
+#encoded_cols = [
+#    F.when(F.col(f) == "No", 0).otherwise(1).alias(f) for f in features[:3]
+#]
+#onehot_df = spark_df.select(*encoded_cols)
+
+onehot_df = spark_df.withColumn('metformin', F.when(F.col('metformin')=="No", 0).otherwise(1)).cache()
+
+#for f in features[:3]:
+#    onehot_df = spark_df.withColumn(f, F.when(F.col(f)=="No", 0)\
+#                                    .otherwise(1)).cache()
+onehot_df.show(5)
 
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
