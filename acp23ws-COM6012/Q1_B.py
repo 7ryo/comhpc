@@ -108,8 +108,9 @@ top_df.show()
 
 # convert str to timestamp
 # [01/Aug/1995:00:00:01 -0400]
-top_df = top_df.withColumn('to_timestamp', F.to_timestamp('timestamp', 'dd/mm/yyyy:HH:mm:ss Z'))\
-        .withColumn('day of month', F.dayofmonth('to_timestamp'))\
+top_df = top_df.withColumn('to_timestamp', F.to_timestamp(F.col('timestamp'), 'dd/MMM/yyyy:HH:mm:ss Z')).cache()
+top_df.show()
+top_df = top_df.withColumn('day of month', F.dayofmonth('to_timestamp'))\
         .withColumn('hour', F.hour('to_timestamp'))\
             .drop('timestamp').cache()
 top_df.show()
