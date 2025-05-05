@@ -96,7 +96,7 @@ for country in ['UK', 'US', 'Australia']:
     plt.close()    
 
 # select top institution of each country
-top_hosts = ranked_host.filter(F.col('rank')==1 and F.col('country')!='other')\
+top_hosts = ranked_host.filter((F.col('rank')==1) & (F.col('country')!='other'))\
             .select('host').distinct()
 top_hosts.show()
 
@@ -119,8 +119,8 @@ heatmap_df.show(10)
 #sns.heatmap()
 for country in ['UK', 'US', 'Australia']:
     
-    country_df = heatmap_df.filter(F.col('country')==country).toPandas
-    country_pivot = country_df.pivot(index='day of month', column='hour', values='count')
+    country_df = heatmap_df.filter(F.col('country')==country).toPandas()
+    country_pivot = country_df.pivot(index='day of month', columns='hour', values='count')
 
     
     #plt.figure(figsize=(14, 8))

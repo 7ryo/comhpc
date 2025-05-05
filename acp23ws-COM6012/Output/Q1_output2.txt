@@ -1,44 +1,44 @@
-25/05/05 01:32:56 INFO SparkContext: Running Spark version 3.5.4
-25/05/05 01:32:56 INFO SparkContext: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
-25/05/05 01:32:56 INFO SparkContext: Java version 17.0.4
-25/05/05 01:32:56 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/05 01:32:56 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/05 01:32:56 INFO ResourceUtils: ==============================================================
-25/05/05 01:32:56 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/05 01:32:56 INFO ResourceUtils: ==============================================================
-25/05/05 01:32:56 INFO SparkContext: Submitted application: Question1
-25/05/05 01:32:57 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/05 01:32:57 INFO ResourceProfile: Limiting resource is cpu
-25/05/05 01:32:57 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/05 01:32:57 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/05 01:32:57 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/05 01:32:57 INFO SecurityManager: Changing view acls groups to: 
-25/05/05 01:32:57 INFO SecurityManager: Changing modify acls groups to: 
-25/05/05 01:32:57 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/05 01:32:57 INFO Utils: Successfully started service 'sparkDriver' on port 39237.
-25/05/05 01:32:57 INFO SparkEnv: Registering MapOutputTracker
-25/05/05 01:32:57 INFO SparkEnv: Registering BlockManagerMaster
-25/05/05 01:32:57 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/05 01:32:57 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/05 01:32:57 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/05 01:32:57 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-21295d01-5819-48fa-a124-b46bed6129f9
-25/05/05 01:32:57 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/05 01:32:57 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/05 01:32:57 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/05 01:32:58 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-25/05/05 01:32:58 INFO Utils: Successfully started service 'SparkUI' on port 4041.
-25/05/05 01:32:58 INFO Executor: Starting executor ID driver on host node009.pri.stanage.alces.network
-25/05/05 01:32:58 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
-25/05/05 01:32:58 INFO Executor: Java version 17.0.4
-25/05/05 01:32:58 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/05 01:32:58 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@6887787c for default.
-25/05/05 01:32:58 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39229.
-25/05/05 01:32:58 INFO NettyBlockTransferService: Server created on node009.pri.stanage.alces.network:39229
-25/05/05 01:32:58 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/05 01:32:58 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node009.pri.stanage.alces.network, 39229, None)
-25/05/05 01:32:58 INFO BlockManagerMasterEndpoint: Registering block manager node009.pri.stanage.alces.network:39229 with 413.9 MiB RAM, BlockManagerId(driver, node009.pri.stanage.alces.network, 39229, None)
-25/05/05 01:32:58 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node009.pri.stanage.alces.network, 39229, None)
-25/05/05 01:32:58 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node009.pri.stanage.alces.network, 39229, None)
+25/05/05 11:38:34 INFO SparkContext: Running Spark version 3.5.4
+25/05/05 11:38:35 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/05 11:38:35 INFO SparkContext: Java version 17.0.4
+25/05/05 11:38:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/05 11:38:35 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/05 11:38:35 INFO ResourceUtils: ==============================================================
+25/05/05 11:38:35 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/05 11:38:35 INFO ResourceUtils: ==============================================================
+25/05/05 11:38:35 INFO SparkContext: Submitted application: Question1
+25/05/05 11:38:35 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/05 11:38:35 INFO ResourceProfile: Limiting resource is cpu
+25/05/05 11:38:35 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/05 11:38:35 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/05 11:38:35 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/05 11:38:35 INFO SecurityManager: Changing view acls groups to: 
+25/05/05 11:38:35 INFO SecurityManager: Changing modify acls groups to: 
+25/05/05 11:38:35 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/05 11:38:36 INFO Utils: Successfully started service 'sparkDriver' on port 33738.
+25/05/05 11:38:36 INFO SparkEnv: Registering MapOutputTracker
+25/05/05 11:38:36 INFO SparkEnv: Registering BlockManagerMaster
+25/05/05 11:38:36 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/05 11:38:36 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/05 11:38:36 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/05 11:38:36 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-5f68d019-b976-413d-ba8c-7630ca50d742
+25/05/05 11:38:36 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/05 11:38:36 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/05 11:38:36 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/05 11:38:36 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/05 11:38:36 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+25/05/05 11:38:37 INFO Executor: Starting executor ID driver on host node119.pri.stanage.alces.network
+25/05/05 11:38:37 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/05 11:38:37 INFO Executor: Java version 17.0.4
+25/05/05 11:38:37 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/05 11:38:37 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@130ec5a7 for default.
+25/05/05 11:38:37 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38953.
+25/05/05 11:38:37 INFO NettyBlockTransferService: Server created on node119.pri.stanage.alces.network:38953
+25/05/05 11:38:37 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/05 11:38:37 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node119.pri.stanage.alces.network, 38953, None)
+25/05/05 11:38:37 INFO BlockManagerMasterEndpoint: Registering block manager node119.pri.stanage.alces.network:38953 with 413.9 MiB RAM, BlockManagerId(driver, node119.pri.stanage.alces.network, 38953, None)
+25/05/05 11:38:37 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node119.pri.stanage.alces.network, 38953, None)
+25/05/05 11:38:37 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node119.pri.stanage.alces.network, 38953, None)
 +--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
 |host                |timestamp                 |request                                                     |HTTP reply code|bytes in the reply|country|
 +--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
@@ -241,4 +241,72 @@ unioned
 |     metz.une.edu.au|  106|
 |  other institutions| 4681|
 +--------------------+-----+
+
++--------------------+
+|                host|
++--------------------+
+|currypc.fpl.mssta...|
+|   poppy.hensa.ac.uk|
+|brother.cc.monash...|
++--------------------+
+
++---------+--------------------+--------------------+
+|  country|                host|           timestamp|
++---------+--------------------+--------------------+
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:01:16...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:14...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
++---------+--------------------+--------------------+
+only showing top 20 rows
+
++---------+--------------------+------------+------------+----+
+|  country|                host|to_timestamp|day of month|hour|
++---------+--------------------+------------+------------+----+
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|Australia|brother.cc.monash...|        NULL|        NULL|NULL|
+|       UK|   poppy.hensa.ac.uk|        NULL|        NULL|NULL|
+|       UK|   poppy.hensa.ac.uk|        NULL|        NULL|NULL|
+|       UK|   poppy.hensa.ac.uk|        NULL|        NULL|NULL|
+|       UK|   poppy.hensa.ac.uk|        NULL|        NULL|NULL|
++---------+--------------------+------------+------------+----+
+only showing top 20 rows
+
++---------+------------+----+-----+
+|  country|day of month|hour|count|
++---------+------------+----+-----+
+|       US|        NULL|NULL| 1970|
+|       UK|        NULL|NULL| 4095|
+|Australia|        NULL|NULL|  549|
++---------+------------+----+-----+
 
