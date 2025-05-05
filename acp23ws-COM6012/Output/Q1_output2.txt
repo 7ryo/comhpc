@@ -1,44 +1,43 @@
-25/05/05 01:13:48 INFO SparkContext: Running Spark version 3.5.4
-25/05/05 01:13:49 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/05 01:13:49 INFO SparkContext: Java version 17.0.4
-25/05/05 01:13:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/05 01:13:49 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/05 01:13:49 INFO ResourceUtils: ==============================================================
-25/05/05 01:13:49 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/05 01:13:49 INFO ResourceUtils: ==============================================================
-25/05/05 01:13:49 INFO SparkContext: Submitted application: Question1
-25/05/05 01:13:49 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/05 01:13:49 INFO ResourceProfile: Limiting resource is cpu
-25/05/05 01:13:49 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/05 01:13:49 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/05 01:13:49 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/05 01:13:49 INFO SecurityManager: Changing view acls groups to: 
-25/05/05 01:13:49 INFO SecurityManager: Changing modify acls groups to: 
-25/05/05 01:13:49 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/05 01:13:49 INFO Utils: Successfully started service 'sparkDriver' on port 37099.
-25/05/05 01:13:50 INFO SparkEnv: Registering MapOutputTracker
-25/05/05 01:13:50 INFO SparkEnv: Registering BlockManagerMaster
-25/05/05 01:13:50 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/05 01:13:50 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/05 01:13:50 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/05 01:13:50 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-c814251b-1e48-4214-aa30-5220c0a65fd3
-25/05/05 01:13:50 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/05 01:13:50 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/05 01:13:50 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/05 01:13:50 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-25/05/05 01:13:50 INFO Utils: Successfully started service 'SparkUI' on port 4041.
-25/05/05 01:13:50 INFO Executor: Starting executor ID driver on host node144.pri.stanage.alces.network
-25/05/05 01:13:50 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/05 01:13:50 INFO Executor: Java version 17.0.4
-25/05/05 01:13:50 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/05 01:13:50 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@6887787c for default.
-25/05/05 01:13:50 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38761.
-25/05/05 01:13:50 INFO NettyBlockTransferService: Server created on node144.pri.stanage.alces.network:38761
-25/05/05 01:13:50 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/05 01:13:50 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node144.pri.stanage.alces.network, 38761, None)
-25/05/05 01:13:50 INFO BlockManagerMasterEndpoint: Registering block manager node144.pri.stanage.alces.network:38761 with 413.9 MiB RAM, BlockManagerId(driver, node144.pri.stanage.alces.network, 38761, None)
-25/05/05 01:13:50 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node144.pri.stanage.alces.network, 38761, None)
-25/05/05 01:13:50 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node144.pri.stanage.alces.network, 38761, None)
+25/05/05 01:28:05 INFO SparkContext: Running Spark version 3.5.4
+25/05/05 01:28:05 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/05 01:28:05 INFO SparkContext: Java version 17.0.4
+25/05/05 01:28:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/05 01:28:05 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/05 01:28:05 INFO ResourceUtils: ==============================================================
+25/05/05 01:28:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/05 01:28:05 INFO ResourceUtils: ==============================================================
+25/05/05 01:28:05 INFO SparkContext: Submitted application: Question1
+25/05/05 01:28:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/05 01:28:05 INFO ResourceProfile: Limiting resource is cpu
+25/05/05 01:28:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/05 01:28:05 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/05 01:28:05 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/05 01:28:05 INFO SecurityManager: Changing view acls groups to: 
+25/05/05 01:28:05 INFO SecurityManager: Changing modify acls groups to: 
+25/05/05 01:28:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/05 01:28:06 INFO Utils: Successfully started service 'sparkDriver' on port 38599.
+25/05/05 01:28:06 INFO SparkEnv: Registering MapOutputTracker
+25/05/05 01:28:06 INFO SparkEnv: Registering BlockManagerMaster
+25/05/05 01:28:06 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/05 01:28:06 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/05 01:28:06 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/05 01:28:06 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-0f09ae40-826f-4e56-a331-643a1fd1b028
+25/05/05 01:28:06 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/05 01:28:06 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/05 01:28:06 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/05 01:28:06 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/05 01:28:06 INFO Executor: Starting executor ID driver on host node147.pri.stanage.alces.network
+25/05/05 01:28:06 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/05 01:28:06 INFO Executor: Java version 17.0.4
+25/05/05 01:28:06 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/05 01:28:06 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1c7597a8 for default.
+25/05/05 01:28:06 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46047.
+25/05/05 01:28:06 INFO NettyBlockTransferService: Server created on node147.pri.stanage.alces.network:46047
+25/05/05 01:28:06 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/05 01:28:06 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node147.pri.stanage.alces.network, 46047, None)
+25/05/05 01:28:06 INFO BlockManagerMasterEndpoint: Registering block manager node147.pri.stanage.alces.network:46047 with 413.9 MiB RAM, BlockManagerId(driver, node147.pri.stanage.alces.network, 46047, None)
+25/05/05 01:28:06 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node147.pri.stanage.alces.network, 46047, None)
+25/05/05 01:28:06 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node147.pri.stanage.alces.network, 46047, None)
 +--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
 |host                |timestamp                 |request                                                     |HTTP reply code|bytes in the reply|country|
 +--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
@@ -152,93 +151,3 @@ University of Sheffield:
 +-------+--------------------+-----+----+
 
 unioned
-+---------+--------------------+-------+----+
-|  country|                host|  count|rank|
-+---------+--------------------+-------+----+
-|Australia|brother.cc.monash...|    549|   1|
-|Australia|metabelis.rmit.ed...|    378|   2|
-|Australia|fatboy.gas.unsw.e...|    363|   3|
-|Australia|miriworld.its.uni...|    304|   4|
-|Australia|ppp-2.vifp.monash...|    197|   5|
-|Australia|morinda.cs.ntu.ed...|    141|   6|
-|Australia|oispc1.murdoch.ed...|    123|   7|
-|Australia|ge321.ssn.flinder...|    107|   8|
-|Australia|     metz.une.edu.au|    106|   9|
-|       UK|   poppy.hensa.ac.uk|   4095|   1|
-|       UK|miranda.psychol.u...|    556|   2|
-|       UK|   pcjmk.ag.rl.ac.uk|    544|   3|
-|       UK|kayleigh.cs.man.a...|    422|   4|
-|       UK| pcmas.it.bton.ac.uk|    353|   5|
-|       UK|hal.mic.dundee.ac.uk|    336|   6|
-|       UK|  piton.brunel.ac.uk|    270|   7|
-|       UK|  balti.cee.hw.ac.uk|    251|   8|
-|       UK|hunter.ecs.soton....|    231|   9|
-|       US|currypc.fpl.mssta...|   1970|   1|
-|       US|marina.cea.berkel...|   1799|   2|
-|       US| ariel.earth.nwu.edu|   1404|   3|
-|       US|blazemonger.pc.cc...|   1046|   4|
-|       US|nidhogg.srl.calte...|   1013|   5|
-|       US|  pinta.csee.usf.edu|    639|   6|
-|       US|walt.cfr.washingt...|    615|   7|
-|       US|  farlink.ll.mit.edu|    572|   8|
-|       US|dani.scp.caltech.edu|    559|   9|
-|    other|                    |  19727|   1|
-|    other|piweba3y.prodigy.com|  17381|   2|
-|    other|piweba4y.prodigy.com|  11489|   3|
-|    other|piweba1y.prodigy.com|   9730|   4|
-|    other|  alyssa.prodigy.com|   7766|   5|
-|    other| siltb10.orl.mmc.com|   7573|   6|
-|    other|piweba2y.prodigy.com|   5861|   7|
-|    other|  edams.ksc.nasa.gov|   5403|   8|
-|    other|        163.206.89.4|   4870|   9|
-|    other|  other institutions|1554399|   0|
-|       US|  other institutions| 206136|   0|
-|       UK|  other institutions|  17756|   0|
-|Australia|  other institutions|   4681|   0|
-+---------+--------------------+-------+----+
-
-+--------------------+-----+
-|                host|count|
-+--------------------+-----+
-|   poppy.hensa.ac.uk| 4095|
-|miranda.psychol.u...|  556|
-|   pcjmk.ag.rl.ac.uk|  544|
-|kayleigh.cs.man.a...|  422|
-| pcmas.it.bton.ac.uk|  353|
-|hal.mic.dundee.ac.uk|  336|
-|  piton.brunel.ac.uk|  270|
-|  balti.cee.hw.ac.uk|  251|
-|hunter.ecs.soton....|  231|
-|  other institutions|17756|
-+--------------------+-----+
-
-+--------------------+------+
-|                host| count|
-+--------------------+------+
-|currypc.fpl.mssta...|  1970|
-|marina.cea.berkel...|  1799|
-| ariel.earth.nwu.edu|  1404|
-|blazemonger.pc.cc...|  1046|
-|nidhogg.srl.calte...|  1013|
-|  pinta.csee.usf.edu|   639|
-|walt.cfr.washingt...|   615|
-|  farlink.ll.mit.edu|   572|
-|dani.scp.caltech.edu|   559|
-|  other institutions|206136|
-+--------------------+------+
-
-+--------------------+-----+
-|                host|count|
-+--------------------+-----+
-|brother.cc.monash...|  549|
-|metabelis.rmit.ed...|  378|
-|fatboy.gas.unsw.e...|  363|
-|miriworld.its.uni...|  304|
-|ppp-2.vifp.monash...|  197|
-|morinda.cs.ntu.ed...|  141|
-|oispc1.murdoch.ed...|  123|
-|ge321.ssn.flinder...|  107|
-|     metz.une.edu.au|  106|
-|  other institutions| 4681|
-+--------------------+-----+
-
