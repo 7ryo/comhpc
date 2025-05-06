@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
+from pyspark.sql.types import StringType
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -33,68 +34,106 @@ small_test_DF = small_test_DF.withColumn('labels', F.when(F.col('_c128')==-1, 0.
 
 # value types are string
 # convert them into double/int
-from pyspark.sql.types import StringType
 StringColumns = [x.name for x in small_train_DF.schema.fields if x.dataType == StringType()]
 for c in StringColumns:
     small_train_DF = small_train_DF.withColumn(c, F.col(c).cast("double"))
     small_test_DF = small_test_DF.withColumn(c, F.col(c).cast("double"))
 
-#small_train_DF.printSchema() # they are double now
 
-# vector assembler to concat all features -> one vector
+# =================================================== #
+# 1. use pipeline + crossval train models
+from pyspark.ml import Pipeline
 from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
+from pyspark.ml.classification import RandomForestClassifier, GBTClassifier, MultilayerPerceptronClassifier
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator 
+
+# vector assembler: to concat all features -> one vector
 feature_names = small_train_DF.columns
 num_features = len(feature_names)
 vecAssembler = VectorAssembler(inputCols = feature_names[:-1], outputCol = 'features') 
 ###testvecTrainingData = vecAssembler.transform(small_train_DF)
 ###testvecTrainingData.show(5)
 
-# =================================================== #
-# 1. use pipeline + crossval train models
-from pyspark.ml import Pipeline
-from pyspark.ml.tuning import CrossValidator
+# evaluator:
+# 1) accuracy
+eval_acc = MulticlassClassificationEvaluator(labelCol="labels", predictionCol="prediction", metricName="accuracy")
+# 2) auc
 
 # 1) Random Forests
-from pyspark.ml.classification import RandomForestClassifier
 ## use classifier, not regressor ##
-rf = RandomForestClassifier(featuresCol="features", labelCol="labels", maxDepth=5, numTrees=3,\
-				seed=rand_seed)
+rf = RandomForestClassifier(featuresCol="features", labelCol="labels",\
+				            seed=rand_seed)
 pipeline_rf = Pipeline(stages=[vecAssembler, rf])
+paramGrid_rf = ParamGridBuilder()\
+                .addGrid(rf.maxDepth, [3, 5, 7])\
+                .addGrid(rf.maxBins, [16, 32, 64])\
+                .addGrid(rf.numTrees, [5, 20, 50]) #100?
+crossval_rf = CrossValidator(estimator=pipeline_rf,
+                             estimatorParamMaps=paramGrid_rf,
+                             evaluator=eval_acc)
+cvModel_rf_acc = crossval_rf.fit(small_train_DF)
+prediction = cvModel_rf_acc.transform(small_test_DF)
+acc_rf = eval_acc.evaluate(prediction)
 
-pipelineModel_rf = pipeline_rf.fit(small_train_DF)
-predictions_rf = pipelineModel_rf.transform(small_test_DF)
+##no crossval##
+#pipelineModel_rf = pipeline_rf.fit(small_train_DF)
+#predictions_rf = pipelineModel_rf.transform(small_test_DF)
 ##predictions.select('features', 'labels', 'prediction').show(10)
 
 # 2) Gradient boosting 
-from pyspark.ml.classification import GBTClassifier
 gbt = GBTClassifier(featuresCol="features", labelCol="labels", maxDepth=5, maxIter=5,\
                     seed=rand_seed)
 pipeline_gbt = Pipeline(stages=[vecAssembler, gbt])
-pipelineModel_gbt = pipeline_gbt.fit(small_train_DF)
-predictions_gbt = pipelineModel_gbt.transform(small_test_DF)
+paramGrid_gbt = ParamGridBuilder()\
+                .addGrid(gbt.maxDepth, [3, 5, 7])\
+                .addGrid(gbt.maxBins, [16, 32, 64])\
+                .addGrid(gbt.maxIter, [3, 5, 7]) #100?
+crossval_gbt = CrossValidator(estimator=pipeline_gbt,
+                             estimatorParamMaps=paramGrid_gbt,
+                             evaluator=eval_acc)
+cvModel_gbt_acc = crossval_gbt.fit(small_train_DF)
+prediction = cvModel_gbt_acc.transform(small_test_DF)
+acc_gbt = eval_acc.evaluate(prediction)
+
+
+# pipelineModel_gbt = pipeline_gbt.fit(small_train_DF)
+# predictions_gbt = pipelineModel_gbt.transform(small_test_DF)
 
 
 # 3) (shallow) Neural networks
-from pyspark.ml.classification import MultilayerPerceptronClassifier
 ### input = 23 features?
-layers = [num_features-1, 10, 3]
-mpc = MultilayerPerceptronClassifier(featuresCol="features", labelCol="labels", maxIter=50,\
-                                     layers=layers, seed=rand_seed)
+layers = [[num_features-1, 10, 3],\
+          [num_features-1, 15, 8, 2]]
+mpc = MultilayerPerceptronClassifier(featuresCol="features", labelCol="labels", \
+                                     seed=rand_seed)
 pipeline_mpc = Pipeline(stages=[vecAssembler, mpc])
-pipelineModel_mpc = pipeline_mpc.fit(small_train_DF)
-predictions_mpc = pipelineModel_mpc.transform(small_test_DF)
+
+paramGrid_mpc = ParamGridBuilder()\
+                .addGrid(mpc.blockSize, [64, 128])\
+                .addGrid(mpc.layers, layers)\
+                .addGrid(mpc.maxIter, [30, 50, 70]) #100?
+crossval_mpc = CrossValidator(estimator=pipeline_mpc,
+                             estimatorParamMaps=paramGrid_mpc,
+                             evaluator=eval_acc)
+cvModel_mpc_acc = crossval_mpc.fit(small_train_DF)
+prediction = cvModel_mpc_acc.transform(small_test_DF)
+acc_mpc = eval_acc.evaluate(prediction)
+
+# pipelineModel_mpc = pipeline_mpc.fit(small_train_DF)
+# predictions_mpc = pipelineModel_mpc.transform(small_test_DF)
 
 # ==================================================== #
 # 2. Eval
 # classification accuracy
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator 
-eval_multi = MulticlassClassificationEvaluator(labelCol="labels", predictionCol="prediction", metricName="accuracy")
-accuracy_rf = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of rf = {accuracy_rf}")
-accuracy_gbt = eval_multi.evaluate(predictions_gbt)
-print(f"Accuracy of rf = {accuracy_gbt}")
-accuracy_mpc = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of rf = {accuracy_mpc}")
+
+
+#accuracy_rf = eval_multi.evaluate(predictions_rf)
+print(f"Accuracy of rf = {acc_rf}")
+#accuracy_gbt = eval_multi.evaluate(predictions_gbt)
+print(f"Accuracy of rf = {acc_gbt}")
+#accuracy_mpc = eval_multi.evaluate(predictions_rf)
+print(f"Accuracy of rf = {acc_mpc}")
 
 # area under the curve
-from pyspark.ml.evaluation import BinaryClassificationEvaluator
+##from pyspark.ml.evaluation import BinaryClassificationEvaluator
