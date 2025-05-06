@@ -49,39 +49,52 @@ vecAssembler = VectorAssembler(inputCols = feature_names[:-1], outputCol = 'feat
 ###testvecTrainingData = vecAssembler.transform(small_train_DF)
 ###testvecTrainingData.show(5)
 
-# pipeline
+# =================================================== #
+# 1. use pipeline + crossval train models
 from pyspark.ml import Pipeline
-#from pyspark.ml.regression import RandomForestRegressor
+from pyspark.ml.tuning import CrossValidator
+
+# 1) Random Forests
 from pyspark.ml.classification import RandomForestClassifier
-## use classifier, not regressor
-
-#rf = RandomForestRegressor(labelCol="labels", featuresCol="features", maxDepth=5, numTrees=3, \
-#                           featureSubsetStrategy = 'all', seed=123, bootstrap=False)
-
+## use classifier, not regressor ##
 rf = RandomForestClassifier(featuresCol="features", labelCol="labels", maxDepth=5, numTrees=3,\
 				seed=rand_seed)
-# Random Forests
+pipeline_rf = Pipeline(stages=[vecAssembler, rf])
 
-stages = [vecAssembler, rf]
-pipeline = Pipeline(stages=stages)
+pipelineModel_rf = pipeline_rf.fit(small_train_DF)
+predictions_rf = pipelineModel_rf.transform(small_test_DF)
+##predictions.select('features', 'labels', 'prediction').show(10)
 
-pipelineModel = pipeline.fit(small_train_DF)
-predictions = pipelineModel.transform(small_test_DF)
+# 2) Gradient boosting 
+from pyspark.ml.classification import GBTClassifier
+gbt = GBTClassifier(featuresCol="features", labelCol="labels", maxDepth=5, maxIter=5,\
+                    seed=rand_seed)
+pipeline_gbt = Pipeline(stages=[vecAssembler, gbt])
+pipelineModel_gbt = pipeline_gbt.fit(small_train_DF)
+predictions_gbt = pipelineModel_gbt.transform(small_test_DF)
 
-#print(predictions.columns)
-#predictions.show(5)
-predictions.select('features', 'labels', 'prediction').show(10)
 
-# Eval
+# 3) (shallow) Neural networks
+from pyspark.ml.classification import MultilayerPerceptronClassifier
+### input = 23 features?
+layers = [num_features-1, 10, 3]
+mpc = MultilayerPerceptronClassifier(featuresCol="features", labelCol="labels", maxIter=50,\
+                                     layers=layers, seed=rand_seed)
+pipeline_mpc = Pipeline(stages=[vecAssembler, mpc])
+pipelineModel_mpc = pipeline_mpc.fit(small_train_DF)
+predictions_mpc = pipelineModel_mpc.transform(small_test_DF)
+
+# ==================================================== #
+# 2. Eval
 # classification accuracy
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator 
 eval_multi = MulticlassClassificationEvaluator(labelCol="labels", predictionCol="prediction", metricName="accuracy")
-accuracy = eval_multi.evaluate(predictions)
-print(f"Accuracy = {accuracy}")
+accuracy_rf = eval_multi.evaluate(predictions_rf)
+print(f"Accuracy of rf = {accuracy_rf}")
+accuracy_gbt = eval_multi.evaluate(predictions_gbt)
+print(f"Accuracy of rf = {accuracy_gbt}")
+accuracy_mpc = eval_multi.evaluate(predictions_rf)
+print(f"Accuracy of rf = {accuracy_mpc}")
 
 # area under the curve
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
-
-# Gradient boosting 
-# and (shallow) Neural networks
-# and (shallow) Neural networks
