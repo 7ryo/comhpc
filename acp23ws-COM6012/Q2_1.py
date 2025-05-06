@@ -19,11 +19,15 @@ path=file_path,
 print("First 5 records:", df.head())
 
 # =================== pySpark ======================== #
-
+import json
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 #from pyspark.pandas import DataFrame
 from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
+from pyspark.ml.regression import GeneralizedLinearRegression
+from pyspark.ml.classification import LogisticRegression
+from pyspark.ml.evaluation import RegressionEvaluator
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -96,60 +100,80 @@ testData = onehot_df.subtract(trainData)
 
 # C. train models
 # cross validation -> OPT param
+# regParam (out of [0.001,0.01, 0.1, 1, 10, 100]), 
+# and elasticNetParam (out of [0, 0.2, 0.5, 0.8, 1])
 
 # a) Poisson Regression ->
 #    predict time_in_hospital or num_lab_procedures
 
-from pyspark.ml.regression import GeneralizedLinearRegression
-from pyspark.ml.evaluation import RegressionEvaluator
 
 print("model training")
 glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospital', maxIter=50, regParam=0.01,\
                                           family='poisson', link='log')
-model = glm_poisson.fit(trainData)
-predictions = model.transform(testData)
 
+paramGrid_glm = ParamGridBuilder()\
+                .addGrid(glm_poisson.regParam, [0.001,0.01, 0.1, 1, 10, 100])\
+                .build()
 #    Eval: RMSE
-evaluator_poisson = RegressionEvaluator(labelCol="time_in_hospital", predictionCol="prediction", metricName="rmse")
-rmse = evaluator_poisson.evaluate(predictions)
-print("RMSE = %g \n" % rmse)
+evaluator_glm = RegressionEvaluator(labelCol="time_in_hospital", predictionCol="prediction", metricName="rmse")
+
+crossval_glm = CrossValidator(estimator=glm_poisson,
+			      estimatorParamMaps=paramGrid_glm,
+			      evaluator=evaluator_glm)
+
+cvModel_glm = crossval_glm.fit(trainData)
+prediction_glm = cvModel_glm.transform(testData)
+rmse_glm = evaluator_glm.evaluate(prediction_glm)
+
+print(f"RMSE for best lm model = {rmse_glm}")
+
+paramDict = {param[0].name: param[1] for param in cvModel_glm.bestModel.stages[-1].extractParamMap().items()}
+print(json.dumps(paramDict, indent=4))
+#model = glm_poisson.fit(trainData)
+#predictions = model.transform(testData)
+
+
+#rmse = evaluator_poisson.evaluate(predictions)
+#print("RMSE = %g \n" % rmse)
 
 # b) Logistic Regression -> 
 #    model readmitted (binary classification) 
 #    with elastic-net and L2 regularization
 #    Eval: accuracy
 
-from pyspark.ml.classification import LogisticRegression
-#from pyspark.ml.evaluation import BinaryClassificationEvaluator
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
-# L2: elasticNetParam=0
-logit_l2 = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
-				        maxIter=50, regParam=0.1, elasticNetParam=0)
-# with elasticNetParam
-logit_elastic = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
-				        maxIter=50, regParam=0.1, elasticNetParam=0.5)
+# from pyspark.ml.classification import LogisticRegression
+# #from pyspark.ml.evaluation import BinaryClassificationEvaluator
+# from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+# # L2: elasticNetParam=0
+# logit_l2 = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+# 				        maxIter=50, regParam=0.1, elasticNetParam=0)
+# # with elasticNetParam
+# logit_elastic = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+# 				        maxIter=50, regParam=0.1, elasticNetParam=0.5)
 
-model_l2 = logit_l2.fit(trainData)
-pred_l2 = model_l2.transform(testData)
+# # param grid
 
-#check prediction output
-pred_l2.show(10)
+# model_l2 = logit_l2.fit(trainData)
+# pred_l2 = model_l2.transform(testData)
 
-model_elastic = logit_elastic.fit(trainData)
-pred_elastic = model_elastic.transform(testData)
-pred_elastic.show(10)
+# #check prediction output
+# pred_l2.show(10)
 
-evaluator_logit = MulticlassClassificationEvaluator(labelCol='readmitted', predictionCol='prediction', metricName='accuracy')
+# model_elastic = logit_elastic.fit(trainData)
+# pred_elastic = model_elastic.transform(testData)
+# pred_elastic.show(10)
 
-acc_l2 = evaluator_logit.evaluate(pred_l2)
-print(f"Accuracy of l2 is {acc_l2}\n")
+# evaluator_logit = MulticlassClassificationEvaluator(labelCol='readmitted', predictionCol='prediction', metricName='accuracy')
 
-###manul check
-#correct = pred_l2.filter("readmitted = prediction").count()
-#total = pred_l2.count()
-#print("Manual Accuracy: ", correct / total)
+# acc_l2 = evaluator_logit.evaluate(pred_l2)
+# print(f"Accuracy of l2 is {acc_l2}\n")
+
+# ###manul check
+# #correct = pred_l2.filter("readmitted = prediction").count()
+# #total = pred_l2.count()
+# #print("Manual Accuracy: ", correct / total)
 
 
 
-acc_elastic = evaluator_logit.evaluate(pred_elastic)
-print(f"Accuracy of w/ elastic is {acc_elastic}\n")
+# acc_elastic = evaluator_logit.evaluate(pred_elastic)
+# print(f"Accuracy of w/ elastic is {acc_elastic}\n")
