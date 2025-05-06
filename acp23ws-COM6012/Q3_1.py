@@ -46,15 +46,20 @@ from pyspark.ml.feature import VectorAssembler
 feature_names = small_train_DF.columns
 num_features = len(feature_names)
 vecAssembler = VectorAssembler(inputCols = feature_names[:-1], outputCol = 'features') 
-testvecTrainingData = vecAssembler.transform(small_train_DF)
-testvecTrainingData.show(5)
+###testvecTrainingData = vecAssembler.transform(small_train_DF)
+###testvecTrainingData.show(5)
 
 # pipeline
 from pyspark.ml import Pipeline
-from pyspark.ml.regression import RandomForestRegressor
+#from pyspark.ml.regression import RandomForestRegressor
+from pyspark.ml.classification import RandomForestClassifier
+## use classifier, not regressor
 
-rf = RandomForestRegressor(labelCol="labels", featuresCol="features", maxDepth=5, numTrees=3, \
-                           featureSubsetStrategy = 'all', seed=123, bootstrap=False)
+#rf = RandomForestRegressor(labelCol="labels", featuresCol="features", maxDepth=5, numTrees=3, \
+#                           featureSubsetStrategy = 'all', seed=123, bootstrap=False)
+
+rf = RandomForestClassifier(featuresCol="features", labelCol="labels", maxDepth=5, numTrees=3,\
+				seed=rand_seed)
 # Random Forests
 
 stages = [vecAssembler, rf]
@@ -63,14 +68,16 @@ pipeline = Pipeline(stages=stages)
 pipelineModel = pipeline.fit(small_train_DF)
 predictions = pipelineModel.transform(small_test_DF)
 
-predictions.select('features', 'labels', 'pediction').show(10)
+#print(predictions.columns)
+#predictions.show(5)
+predictions.select('features', 'labels', 'prediction').show(10)
 
 # Eval
 # classification accuracy
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator 
 eval_multi = MulticlassClassificationEvaluator(labelCol="labels", predictionCol="prediction", metricName="accuracy")
 accuracy = eval_multi.evaluate(predictions)
-print("Accuracy = %g " % accuracy)
+print(f"Accuracy = {accuracy}")
 
 # area under the curve
 from pyspark.ml.evaluation import BinaryClassificationEvaluator

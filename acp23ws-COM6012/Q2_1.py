@@ -108,7 +108,7 @@ testData = onehot_df.subtract(trainData)
 
 
 print("model training")
-glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospital', maxIter=50, regParam=0.01,\
+glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospital', maxIter=50,\
                                           family='poisson', link='log')
 
 paramGrid_glm = ParamGridBuilder()\
@@ -127,8 +127,24 @@ rmse_glm = evaluator_glm.evaluate(prediction_glm)
 
 print(f"RMSE for best lm model = {rmse_glm}")
 
-paramDict = {param[0].name: param[1] for param in cvModel_glm.bestModel.stages[-1].extractParamMap().items()}
-print(json.dumps(paramDict, indent=4))
+#paramDict = {param[0].name: param[1] for param in cvModel_glm.bestModel.stages[-1].extractParamMap().items()}
+#print(json.dumps(paramDict, indent=4))
+
+#### extract Metrics
+avgMetrics_glm = cvModel_glm.avgMetrics
+print(type(avgMetrics_glm))
+print(avgMetrics_glm)
+stdMetrics_glm = cvModel_glm.stdMetrics
+
+import matplotlib.pyplot as plt
+plt.plot(avgMetrics_glm, label='avgM')
+plt.savefig('avg.png')
+plt.close()
+plt.plot(stdMetrics_glm, label='stdM')
+#plt.legend()
+plt.savefig('std.png')
+plt.close()
+
 #model = glm_poisson.fit(trainData)
 #predictions = model.transform(testData)
 
