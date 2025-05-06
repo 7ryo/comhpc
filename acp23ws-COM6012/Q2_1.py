@@ -23,7 +23,7 @@ print("First 5 records:", df.head())
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 #from pyspark.pandas import DataFrame
-from pyspark.ml.feature import OneHotEncoder, VectorAssembler
+from pyspark.ml.feature import VectorAssembler
 
 spark = SparkSession.builder\
         .master("local[2]")\
@@ -47,7 +47,7 @@ spark_df = spark.createDataFrame(df)
 #spark_df.show(5)
 
 # 
-new_spark_df = spark_df.select(*features, 'readmitted')
+new_spark_df = spark_df.select(*features, 'readmitted', 'time_in_hospital')
 #new_spark_df.show(5)
 
 # convert feature classes into numeric
@@ -58,7 +58,7 @@ new_spark_df.show(5)
 
 vecAssembler = VectorAssembler(inputCols=features, outputCol='onehot')
 output = vecAssembler.transform(new_spark_df)
-output.show(5, False)
+output.show(5, False) # sparse display
 
 #features_ohe = [f"{f}_ohe" for f in features]
 #onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
@@ -73,25 +73,47 @@ new_spark_df.printSchema()
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
 #             No: 0
-onehot_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
-onehot_df.printSchema()
-onehot_df.show(5)
+new_spark_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
+new_spark_df.select('readmitted').show(5)
 
 
 # 3. select numeric feature from either 
 # “time_in_hospital” or "num_lab_procedures”
-
+# choose time_in_hospital
 
 # =========================================== #
 # B. split dataset into train set (8:2
 #    seef = last five digits of your registration number
 #         = 66896
 #    ** use a stratified split on readmitted
+trainData = new_spark_df.sampleBy('readmitted', fraction={0: 0.8, 1: 0.8}, seed=66896)
+
+# ref https://stackoverflow.com/questions/47637760/stratified-sampling-with-pyspark
+testData = new_spark_df.substract(trainData)
+
 
 # C. train models
+# cross validation -> OPT param
+
 # a) Poisson Regression ->
 #    predict time_in_hospital or num_lab_procedures
 
+from pyspark.ml.regression import GeneralizedLinearRegression
+from pyspark.ml.evaluation import RegressionEvaluator
+
+
+glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospotal', maxIter=50, regParam=0.01,\
+                                          family='poisson', link='log')
+model = glm_poisson.fit(trainData)
+predictions = model.transform(testData)
+
+#    Eval: RMSE
+evaluator = RegressionEvaluator(labelCol="time_in_hospotal", predictionCol="prediction", metricName="rmse")
+rmse = evaluator.evaluate(predictions)
+print("RMSE = %g " % rmse)
+
 # b) Logistic Regression -> 
-# model readmitted (binary classification) 
-# with elastic-net and L2 regularization
+#    model readmitted (binary classification) 
+#    with elastic-net and L2 regularization
+#    Eval: accuracy
+
