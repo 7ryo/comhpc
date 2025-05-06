@@ -32,7 +32,7 @@ spark = SparkSession.builder\
         .getOrCreate()
 
 sc = spark.sparkContext
-sc.setLogLevel("WARN")
+sc.setLogLevel("ERROR")
 
 # A. Preprocessing
 # 1. one-hot encode medication features
@@ -57,8 +57,9 @@ for f in features:
 new_spark_df.show(5)
 
 vecAssembler = VectorAssembler(inputCols=features, outputCol='onehot')
-new_spark_df = vecAssembler.transform(new_spark_df)
-new_spark_df.show(5, False) # sparse display
+onehot_df = vecAssembler.transform(new_spark_df)
+onehot_df = onehot_df.drop(*features)
+onehot_df.show(5, False) # sparse display
 
 #features_ohe = [f"{f}_ohe" for f in features]
 #onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
@@ -68,13 +69,13 @@ new_spark_df.show(5, False) # sparse display
 
 #onehot_df.show(5)
 
-new_spark_df.printSchema()
+onehot_df.printSchema()
 
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
 #             No: 0
-new_spark_df = new_spark_df.withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
-new_spark_df.select('readmitted').show(5)
+onehot_df = onehot_df.withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
+onehot_df.select('readmitted').show(5)
 
 
 # 3. select numeric feature from either 
@@ -86,10 +87,10 @@ new_spark_df.select('readmitted').show(5)
 #    seef = last five digits of your registration number
 #         = 66896
 #    ** use a stratified split on readmitted
-trainData = new_spark_df.sampleBy('readmitted', fractions={0: 0.8, 1: 0.8}, seed=66896)
+trainData = onehot_df.sampleBy('readmitted', fractions={0: 0.8, 1: 0.8}, seed=66896)
 trainData.show(5)
 # ref https://stackoverflow.com/questions/47637760/stratified-sampling-with-pyspark
-testData = new_spark_df.subtract(trainData)
+testData = onehot_df.subtract(trainData)
 
 
 # C. train models
@@ -108,12 +109,34 @@ model = glm_poisson.fit(trainData)
 predictions = model.transform(testData)
 
 #    Eval: RMSE
-evaluator = RegressionEvaluator(labelCol="time_in_hospital", predictionCol="prediction", metricName="rmse")
-rmse = evaluator.evaluate(predictions)
-print("RMSE = %g " % rmse)
+evaluator_poisson = RegressionEvaluator(labelCol="time_in_hospital", predictionCol="prediction", metricName="rmse")
+rmse = evaluator_poisson.evaluate(predictions)
+print("RMSE = %g \n" % rmse)
 
 # b) Logistic Regression -> 
 #    model readmitted (binary classification) 
 #    with elastic-net and L2 regularization
 #    Eval: accuracy
 
+from pyspark.ml.classification import LogisticRegression
+
+# L2: elasticNetParam=0
+logit_l2 = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+				        maxIter=50, regParam=0.01, elasticNetParam=0)
+# with elasticNetParam
+logit_elastic = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+				        maxIter=50, regParam=0.01, elasticNetParam=0.5)
+
+model_l2 = logit_l2.fit(trainData)
+pred_l2 = model_l2.transfomr(testData)
+
+model_elastic = logit_elastic.fit(trainData)
+pred_elastic = model_elastic.transfomr(testData)
+
+evaluator_logit = RegressionEvaluator(labelCol='readmitted', predictionCol='prediction', metricName='accuracy')
+
+acc_l2 = evaluator_logit.evaluate(pred_l2)
+print("Accuracy of l2 is %i\n" % acc_l2)
+
+acc_elastic = evaluator_logit.evaluate(pred_elastic)
+print("Accuracy of w/ elastic is %i\n" % acc_elastic)
