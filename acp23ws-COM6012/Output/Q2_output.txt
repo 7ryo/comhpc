@@ -8,69 +8,69 @@ First 5 records:    encounter_id  patient_nbr             race  ... change diabe
 4         16680     42519267        Caucasian  ...     Ch         Yes         NO
 
 [5 rows x 50 columns]
-25/05/05 16:25:47 INFO SparkContext: Running Spark version 3.5.4
-25/05/05 16:25:47 INFO SparkContext: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
-25/05/05 16:25:47 INFO SparkContext: Java version 17.0.4
-25/05/05 16:25:47 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/05 16:25:47 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/05 16:25:47 INFO ResourceUtils: ==============================================================
-25/05/05 16:25:47 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/05 16:25:47 INFO ResourceUtils: ==============================================================
-25/05/05 16:25:47 INFO SparkContext: Submitted application: Question2
-25/05/05 16:25:47 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/05 16:25:47 INFO ResourceProfile: Limiting resource is cpu
-25/05/05 16:25:47 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/05 16:25:47 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/05 16:25:47 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/05 16:25:47 INFO SecurityManager: Changing view acls groups to: 
-25/05/05 16:25:47 INFO SecurityManager: Changing modify acls groups to: 
-25/05/05 16:25:47 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/05 16:25:48 INFO Utils: Successfully started service 'sparkDriver' on port 36440.
-25/05/05 16:25:48 INFO SparkEnv: Registering MapOutputTracker
-25/05/05 16:25:48 INFO SparkEnv: Registering BlockManagerMaster
-25/05/05 16:25:48 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/05 16:25:48 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/05 16:25:48 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/05 16:25:48 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-0f8fcfde-1c02-4824-802f-e138f67b39f3
-25/05/05 16:25:48 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/05 16:25:48 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/05 16:25:48 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/05 16:25:48 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-25/05/05 16:25:48 INFO Executor: Starting executor ID driver on host node026.pri.stanage.alces.network
-25/05/05 16:25:48 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
-25/05/05 16:25:48 INFO Executor: Java version 17.0.4
-25/05/05 16:25:48 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/05 16:25:48 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@679f1e47 for default.
-25/05/05 16:25:48 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39743.
-25/05/05 16:25:48 INFO NettyBlockTransferService: Server created on node026.pri.stanage.alces.network:39743
-25/05/05 16:25:48 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/05 16:25:48 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 39743, None)
-25/05/05 16:25:48 INFO BlockManagerMasterEndpoint: Registering block manager node026.pri.stanage.alces.network:39743 with 413.9 MiB RAM, BlockManagerId(driver, node026.pri.stanage.alces.network, 39743, None)
-25/05/05 16:25:48 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 39743, None)
-25/05/05 16:25:48 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node026.pri.stanage.alces.network, 39743, None)
-25/05/05 16:26:06 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
-25/05/05 16:26:07 WARN TaskSetManager: Stage 0 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+
-|metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+
-|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|        NO|
-|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|       >30|
-|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|        NO|
-|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|        NO|
-|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|        NO|
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+
+25/05/06 03:08:58 INFO SparkContext: Running Spark version 3.5.4
+25/05/06 03:08:58 INFO SparkContext: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/06 03:08:58 INFO SparkContext: Java version 17.0.4
+25/05/06 03:08:58 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/06 03:08:58 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/06 03:08:58 INFO ResourceUtils: ==============================================================
+25/05/06 03:08:58 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/06 03:08:58 INFO ResourceUtils: ==============================================================
+25/05/06 03:08:58 INFO SparkContext: Submitted application: Question2
+25/05/06 03:08:58 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/06 03:08:58 INFO ResourceProfile: Limiting resource is cpu
+25/05/06 03:08:58 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/06 03:08:58 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/06 03:08:58 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/06 03:08:58 INFO SecurityManager: Changing view acls groups to: 
+25/05/06 03:08:58 INFO SecurityManager: Changing modify acls groups to: 
+25/05/06 03:08:58 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/06 03:08:59 INFO Utils: Successfully started service 'sparkDriver' on port 41146.
+25/05/06 03:08:59 INFO SparkEnv: Registering MapOutputTracker
+25/05/06 03:08:59 INFO SparkEnv: Registering BlockManagerMaster
+25/05/06 03:08:59 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/06 03:08:59 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/06 03:08:59 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/06 03:08:59 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-15fdd126-c18a-4b54-844a-bdf78d5db8b3
+25/05/06 03:08:59 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/06 03:08:59 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/06 03:08:59 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/06 03:08:59 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/06 03:09:00 INFO Executor: Starting executor ID driver on host node026.pri.stanage.alces.network
+25/05/06 03:09:00 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/06 03:09:00 INFO Executor: Java version 17.0.4
+25/05/06 03:09:00 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/06 03:09:00 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/06 03:09:00 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36001.
+25/05/06 03:09:00 INFO NettyBlockTransferService: Server created on node026.pri.stanage.alces.network:36001
+25/05/06 03:09:00 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/06 03:09:00 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 36001, None)
+25/05/06 03:09:00 INFO BlockManagerMasterEndpoint: Registering block manager node026.pri.stanage.alces.network:36001 with 413.9 MiB RAM, BlockManagerId(driver, node026.pri.stanage.alces.network, 36001, None)
+25/05/06 03:09:00 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 36001, None)
+25/05/06 03:09:00 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node026.pri.stanage.alces.network, 36001, None)
+25/05/06 03:09:19 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+25/05/06 03:09:20 WARN TaskSetManager: Stage 0 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+
+|metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|time_in_hospital|
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|        NO|               1|
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|       >30|               3|
+|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|        NO|               2|
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|        NO|               2|
+|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|        NO|               1|
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+
 only showing top 5 rows
 
-25/05/05 16:26:13 WARN TaskSetManager: Stage 1 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+---------------------+
-|metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|onehot               |
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+---------------------+
-|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |0      |0                  |0                  |0                       |0                      |0                     |NO        |(23,[],[])           |
-|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |>30       |(23,[17],[1.0])      |
-|0        |0          |0          |0             |0          |0            |1        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |0      |0                  |0                  |0                       |0                      |0                     |NO        |(23,[6],[1.0])       |
-|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |NO        |(23,[17],[1.0])      |
-|0        |0          |0          |0             |0          |0            |1        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |NO        |(23,[6,17],[1.0,1.0])|
-+---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+---------------------+
+25/05/06 03:09:27 WARN TaskSetManager: Stage 1 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+---------------------+
+|metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|time_in_hospital|onehot               |
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+---------------------+
+|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |0      |0                  |0                  |0                       |0                      |0                     |NO        |1               |(23,[],[])           |
+|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |>30       |3               |(23,[17],[1.0])      |
+|0        |0          |0          |0             |0          |0            |1        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |0      |0                  |0                  |0                       |0                      |0                     |NO        |2               |(23,[6],[1.0])       |
+|0        |0          |0          |0             |0          |0            |0        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |NO        |2               |(23,[17],[1.0])      |
+|0        |0          |0          |0             |0          |0            |1        |0        |0          |0           |0            |0       |0       |0           |0         |0      |0          |1      |0                  |0                  |0                       |0                      |0                     |NO        |1               |(23,[6,17],[1.0,1.0])|
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+---------------------+
 only showing top 5 rows
 
 root
@@ -98,11 +98,10 @@ root
  |-- metformin-rosiglitazone: integer (nullable = false)
  |-- metformin-pioglitazone: integer (nullable = false)
  |-- readmitted: string (nullable = true)
+ |-- time_in_hospital: long (nullable = true)
+ |-- onehot: vector (nullable = true)
 
-root
- |-- readmitted: integer (nullable = false)
-
-25/05/05 16:26:14 WARN TaskSetManager: Stage 2 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:28 WARN TaskSetManager: Stage 2 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
 +----------+
 |readmitted|
 +----------+
@@ -114,3 +113,123 @@ root
 +----------+
 only showing top 5 rows
 
+25/05/06 03:09:30 WARN TaskSetManager: Stage 3 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+--------------------+
+|metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|time_in_hospital|              onehot|
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+--------------------+
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|         0|               1|          (23,[],[])|
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|         1|               3|     (23,[17],[1.0])|
+|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      0|                  0|                  0|                       0|                      0|                     0|         0|               2|      (23,[6],[1.0])|
+|        0|          0|          0|             0|          0|            0|        0|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|         0|               2|     (23,[17],[1.0])|
+|        0|          0|          0|             0|          0|            0|        1|        0|          0|           0|            0|       0|       0|           0|         0|      0|          0|      1|                  0|                  0|                       0|                      0|                     0|         0|               1|(23,[6,17],[1.0,1...|
++---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+--------------------+
+only showing top 5 rows
+
+model training
+25/05/06 03:09:32 WARN TaskSetManager: Stage 4 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:36 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+25/05/06 03:09:36 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.blas.VectorBLAS
+25/05/06 03:09:36 WARN InstanceBuilder: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
+25/05/06 03:09:36 WARN TaskSetManager: Stage 5 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:38 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:39 WARN TaskSetManager: Stage 6 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:40 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:41 WARN TaskSetManager: Stage 7 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:42 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:42 WARN TaskSetManager: Stage 8 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:44 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:44 WARN TaskSetManager: Stage 9 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:46 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:46 WARN TaskSetManager: Stage 10 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:47 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:47 WARN TaskSetManager: Stage 11 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:48 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:49 WARN TaskSetManager: Stage 12 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:50 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:50 WARN TaskSetManager: Stage 13 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:51 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:51 WARN TaskSetManager: Stage 14 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:53 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:53 WARN TaskSetManager: Stage 15 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:54 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:54 WARN TaskSetManager: Stage 16 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:55 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:55 WARN TaskSetManager: Stage 17 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:56 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:57 WARN TaskSetManager: Stage 18 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:58 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:58 WARN TaskSetManager: Stage 19 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:09:59 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:09:59 WARN TaskSetManager: Stage 20 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:00 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:00 WARN TaskSetManager: Stage 21 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:02 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:02 WARN TaskSetManager: Stage 22 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:03 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:03 WARN TaskSetManager: Stage 23 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:04 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:04 WARN TaskSetManager: Stage 24 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:05 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:06 WARN TaskSetManager: Stage 25 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:07 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:07 WARN TaskSetManager: Stage 26 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:09 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:09 WARN TaskSetManager: Stage 27 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:11 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:11 WARN TaskSetManager: Stage 28 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:12 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:12 WARN TaskSetManager: Stage 29 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:14 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:14 WARN TaskSetManager: Stage 30 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:15 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:15 WARN TaskSetManager: Stage 31 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:16 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:16 WARN TaskSetManager: Stage 32 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:18 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:18 WARN TaskSetManager: Stage 33 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:20 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:20 WARN TaskSetManager: Stage 34 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:22 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:22 WARN TaskSetManager: Stage 35 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:23 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:23 WARN TaskSetManager: Stage 36 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:25 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:25 WARN TaskSetManager: Stage 37 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:26 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:26 WARN TaskSetManager: Stage 38 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:27 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:27 WARN TaskSetManager: Stage 39 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:29 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:29 WARN TaskSetManager: Stage 40 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:30 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:30 WARN TaskSetManager: Stage 41 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:31 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:31 WARN TaskSetManager: Stage 42 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:32 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:32 WARN TaskSetManager: Stage 43 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:33 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:33 WARN TaskSetManager: Stage 44 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:34 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:35 WARN TaskSetManager: Stage 45 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:36 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:36 WARN TaskSetManager: Stage 46 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:37 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:37 WARN TaskSetManager: Stage 47 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:38 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:38 WARN TaskSetManager: Stage 48 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:39 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:39 WARN TaskSetManager: Stage 49 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:40 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:40 WARN TaskSetManager: Stage 50 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:41 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:41 WARN TaskSetManager: Stage 51 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:42 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:42 WARN TaskSetManager: Stage 52 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:43 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:43 WARN TaskSetManager: Stage 53 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:45 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:45 WARN TaskSetManager: Stage 54 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:45 WARN Instrumentation: [5273ab43] Cholesky solver failed due to singular covariance matrix. Retrying with Quasi-Newton solver.
+25/05/06 03:10:47 WARN TaskSetManager: Stage 55 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+25/05/06 03:10:50 WARN TaskSetManager: Stage 56 contains a task of very large size (6385 KiB). The maximum recommended task size is 1000 KiB.
+RMSE = 4.25763 

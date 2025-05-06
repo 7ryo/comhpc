@@ -57,8 +57,8 @@ for f in features:
 new_spark_df.show(5)
 
 vecAssembler = VectorAssembler(inputCols=features, outputCol='onehot')
-output = vecAssembler.transform(new_spark_df)
-output.show(5, False) # sparse display
+new_spark_df = vecAssembler.transform(new_spark_df)
+new_spark_df.show(5, False) # sparse display
 
 #features_ohe = [f"{f}_ohe" for f in features]
 #onehot_encoder = OneHotEncoder(inputCols=features, outputCols=features_ohe)
@@ -73,7 +73,7 @@ new_spark_df.printSchema()
 # 2. convert "readmitted" to binary
 #    >30 and <30: 1
 #             No: 0
-new_spark_df = new_spark_df.select('readmitted').withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
+new_spark_df = new_spark_df.withColumn('readmitted', F.when(F.col('readmitted')=="NO", 0).otherwise(1))
 new_spark_df.select('readmitted').show(5)
 
 
@@ -86,10 +86,10 @@ new_spark_df.select('readmitted').show(5)
 #    seef = last five digits of your registration number
 #         = 66896
 #    ** use a stratified split on readmitted
-trainData = new_spark_df.sampleBy('readmitted', fraction={0: 0.8, 1: 0.8}, seed=66896)
-
+trainData = new_spark_df.sampleBy('readmitted', fractions={0: 0.8, 1: 0.8}, seed=66896)
+trainData.show(5)
 # ref https://stackoverflow.com/questions/47637760/stratified-sampling-with-pyspark
-testData = new_spark_df.substract(trainData)
+testData = new_spark_df.subtract(trainData)
 
 
 # C. train models
@@ -101,14 +101,14 @@ testData = new_spark_df.substract(trainData)
 from pyspark.ml.regression import GeneralizedLinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
 
-
-glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospotal', maxIter=50, regParam=0.01,\
+print("model training")
+glm_poisson = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospital', maxIter=50, regParam=0.01,\
                                           family='poisson', link='log')
 model = glm_poisson.fit(trainData)
 predictions = model.transform(testData)
 
 #    Eval: RMSE
-evaluator = RegressionEvaluator(labelCol="time_in_hospotal", predictionCol="prediction", metricName="rmse")
+evaluator = RegressionEvaluator(labelCol="time_in_hospital", predictionCol="prediction", metricName="rmse")
 rmse = evaluator.evaluate(predictions)
 print("RMSE = %g " % rmse)
 
