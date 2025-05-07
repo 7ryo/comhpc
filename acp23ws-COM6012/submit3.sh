@@ -3,7 +3,7 @@
 #SBATCH --time=00:30:00  # Change this to a longer timore time
 ##SBATCH --account=rse-com6012
 ##SBATCH --reservation=rse-com6012-9  # Replace $LAB_ID with your lab session number
-#SBATCH --nodes=6  # Specify a number of nodes
+#SBATCH --nodes=10  # Specify a number of nodes
 #SBATCH --mem=10G  # Request 4 gigabytes of real memory (mem)
 #SBATCH --output=./Output/Q3_output_print.txt  # This is where your output and errors are logged
 
