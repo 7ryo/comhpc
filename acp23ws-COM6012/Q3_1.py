@@ -52,8 +52,6 @@ from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 feature_names = small_train_DF.columns
 num_features = len(feature_names)
 vecAssembler = VectorAssembler(inputCols = feature_names[:-1], outputCol = 'features') 
-###testvecTrainingData = vecAssembler.transform(small_train_DF)
-###testvecTrainingData.show(5)
 
 # evaluator:
 # 1) accuracy
@@ -75,6 +73,11 @@ crossval_rf = CrossValidator(estimator=pipeline_rf,
                              evaluator=eval_acc)
 print("training rf")
 cvModel_rf_acc = crossval_rf.fit(small_train_DF)
+
+#### select best model
+best_rf_paramDict = {param[0].name: param[1] for param in cvModel_rf_acc.bestModel.stages[-1].extractParamMap().items()}
+print(f"best param of rf (eval=acc) is {best_rf_paramDict}")
+
 prediction = cvModel_rf_acc.transform(small_test_DF)
 acc_rf = eval_acc.evaluate(prediction)
 
@@ -134,11 +137,11 @@ acc_mpc = eval_acc.evaluate(prediction)
 
 
 #accuracy_rf = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of rf = {acc_rf}")
+print(f"Accuracy of rf using cvModel_ = {acc_rf}")
 #accuracy_gbt = eval_multi.evaluate(predictions_gbt)
-print(f"Accuracy of rf = {acc_gbt}")
+print(f"Accuracy of gbt = {acc_gbt}")
 #accuracy_mpc = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of rf = {acc_mpc}")
+print(f"Accuracy of mpc = {acc_mpc}")
 
 # area under the curve
 ##from pyspark.ml.evaluation import BinaryClassificationEvaluator

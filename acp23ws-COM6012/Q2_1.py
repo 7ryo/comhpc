@@ -132,7 +132,7 @@ plt.errorbar([0.001,0.01, 0.1, 1, 10, 100], avgMetrics_glm, \
 		yerr=stdMetrics_glm, fmt='-o')
 plt.xscale('log')
 plt.xlabel('regParam')
-plt.ylabel('avg Accuracy')
+plt.ylabel('avg RMSE')
 plt.title('Errorbar of Poisson')
 plt.savefig('glm_errorbar.png')
 plt.close()
@@ -156,6 +156,10 @@ rmse_glm = evaluator_glm.evaluate(prediction_glm)
 
 print(f"RMSE for final GLM poisson model = {rmse_glm}")
 
+print("if train on the cvModel_glm")
+pred_glm_origin = cvModel_glm.transform(testData)
+rmse_glm_origin = evaluator_glm.evaluate(pred_glm_origin)
+print(f"RMSE = {rmse_glm_origin}")
 #model = glm_poisson.fit(trainData)
 #predictions = model.transform(testData)
 
@@ -302,11 +306,4 @@ print(f"Accuracy for final LR elastic model = {acc_elastic}")
 # acc_l2 = evaluator_logit.evaluate(pred_l2)
 # print(f"Accuracy of l2 is {acc_l2}\n")
 
-# ###manul check
-# #correct = pred_l2.filter("readmitted = prediction").count()
-# #total = pred_l2.count()
-# #print("Manual Accuracy: ", correct / total)
 
-
-# acc_elastic = evaluator_logit.evaluate(pred_elastic)
-# print(f"Accuracy of w/ elastic is {acc_elastic}\n")
