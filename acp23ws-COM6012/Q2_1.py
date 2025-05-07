@@ -289,21 +289,3 @@ acc_elastic = acc_logit.evaluate(prediction_elastic)
 print(f"Accuracy for final LR elastic model = {acc_elastic}")
 
 
-
-
-
-# model_l2 = logit_l2.fit(trainData)
-# pred_l2 = model_l2.transform(testData)
-
-# #check prediction output
-# pred_l2.show(10)
-
-# model_elastic = logit_elastic.fit(trainData)
-# pred_elastic = model_elastic.transform(testData)
-# pred_elastic.show(10)
-
-
-# acc_l2 = evaluator_logit.evaluate(pred_l2)
-# print(f"Accuracy of l2 is {acc_l2}\n")
-
-
