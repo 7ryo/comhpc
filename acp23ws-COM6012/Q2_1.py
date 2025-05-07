@@ -122,13 +122,6 @@ crossval_glm = CrossValidator(estimator=glm_poisson,
 			      evaluator=evaluator_glm)
 
 cvModel_glm = crossval_glm.fit(trainData)
-prediction_glm = cvModel_glm.transform(testData)
-rmse_glm = evaluator_glm.evaluate(prediction_glm)
-
-print(f"RMSE for best lm model = {rmse_glm}")
-
-#paramDict = {param[0].name: param[1] for param in cvModel_glm.bestModel.stages[-1].extractParamMap().items()}
-#print(json.dumps(paramDict, indent=4))
 
 #### extract Metrics
 avgMetrics_glm = cvModel_glm.avgMetrics
@@ -138,17 +131,35 @@ import matplotlib.pyplot as plt
 plt.errorbar([0.001,0.01, 0.1, 1, 10, 100], avgMetrics_glm, \
 		yerr=stdMetrics_glm, fmt='-o')
 plt.xscale('log')
+plt.xlabel('regParam')
+plt.ylabel('avg Accuracy')
 plt.title('Errorbar of Poisson')
 plt.savefig('glm_errorbar.png')
 plt.close()
 
+#### select the best model
+best_glm = cvModel_glm.bestModel
+best_glm_params = {
+     'regParam': best_glm.getOrDefault('regParam')
+}
+print(f"Params of best glm poisson is {best_glm_params}")
+
+#### train final model
+
+best_glm_model = GeneralizedLinearRegression(featuresCol='onehot', labelCol='time_in_hospital', maxIter=50,\
+                                          family='poisson', link='log',
+                                          regParam=best_glm_params['regParam'])
+final_glm_model = best_glm_model.fit(trainData)
+
+prediction_glm = final_glm_model.transform(testData)
+rmse_glm = evaluator_glm.evaluate(prediction_glm)
+
+print(f"RMSE for final GLM poisson model = {rmse_glm}")
 
 #model = glm_poisson.fit(trainData)
 #predictions = model.transform(testData)
 
-
-#rmse = evaluator_poisson.evaluate(predictions)
-#print("RMSE = %g \n" % rmse)
+# ========================================================== #
 
 # b) Logistic Regression -> 
 #    model readmitted (binary classification) 
@@ -156,22 +167,22 @@ plt.close()
 #    Eval: accuracy
 
 from pyspark.ml.classification import LogisticRegression
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
-#from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 
 # evaluator
-#evaluator_logit = MulticlassClassificationEvaluator(labelCol='readmitted', predictionCol='prediction', metricName='accuracy')
-auc_logit = BinaryClassificationEvaluator(labelCol='readmitted', rawPredictionCol='rawPrediction')
+acc_logit = MulticlassClassificationEvaluator(labelCol='readmitted', predictionCol='prediction', metricName='accuracy')
+####auc_logit = BinaryClassificationEvaluator(labelCol='readmitted', rawPredictionCol='rawPrediction')
 
 # L2: elasticNetParam=0
 logit_l2 = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
-				        maxIter=50, regParam=0.1, elasticNetParam=0)
+				        maxIter=50, elasticNetParam=0)
 paramGrid_l2 = ParamGridBuilder()\
                 .addGrid(logit_l2.regParam, [0.001,0.01, 0.1, 1, 10, 100])\
 		.build()
 crossval_l2 = CrossValidator(estimator=logit_l2,
 			     estimatorParamMaps=paramGrid_l2,
-			     evaluator=auc_logit)
+			     evaluator=acc_logit)
 cvModel_l2 = crossval_l2.fit(trainData)
 #####prediction = cvModel_l2.transform(testData)
 
@@ -180,15 +191,34 @@ stdMetrics_l2 = cvModel_l2.stdMetrics
 plt.errorbar(x=[0.001,0.01, 0.1, 1, 10, 100], y=avgMetrics_l2,\
 		yerr=stdMetrics_l2, fmt='-o')
 plt.xscale('log')
+plt.xlabel('regParam')
+plt.ylabel('avg AUC')
 plt.title('Errorbar of Logistic Regression w/ L2 reg')
 plt.savefig('l2_errorbar.png')
 plt.close()
 
+#### best l2
+#### select the best model
+best_l2 = cvModel_l2.bestModel
+best_l2_params = {
+     'regParam': best_l2.getOrDefault('regParam')
+}
+print(f"Params of best LR l2 is {best_l2_params}")
+
+best_l2_model = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+				        maxIter=50, elasticNetParam=0,\
+                                        regParam=best_l2_params['regParam'])
+final_l2_model = best_l2_model.fit(trainData)
+
+prediction_l2 = final_l2_model.transform(testData)
+acc_l2 = acc_logit.evaluate(prediction_l2)
+
+print(f"Accuracy for final LR l2 model = {acc_l2}")
 
 
 # with elasticNetParam
 logit_elastic = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
-				        maxIter=50, regParam=0.1, elasticNetParam=0.5)
+				        maxIter=50)
 elas_netparam_list = [0, 0.2, 0.5, 0.8, 1]
 
 paramGrid_elastic = ParamGridBuilder()\
@@ -197,15 +227,11 @@ paramGrid_elastic = ParamGridBuilder()\
 			.build() ## when elasticNetParam==0 -> L2
 crossval_elastic = CrossValidator(estimator=logit_elastic,
                                   estimatorParamMaps=paramGrid_elastic,
-				  evaluator=auc_logit)
+				  evaluator=acc_logit)
 
 cvModel_elastic = crossval_elastic.fit(trainData)
 avgMetrics_elastic = cvModel_elastic.avgMetrics
-#print(len(avgMetrics_elastic))
-#print(avgMetrics_elastic)
 stdMetrics_elastic = cvModel_elastic.stdMetrics
-#print(len(stdMetrics_elastic))
-#print(stdMetrics_elastic)
 
 from collections import defaultdict
 results = defaultdict(list)
@@ -223,7 +249,7 @@ for i, param_map in enumerate(paramGrid_elastic):
 for enet in elas_netparam_list:
     data = sorted(results[enet])  # Sort by regParam
     regs, means, stds = zip(*data)
-    plt.errorbar(regs, means, yerr=stds, fmt='-o', capsize=5, label=f'elasticNetParam={enet}')
+    plt.errorbar(regs, means, yerr=stds, fmt='-o', capsize=3, label=f'elasticNetParam={enet}')
 
 #for i in range(len(elas_netparam_list)): #[0, 0.2, 0.5, 0.8, 1]
 #	plt.errorbar(x=[0.001,0.01, 0.1, 1, 10, 100], y=avgMetrics_elastic[i],
@@ -231,10 +257,35 @@ for enet in elas_netparam_list:
 #			label=f"elastic={elas_netparam_list[i]}")
 
 plt.xscale('log')
+plt.xlabel('regParam')
+plt.ylabel('avg AUC')
 plt.legend()
 plt.title('Logistic Regresion w/ elasticnet')
 plt.savefig('elas_errorbar.png')
 plt.close()
+
+#### best elas
+#### select the best elas model
+best_elastic = cvModel_elastic.bestModel
+best_elastic_params = {
+     'regParam': best_elastic.getOrDefault('regParam'),
+     'elastic': best_elastic.getOrDefault('elasticNetParam')
+}
+print(f"Params of best LR elastic is {best_elastic_params}")
+
+best_elastic_model = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
+				        maxIter=50,\
+                                        elasticNetParam=best_elastic_params['elastic'],\
+                                        regParam=best_elastic_params['regParam'])
+final_elastic_model = best_elastic_model.fit(trainData)
+
+prediction_elastic = final_elastic_model.transform(testData)
+acc_elastic = acc_logit.evaluate(prediction_elastic)
+
+print(f"Accuracy for final LR elastic model = {acc_elastic}")
+
+
+
 
 
 # model_l2 = logit_l2.fit(trainData)
