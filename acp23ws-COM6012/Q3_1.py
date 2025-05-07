@@ -73,12 +73,12 @@ crossval_rf = CrossValidator(estimator=pipeline_rf,
                              evaluator=eval_acc)
 print("training rf")
 cvModel_rf_acc = crossval_rf.fit(small_train_DF)
-
 #### select best model param
+bestmodel = cvModel_rf_acc.bestModel
 best_rf_paramDict = {
-    'maxDepth': cvModel_rf_acc.getOrDefault('maxDepth'),
-    'maxBins': cvModel_rf_acc.getOrDefault('maxBins'),
-    'numTrees': cvModel_rf_acc.getOrDefault('numTrees')
+    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+    'maxBins': bestmodel.getOrDefault('maxBins'),
+    'numTrees': bestmodel.getOrDefault('numTrees')
 }
 print(f"best param of rf (eval=acc) is {best_rf_paramDict}")
 
@@ -105,10 +105,11 @@ crossval_gbt = CrossValidator(estimator=pipeline_gbt,
                              evaluator=eval_acc)
 cvModel_gbt_acc = crossval_gbt.fit(small_train_DF)
 #### select best model param
+bestmodel = cvModel_gbt_acc.bestModel
 best_gbt_paramDict = {
-    'maxDepth': cvModel_gbt_acc.getOrDefault('maxDepth'),
-    'maxBins': cvModel_gbt_acc.getOrDefault('maxBins'),
-    'maxIter': cvModel_gbt_acc.getOrDefault('maxIter')
+    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+    'maxBins': bestmodel.getOrDefault('maxBins'),
+    'maxIter': bestmodel.getOrDefault('maxIter')
 }
 print(f"best param of gbt (eval=acc) is {best_gbt_paramDict}")
 
@@ -138,10 +139,11 @@ crossval_mpc = CrossValidator(estimator=pipeline_mpc,
                              evaluator=eval_acc)
 cvModel_mpc_acc = crossval_mpc.fit(small_train_DF)
 #### select best model param
+bestmodel = cvModel_mpc_acc.bestModel
 best_mpc_paramDict = {
-    'blockSize': cvModel_mpc_acc.getOrDefault('blockSize'),
-    'layers': cvModel_mpc_acc.getOrDefault('layers'),
-    'maxIter': cvModel_mpc_acc.getOrDefault('maxIter')
+    'blockSize': bestmodel.getOrDefault('blockSize'),
+    'layers': bestmodel.getOrDefault('layers'),
+    'maxIter': bestmodel.getOrDefault('maxIter')
 }
 print(f"best param of mpc (eval=acc) is {best_mpc_paramDict}")
 prediction = cvModel_mpc_acc.transform(small_test_DF)
@@ -151,7 +153,7 @@ acc_mpc = eval_acc.evaluate(prediction)
 # predictions_mpc = pipelineModel_mpc.transform(small_test_DF)
 
 # ==================================================== #
-# 2. Eval
+# 2. Eval w/ aUC
 # classification accuracy
 
 
@@ -172,13 +174,49 @@ crossval_rf2 = CrossValidator(estimator=pipeline_rf,
                               evaluator=eval_auc)
 cvModel_rf_auc = crossval_rf2.fit(small_train_DF)
 #### select best model param
+bestmodel = cvModel_rf_auc.bestModel
 best_rf_paramDict = {
-    'maxDepth': cvModel_rf_auc.getOrDefault('maxDepth'),
-    'maxBins': cvModel_rf_auc.getOrDefault('maxBins'),
-    'numTrees': cvModel_rf_auc.getOrDefault('numTrees')
+    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+    'maxBins': bestmodel.getOrDefault('maxBins'),
+    'numTrees': bestmodel.getOrDefault('numTrees')
 }
-print(f"best param of rf (eval=acc) is {best_rf_paramDict}") #TODO: compare?
+print(f"best param of rf (eval=auc) is {best_rf_paramDict}") #TODO: compare?
 
 prediction = cvModel_rf_auc.transform(small_test_DF)
 auc_rf = eval_auc.evaluate(prediction)
 print(f"AUC of rf using cvModel_ = {auc_rf}")
+
+# gbt
+crossval_gbt2 = CrossValidator(estimator=pipeline_gbt,
+                             estimatorParamMaps=paramGrid_gbt,
+                             evaluator=eval_auc)
+cvModel_gbt_auc = crossval_gbt2.fit(small_train_DF)
+#### select best model param
+bestmodel = cvModel_gbt_auc.bestModel
+best_gbt_paramDict = {
+    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+    'maxBins': bestmodel.getOrDefault('maxBins'),
+    'maxIter': bestmodel.getOrDefault('maxIter')
+}
+print(f"best param of gbt (eval=auc) is {best_gbt_paramDict}")
+
+prediction = cvModel_gbt_auc.transform(small_test_DF)
+auc_gbt = eval_auc.evaluate(prediction)
+print(f"AUC of gbt using cvModel_ = {auc_gbt}")
+
+# (shallow) Neural networks
+crossval_mpc2 = CrossValidator(estimator=pipeline_mpc,
+                             estimatorParamMaps=paramGrid_mpc,
+                             evaluator=eval_auc)
+cvModel_mpc_auc = crossval_mpc2.fit(small_train_DF)
+#### select best model param
+bestmodel = cvModel_mpc_auc.bestModel
+best_mpc_paramDict = {
+    'blockSize': bestmodel.getOrDefault('blockSize'),
+    'layers': bestmodel.getOrDefault('layers'),
+    'maxIter': bestmodel.getOrDefault('maxIter')
+}
+print(f"best param of mpc (eval=auc) is {best_mpc_paramDict}")
+prediction = cvModel_mpc_auc.transform(small_test_DF)
+auc_mpc = eval_auc.evaluate(prediction)
+print(f"AUC of mpc using cvModel_ = {auc_mpc}")
