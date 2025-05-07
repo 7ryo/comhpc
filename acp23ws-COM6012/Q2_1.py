@@ -137,13 +137,13 @@ print(avgMetrics_glm)
 stdMetrics_glm = cvModel_glm.stdMetrics
 
 import matplotlib.pyplot as plt
-plt.plot(avgMetrics_glm, label='avgM')
-plt.savefig('avg.png')
+plt.errorbar([0.001,0.01, 0.1, 1, 10, 100], avgMetrics_glm, yerr=stdMetrics_glm, fmt='o')
+plt.savefig('errorbar.png')
 plt.close()
-plt.plot(stdMetrics_glm, label='stdM')
+#plt.plot(stdMetrics_glm, label='stdM')
 #plt.legend()
-plt.savefig('std.png')
-plt.close()
+#plt.savefig('std.png')
+#plt.close()
 
 #model = glm_poisson.fit(trainData)
 #predictions = model.transform(testData)

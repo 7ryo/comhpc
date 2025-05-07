@@ -68,10 +68,12 @@ pipeline_rf = Pipeline(stages=[vecAssembler, rf])
 paramGrid_rf = ParamGridBuilder()\
                 .addGrid(rf.maxDepth, [3, 5, 7])\
                 .addGrid(rf.maxBins, [16, 32, 64])\
-                .addGrid(rf.numTrees, [5, 20, 50]) #100?
+                .addGrid(rf.numTrees, [5, 20, 50]) \
+		.build()
 crossval_rf = CrossValidator(estimator=pipeline_rf,
                              estimatorParamMaps=paramGrid_rf,
                              evaluator=eval_acc)
+print("training rf")
 cvModel_rf_acc = crossval_rf.fit(small_train_DF)
 prediction = cvModel_rf_acc.transform(small_test_DF)
 acc_rf = eval_acc.evaluate(prediction)
@@ -88,7 +90,9 @@ pipeline_gbt = Pipeline(stages=[vecAssembler, gbt])
 paramGrid_gbt = ParamGridBuilder()\
                 .addGrid(gbt.maxDepth, [3, 5, 7])\
                 .addGrid(gbt.maxBins, [16, 32, 64])\
-                .addGrid(gbt.maxIter, [3, 5, 7]) #100?
+                .addGrid(gbt.maxIter, [3, 5, 7]) \
+		.build()
+print("training gbt")
 crossval_gbt = CrossValidator(estimator=pipeline_gbt,
                              estimatorParamMaps=paramGrid_gbt,
                              evaluator=eval_acc)
@@ -108,11 +112,12 @@ layers = [[num_features-1, 10, 3],\
 mpc = MultilayerPerceptronClassifier(featuresCol="features", labelCol="labels", \
                                      seed=rand_seed)
 pipeline_mpc = Pipeline(stages=[vecAssembler, mpc])
-
+print("training mpc")
 paramGrid_mpc = ParamGridBuilder()\
                 .addGrid(mpc.blockSize, [64, 128])\
                 .addGrid(mpc.layers, layers)\
-                .addGrid(mpc.maxIter, [30, 50, 70]) #100?
+                .addGrid(mpc.maxIter, [30, 50, 70])\
+		.build()
 crossval_mpc = CrossValidator(estimator=pipeline_mpc,
                              estimatorParamMaps=paramGrid_mpc,
                              evaluator=eval_acc)

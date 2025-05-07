@@ -5,7 +5,7 @@
 ##SBATCH --reservation=rse-com6012-9  # Replace $LAB_ID with your lab session number
 #SBATCH --nodes=6  # Specify a number of nodes
 #SBATCH --mem=10G  # Request 4 gigabytes of real memory (mem)
-#SBATCH --output=./Output/Q3_output.txt  # This is where your output and errors are logged
+#SBATCH --output=./Output/Q3_output_print.txt  # This is where your output and errors are logged
 
 module load Java
 module load Anaconda3
