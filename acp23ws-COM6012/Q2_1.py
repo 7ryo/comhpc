@@ -189,9 +189,11 @@ plt.close()
 # with elasticNetParam
 logit_elastic = LogisticRegression(featuresCol='onehot', labelCol='readmitted', \
 				        maxIter=50, regParam=0.1, elasticNetParam=0.5)
+elas_netparam_list = [0, 0.2, 0.5, 0.8, 1]
+
 paramGrid_elastic = ParamGridBuilder()\
-                        .addGrid(logit_elastic.regParam, [0.001,0.01, 0.1, 1, 10, 100])\
-			.addGrid(logit_elastic.elasticNetParam, [0, 0.2, 0.5, 0.8, 1])\
+			.addGrid(logit_elastic.elasticNetParam, elas_netparam_list)\
+			.addGrid(logit_elastic.regParam, [0.001,0.01, 0.1, 1, 10, 100])\
 			.build() ## when elasticNetParam==0 -> L2
 crossval_elastic = CrossValidator(estimator=logit_elastic,
                                   estimatorParamMaps=paramGrid_elastic,
@@ -199,11 +201,35 @@ crossval_elastic = CrossValidator(estimator=logit_elastic,
 
 cvModel_elastic = crossval_elastic.fit(trainData)
 avgMetrics_elastic = cvModel_elastic.avgMetrics
+#print(len(avgMetrics_elastic))
+#print(avgMetrics_elastic)
 stdMetrics_elastic = cvModel_elastic.stdMetrics
-for i in len(logit_elastic.elasticNetParam): #[0, 0.2, 0.5, 0.8, 1]
-	plt.errorbar(x=[0.001,0.01, 0.1, 1, 10, 100], y=avgMetrics_elastic[i],
-			yerr=stdMetrics_glm[i], fmt='-o', 
-			label=f"elastic={logit_elastic.elasticNetParam[i]}")
+#print(len(stdMetrics_elastic))
+#print(stdMetrics_elastic)
+
+from collections import defaultdict
+results = defaultdict(list)
+reg_params = [0.001, 0.01, 0.1, 1, 10, 100]
+elas_netparam_list = [0, 0.2, 0.5, 0.8, 1]
+
+### remember to modify this
+for i, param_map in enumerate(paramGrid_elastic):
+    reg = param_map[logit_elastic.regParam]
+    enet = param_map[logit_elastic.elasticNetParam]
+    mean = avgMetrics_elastic[i]
+    std = stdMetrics_elastic[i]
+    results[enet].append((reg, mean, std))
+
+for enet in elas_netparam_list:
+    data = sorted(results[enet])  # Sort by regParam
+    regs, means, stds = zip(*data)
+    plt.errorbar(regs, means, yerr=stds, fmt='-o', capsize=5, label=f'elasticNetParam={enet}')
+
+#for i in range(len(elas_netparam_list)): #[0, 0.2, 0.5, 0.8, 1]
+#	plt.errorbar(x=[0.001,0.01, 0.1, 1, 10, 100], y=avgMetrics_elastic[i],
+#			yerr=stdMetrics_glm[i], fmt='-o', 
+#			label=f"elastic={elas_netparam_list[i]}")
+
 plt.xscale('log')
 plt.legend()
 plt.title('Logistic Regresion w/ elasticnet')
