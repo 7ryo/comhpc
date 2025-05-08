@@ -1,4 +1,4 @@
-/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q2_1.py:11: DeprecationWarning: load_dataset is deprecated and will be removed in a future version.
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q2_code.py:11: DeprecationWarning: load_dataset is deprecated and will be removed in a future version.
   df = kagglehub.load_dataset(
 First 5 records:    encounter_id  patient_nbr             race  ... change diabetesMed readmitted
 0       2278392      8222157        Caucasian  ...     No          No         NO
@@ -8,46 +8,46 @@ First 5 records:    encounter_id  patient_nbr             race  ... change diabe
 4         16680     42519267        Caucasian  ...     Ch         Yes         NO
 
 [5 rows x 50 columns]
-25/05/07 11:49:30 INFO SparkContext: Running Spark version 3.5.4
-25/05/07 11:49:30 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/07 11:49:30 INFO SparkContext: Java version 17.0.4
-25/05/07 11:49:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/07 11:49:30 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/07 11:49:30 INFO ResourceUtils: ==============================================================
-25/05/07 11:49:30 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/07 11:49:30 INFO ResourceUtils: ==============================================================
-25/05/07 11:49:30 INFO SparkContext: Submitted application: Question2
-25/05/07 11:49:30 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/07 11:49:30 INFO ResourceProfile: Limiting resource is cpu
-25/05/07 11:49:30 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/07 11:49:30 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/07 11:49:30 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/07 11:49:30 INFO SecurityManager: Changing view acls groups to: 
-25/05/07 11:49:30 INFO SecurityManager: Changing modify acls groups to: 
-25/05/07 11:49:30 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/07 11:49:31 INFO Utils: Successfully started service 'sparkDriver' on port 35123.
-25/05/07 11:49:31 INFO SparkEnv: Registering MapOutputTracker
-25/05/07 11:49:31 INFO SparkEnv: Registering BlockManagerMaster
-25/05/07 11:49:31 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/07 11:49:31 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/07 11:49:31 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/07 11:49:31 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-a4bff7ef-b30c-4d47-97b0-20cb72cd5b68
-25/05/07 11:49:31 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/07 11:49:31 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/07 11:49:31 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/07 11:49:31 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-25/05/07 11:49:31 INFO Executor: Starting executor ID driver on host node141.pri.stanage.alces.network
-25/05/07 11:49:31 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/07 11:49:31 INFO Executor: Java version 17.0.4
-25/05/07 11:49:31 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/07 11:49:31 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1c7597a8 for default.
-25/05/07 11:49:31 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 37906.
-25/05/07 11:49:31 INFO NettyBlockTransferService: Server created on node141.pri.stanage.alces.network:37906
-25/05/07 11:49:31 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/07 11:49:31 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node141.pri.stanage.alces.network, 37906, None)
-25/05/07 11:49:31 INFO BlockManagerMasterEndpoint: Registering block manager node141.pri.stanage.alces.network:37906 with 413.9 MiB RAM, BlockManagerId(driver, node141.pri.stanage.alces.network, 37906, None)
-25/05/07 11:49:31 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node141.pri.stanage.alces.network, 37906, None)
-25/05/07 11:49:31 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node141.pri.stanage.alces.network, 37906, None)
+25/05/08 11:29:24 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 11:29:24 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 11:29:24 INFO SparkContext: Java version 17.0.4
+25/05/08 11:29:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 11:29:24 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 11:29:24 INFO ResourceUtils: ==============================================================
+25/05/08 11:29:24 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 11:29:24 INFO ResourceUtils: ==============================================================
+25/05/08 11:29:24 INFO SparkContext: Submitted application: Question2
+25/05/08 11:29:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 11:29:24 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 11:29:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 11:29:24 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 11:29:24 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 11:29:24 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 11:29:24 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 11:29:24 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 11:29:24 INFO Utils: Successfully started service 'sparkDriver' on port 40470.
+25/05/08 11:29:24 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 11:29:24 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 11:29:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 11:29:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 11:29:24 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 11:29:24 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-3a5ecb28-ef07-4d9a-a702-9fb789f0fc62
+25/05/08 11:29:24 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 11:29:24 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 11:29:24 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 11:29:24 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 11:29:25 INFO Executor: Starting executor ID driver on host node118.pri.stanage.alces.network
+25/05/08 11:29:25 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 11:29:25 INFO Executor: Java version 17.0.4
+25/05/08 11:29:25 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 11:29:25 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 11:29:25 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39587.
+25/05/08 11:29:25 INFO NettyBlockTransferService: Server created on node118.pri.stanage.alces.network:39587
+25/05/08 11:29:25 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 11:29:25 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node118.pri.stanage.alces.network, 39587, None)
+25/05/08 11:29:25 INFO BlockManagerMasterEndpoint: Registering block manager node118.pri.stanage.alces.network:39587 with 413.9 MiB RAM, BlockManagerId(driver, node118.pri.stanage.alces.network, 39587, None)
+25/05/08 11:29:25 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node118.pri.stanage.alces.network, 39587, None)
+25/05/08 11:29:25 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node118.pri.stanage.alces.network, 39587, None)
 +---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+
 |metformin|repaglinide|nateglinide|chlorpropamide|glimepiride|acetohexamide|glipizide|glyburide|tolbutamide|pioglitazone|rosiglitazone|acarbose|miglitol|troglitazone|tolazamide|examide|citoglipton|insulin|glyburide-metformin|glipizide-metformin|glimepiride-pioglitazone|metformin-rosiglitazone|metformin-pioglitazone|readmitted|time_in_hospital|
 +---------+-----------+-----------+--------------+-----------+-------------+---------+---------+-----------+------------+-------------+--------+--------+------------+----------+-------+-----------+-------+-------------------+-------------------+------------------------+-----------------------+----------------------+----------+----------------+
