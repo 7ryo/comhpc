@@ -32,26 +32,57 @@ rand_seed = 1840977
 splits = raw_rating_DF.randomSplit([0.25, 0.25, 0.25, 0.25], seed=rand_seed)
 ## use union to combine splits?
 ## or use subtract to remove current split?
-training = splits[1].join(splits[2]).join(splits[3]).cache()
-test = splits[0].cache()
+
 print(f"training count = {training.count()}")
 print(f"test count = {test.count()}")
 
 
 # 3 versions of ALS
+evaluator_RMSE = RegressionEvaluator(metricName="rmse", labelCol="rating", predictionCol="prediction")
+evaluator_MAE = RegressionEvaluator(metricName="mae", labelCol="rating", predictionCol="prediction")
+
 # setting1) use the settings in Lab8
 #           change random seed = student number
 als_1 = ALS(userCol="uesrId", itemCol="movieId", \
 		seed=rand_seed, coldStartStrategy="drop")
-model_1 = als.fit(training)
-predictions = model_1.transform(test)
-evaluator = RegressionEvaluator(metricName="rmse", labelCol="rating", predictionCol="prediction")
-rmse = evaluator.evaluate(predictions)
-print(f"RMSE = {rmse}")
+# model_1 = als_1.fit(training)
+# predictions = model_1.transform(test)
+# rmse = evaluator.evaluate(predictions)
+# print(f"RMSE = {rmse}")
 # setting2)
+als_2 = ALS(userCol="uesrId", itemCol="movieId", \
+		seed=rand_seed, coldStartStrategy="drop",\
+                alpha=0.5, maxIter=20, rank=5)
 # setting3)
+als_3 = ALS(userCol="uesrId", itemCol="movieId", \
+		seed=rand_seed, coldStartStrategy="drop",
+                alpha=0.5, regParam=0.01, maxIter=30)
 # eg. changing rank, regParam, alpha
 # improve the model
+
+evals_DF = spark.createDataFrame([], ['no_split','model1_RMSE', 'model1_MAE', 'model2_RMSE', 'model2_MAE', 'model3_RMSE', 'model3_MAE'])
+for i in range(4):
+        test = splits[i].cache()
+        training = raw_rating_DF.subtract(test).cache()
+
+        model_1 = als_1.fit(training)
+        predictions = model_1.transform(test)
+        rmse_1 = evaluator_RMSE.evaluate(predictions)
+        mae_1 = evaluator_MAE.evaluate(predictions)
+
+        model_2 = als_2.fit(training)
+        predictions = model_2.transform(test)
+        rmse_2 = evaluator_RMSE.evaluate(predictions)
+        mae_2 = evaluator_MAE.evaluate(predictions)
+
+        model_3 = als_3.fit(training)
+        predictions = model_3.transform(test)
+        rmse_3 = evaluator_RMSE.evaluate(predictions)
+        mae_3 = evaluator_MAE.evaluate(predictions)
+
+        new_row = spark.createDataFrame([(i, rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3)])
+        evals_DF.union(new_row)
+evals_DF.show()
 
 # Eval: 
 # for each split - mean RMSE and mean MAE for 3 ALSs
