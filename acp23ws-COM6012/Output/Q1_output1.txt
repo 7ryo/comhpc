@@ -1,0 +1,128 @@
+25/05/08 09:01:22 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 09:01:22 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 09:01:22 INFO SparkContext: Java version 17.0.4
+25/05/08 09:01:22 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 09:01:22 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 09:01:22 INFO ResourceUtils: ==============================================================
+25/05/08 09:01:22 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 09:01:22 INFO ResourceUtils: ==============================================================
+25/05/08 09:01:22 INFO SparkContext: Submitted application: Question1
+25/05/08 09:01:22 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 09:01:22 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 09:01:22 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 09:01:22 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 09:01:22 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 09:01:22 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 09:01:22 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 09:01:22 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 09:01:22 INFO Utils: Successfully started service 'sparkDriver' on port 41659.
+25/05/08 09:01:22 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 09:01:22 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 09:01:22 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 09:01:22 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 09:01:22 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 09:01:22 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-4890178d-618d-4340-920a-c318c83be157
+25/05/08 09:01:22 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 09:01:22 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 09:01:23 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 09:01:23 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 09:01:23 INFO Executor: Starting executor ID driver on host node006.pri.stanage.alces.network
+25/05/08 09:01:23 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 09:01:23 INFO Executor: Java version 17.0.4
+25/05/08 09:01:23 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 09:01:23 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 09:01:23 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34285.
+25/05/08 09:01:23 INFO NettyBlockTransferService: Server created on node006.pri.stanage.alces.network:34285
+25/05/08 09:01:23 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 09:01:23 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node006.pri.stanage.alces.network, 34285, None)
+25/05/08 09:01:23 INFO BlockManagerMasterEndpoint: Registering block manager node006.pri.stanage.alces.network:34285 with 413.9 MiB RAM, BlockManagerId(driver, node006.pri.stanage.alces.network, 34285, None)
+25/05/08 09:01:23 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node006.pri.stanage.alces.network, 34285, None)
+25/05/08 09:01:23 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node006.pri.stanage.alces.network, 34285, None)
+Hello from spark!
+
+
+
+Hosts from US: 218451.
+
++----------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                             |
++----------------------------------------------------------------------------------------------------------------------------------+
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:00:50 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040     |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:02:25 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                               |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:03:11 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634       |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:04:04 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0915.gif HTTP/1.0" 200 29634|
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:01 -0400] "GET /shuttle/countdown/countdown.html HTTP/1.0" 200 3985                      |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:06:03 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0917.jpg HTTP/1.0" 200 52491|
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:35 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                        |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:06:46 -0400] "GET /history/apollo/apollo-13/movies/apo13inside.mpg HTTP/1.0" 200 501126 |
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:48 -0400] "GET /shuttle/countdown/video/livevideo.jpeg HTTP/1.0" 200 48725               |
+|uconnvm.uconn.edu - - [01/Jul/1995:00:13:13 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                              |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:13:38 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                          |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:13:40 -0400] "GET /images/ksclogo-medium.gif HTTP/1.0" 200 5866                         |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:09 -0400] "GET /history/apollo/apollo-13/docs/ HTTP/1.0" 200 377                     |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:15 -0400] "GET /history/apollo/apollo-13/ HTTP/1.0" 200 1732                         |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:17 -0400] "GET /icons/text.xbm HTTP/1.0" 200 527                                     |
+|annex-p2.sci.dixie.edu - - [01/Jul/1995:00:16:20 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                   |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:25 -0400] "GET /history/apollo/apollo-13/videos/ HTTP/1.0" 200 381                   |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:43 -0400] "GET /history/apollo/apollo.html HTTP/1.0" 200 3258                        |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:16:44 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                          |
+|cu-dialup-1005.cit.cornell.edu - - [01/Jul/1995:00:16:46 -0400] "GET /software/winvn/winvn.html HTTP/1.0" 200 9867                |
++----------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+
+Hosts from UK: 25014.
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                              |
++-----------------------------------------------------------------------------------------------------------------------------------+
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:31 -0400] "GET /ksc.html" 200 7074                                                  |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:33 -0400] "GET /images/ksclogo-medium.gif" 200 5866                                 |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:34 -0400] "GET /images/NASA-logosmall.gif" 200 786                                  |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/MOSAIC-logosmall.gif" 200 363                                |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/USA-logosmall.gif" 200 234                                   |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/WORLD-logosmall.gif" 200 669                                 |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:03 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040   |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:04 -0400] "GET /shuttle/missions/sts-71/sts-71-patch-small.gif HTTP/1.0" 200 12054|
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:05 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                       |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:05 -0400] "GET /images/launch-logo.gif HTTP/1.0" 200 1713                         |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:33 -0400] "GET /shuttle/countdown/countdown.html HTTP/1.0" 200 3985                       |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:43 -0400] "GET /cgi-bin/imagemap/countdown HTTP/1.0" 200 156                              |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:56 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634             |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:21:34 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0589.gif HTTP/1.0" 200 45846      |
+|oak.soton.ac.uk - - [01/Jul/1995:05:22:37 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                                       |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:22:49 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0911.gif HTTP/1.0" 200 31242      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:04 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0911.jpg HTTP/1.0" 200 45966      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:20 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0912.gif HTTP/1.0" 200 48305      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:34 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0913.gif HTTP/1.0" 200 21957      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:24:20 -0400] "GET /shuttle/missions/sts-71/movies/movies.html HTTP/1.0" 200 3092             |
++-----------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+
+Hosts from Australia: 7004.
+
++--------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                           |
++--------------------------------------------------------------------------------------------------------------------------------+
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:04 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                             |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /shuttle/countdown/count.gif HTTP/1.0" 200 40310                   |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /images/NASA-logosmall.gif HTTP/1.0" 200 786                       |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                       |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:34 -0400] "GET /cgi-bin/imagemap/countdown?104,169 HTTP/1.0" 302 110              |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:35 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634     |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:52 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040   |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:53 -0400] "GET /shuttle/missions/sts-71/sts-71-patch-small.gif HTTP/1.0" 200 12054|
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:24:01 -0400] "GET /images/launch-logo.gif HTTP/1.0" 200 1713                         |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:35 -0400] "GET /cgi-bin/imagemap/countdown?329,273 HTTP/1.0" 302 98               |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:36 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                 |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:57 -0400] "GET /shuttle/countdown/video/livevideo.gif HTTP/1.0" 200 72102         |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:27:37 -0400] "GET /htbin/cdt_clock.pl HTTP/1.0" 200 543                              |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:03 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                                 |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:06 -0400] "GET /shuttle/countdown/count.gif HTTP/1.0" 200 40310                       |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:09 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                           |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:14 -0400] "GET /images/NASA-logosmall.gif HTTP/1.0" 200 786                           |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:03 -0400] "GET /cgi-bin/imagemap/countdown?107,212 HTTP/1.0" 302 95                   |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:05 -0400] "GET /shuttle/countdown/tour.html HTTP/1.0" 200 4347                        |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:07 -0400] "GET /images/KSC-94EC-412-small.gif HTTP/1.0" 200 20484                     |
++--------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+
