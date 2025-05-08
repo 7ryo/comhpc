@@ -31,8 +31,13 @@ raw_rating_DF = raw_rating_DF.withColumn('rating', F.col('rating').cast("double"
 # check data type
 raw_rating_DF.printSchema()
 
-# pre processing
 rand_seed = 1840977
+
+# reduce the size
+raw_rating_DF = raw_rating_DF.sample(fraction=0.1, seed=rand_seed)
+
+# pre processing
+# rand_seed = 1840977
 splits = raw_rating_DF.randomSplit([0.25, 0.25, 0.25, 0.25], seed=rand_seed)
 ## use union to combine splits?
 ## or use subtract to remove current split?
