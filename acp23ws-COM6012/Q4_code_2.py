@@ -88,14 +88,14 @@ evals_DF = pd.DataFrame([[0,0,0,0,0,0]], columns=['rmse_1', 'mae_1', 'rmse_2', '
 itemFactors_dict = {}
 
 
-for i in range(1):
-    print(f"i={i}")
-    test = splits[i].cache()
-    training = raw_rating_DF.subtract(test).cache()
-    model_1 = als_1.fit(training)
-    itemFactors_dict[i] = model_1.itemFactors
-    test.unpersist()
-    training.unpersist()
+# for i in range(1):
+#     print(f"i={i}")
+#     test = splits[i].cache()
+#     training = raw_rating_DF.subtract(test).cache()
+#     model_1 = als_1.fit(training)
+#     itemFactors_dict[i] = model_1.itemFactors
+#     test.unpersist()
+#     training.unpersist()
 #    predictions = model_1.transform(test)
 #    rmse_1 = evaluator_RMSE.evaluate(predictions)
 #    mae_1 = evaluator_MAE.evaluate(predictions)
@@ -135,14 +135,34 @@ import matplotlib.pyplot as plt
 kmeans = KMeans(k=19, seed=rand_seed)
 
 # try with the model of first split itemFactors_dict[0]
-model_kmeans = kmeans.fit(itemFactors_dict[0])
+# model_kmeans = kmeans.fit(itemFactors_dict[0])
 ##save model
-model_kmeans.save('./kmeans_model')
+# model_kmeans.save('./kmeans_model')
 
 ##load model
+model_kmeans = KMeansModel.load('./kmeans_model')
+
+
 transformed = model_kmeans.transform(itemFactors_dict[0])
 transformed.show(10, False)
 cluster_counts = transformed.groupBy("prediction").count()
 top_clusters = cluster_counts.orderBy(F.desc("count")).limit(3)
 top_clusters.show()
+
+## pick out the movieids that belong to the cluster
+movie_tag_DF = spark.read.csv('./Data/ml-25m/genome-scores.csv')
+tag_DF = spark.read.csv('./Data/ml-25m/genome-tags.csv')
+
+movieids_in_cluster_1 = transformed.filter(F.col('prediction')==16).select('id')
+movieids_in_cluster_1.show(5)
+movieid_tagid = movieids_in_cluster_1.join(movie_tag_DF, movie_tag_DF.movieId == movieids_in_cluster_1.id)
+movieid_tagid.show(5)
+
+##sum tag scores
+top_tags = movieid_tagid.groupBy(F.col('tagId')).agg(F.sum('relevance').alias('sum_score')).orderBy('sum_score').limit(3)
+top_tags.show()
+
+## map tag id -> tag name
+tag_names = top_tags.join(tag_DF, tag_DF.tagId == top_tags.tagId)
+tag_names.show()
 
