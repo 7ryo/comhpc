@@ -1,0 +1,75 @@
+25/05/08 16:53:56 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 16:53:56 INFO SparkContext: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/08 16:53:56 INFO SparkContext: Java version 17.0.4
+25/05/08 16:53:56 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 16:53:57 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 16:53:57 INFO ResourceUtils: ==============================================================
+25/05/08 16:53:57 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 16:53:57 INFO ResourceUtils: ==============================================================
+25/05/08 16:53:57 INFO SparkContext: Submitted application: Question2
+25/05/08 16:53:57 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 16:53:57 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 16:53:57 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 16:53:57 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 16:53:57 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 16:53:57 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 16:53:57 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 16:53:57 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 16:53:57 INFO Utils: Successfully started service 'sparkDriver' on port 42153.
+25/05/08 16:53:57 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 16:53:57 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 16:53:57 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 16:53:57 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 16:53:57 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 16:53:57 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-2a5514f6-d7b1-47af-8035-b4c327b62ff4
+25/05/08 16:53:57 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 16:53:57 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 16:53:57 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 16:53:57 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 16:53:58 INFO Executor: Starting executor ID driver on host node007.pri.stanage.alces.network
+25/05/08 16:53:58 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/08 16:53:58 INFO Executor: Java version 17.0.4
+25/05/08 16:53:58 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 16:53:58 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 16:53:58 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34337.
+25/05/08 16:53:58 INFO NettyBlockTransferService: Server created on node007.pri.stanage.alces.network:34337
+25/05/08 16:53:58 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 16:53:58 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node007.pri.stanage.alces.network, 34337, None)
+25/05/08 16:53:58 INFO BlockManagerMasterEndpoint: Registering block manager node007.pri.stanage.alces.network:34337 with 413.9 MiB RAM, BlockManagerId(driver, node007.pri.stanage.alces.network, 34337, None)
+25/05/08 16:53:58 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node007.pri.stanage.alces.network, 34337, None)
+25/05/08 16:53:58 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node007.pri.stanage.alces.network, 34337, None)
++------+-------+------+----------+
+|userId|movieId|rating| timestamp|
++------+-------+------+----------+
+|     1|    296|   5.0|1147880044|
+|     1|    306|   3.5|1147868817|
+|     1|    307|   5.0|1147868828|
+|     1|    665|   5.0|1147878820|
+|     1|    899|   3.5|1147868510|
++------+-------+------+----------+
+only showing top 5 rows
+
+there are 25000095 rows of data in ratings.csv
+
+root
+ |-- userId: long (nullable = true)
+ |-- movieId: long (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: string (nullable = true)
+
+i=0
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.8097691012801538' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.6280157485874622' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.8025825006170371' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.6211655807188411' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.7790471297247147' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code_train.py:111: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value '0.6000207897136268' has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+i=1
+i=2
+i=3
