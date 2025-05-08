@@ -140,7 +140,9 @@ kmeans = KMeans(k=19, seed=rand_seed)
 # model_kmeans.save('./kmeans_model')
 
 ##load model
-model_kmeans = KMeansModel.load('./kmeans_model')
+model_dict = {}
+for i in range(4):
+    model_dict[i] = KMeansModel.load(f'./kmeans_model_{i}')
 
 
 transformed = model_kmeans.transform(itemFactors_dict[0])

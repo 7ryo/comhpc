@@ -67,38 +67,40 @@ from pyspark.ml.clustering import KMeans
 from pyspark.ml.clustering import KMeansModel
 import matplotlib.pyplot as plt
 
+movie_tag_DF = spark.read.csv('./Data/ml-25m/genome-scores.csv', header=True)
+tag_DF = spark.read.csv('./Data/ml-25m/genome-tags.csv', header=True)
+
 kmeans = KMeans(k=19, seed=rand_seed)
 
 # try with the model of first split itemFactors_dict[0]
+tags_dict = {}
 for i in range(4):
+    print(f"split{i}")
+    tags_per_split_dict = {}
     model_kmeans = kmeans.fit(itemFactors_dict[i])
-##save model
-    model_kmeans.save(f'./kmeans_model_{i}')
+    # save model
+    # model_kmeans.save(f'./kmeans_model_{i}')
 
-##load model
-# model_kmeans = KMeansModel.load('./kmeans_model')
+    transformed = model_kmeans.transform(itemFactors_dict[0])
 
+    top_clusters = transformed.groupBy("prediction").count()\
+                                .orderBy(F.desc("count")).limit(3)
+    top_clusters_id_list = [row['prediction'] for row in top_clusters.select('prediction').collect()]
+    print(f"top 3 clusters: {top_clusters_id_list}")
 
-# transformed = model_kmeans.transform(itemFactors_dict[0])
-# transformed.show(10, False)
-# cluster_counts = transformed.groupBy("prediction").count()
-# top_clusters = cluster_counts.orderBy(F.desc("count")).limit(3)
-# top_clusters.show()
+    # within each cluster
+    for m in top_clusters_id_list:
+        print(f"cluster {i}:")
+        movie_tag_in_cluster = transformed.filter(F.col('prediction')==m).select('id')\
+                                        .join(movie_tag_DF, movie_tag_DF.movieId == movie_tag_in_cluster.id)
+        movie_tag_in_cluster.show(5)
 
-# ## pick out the movieids that belong to the cluster
-# movie_tag_DF = spark.read.csv('./Data/ml-25m/genome-scores.csv')
-# tag_DF = spark.read.csv('./Data/ml-25m/genome-tags.csv')
-
-# movieids_in_cluster_1 = transformed.filter(F.col('prediction')==16).select('id')
-# movieids_in_cluster_1.show(5)
-# movieid_tagid = movieids_in_cluster_1.join(movie_tag_DF, movie_tag_DF.movieId == movieids_in_cluster_1.id)
-# movieid_tagid.show(5)
-
-# ##sum tag scores
-# top_tags = movieid_tagid.groupBy(F.col('tagId')).agg(F.sum('relevance').alias('sum_score')).orderBy('sum_score').limit(3)
-# top_tags.show()
-
-# ## map tag id -> tag name
-# tag_names = top_tags.join(tag_DF, tag_DF.tagId == top_tags.tagId)
-# tag_names.show()
-
+        # top tag id -> names
+        top_tags = movie_tag_in_cluster.groupBy(F.col('tagId'))\
+                                        .agg(F.sum('relevance').alias('sum_score'))\
+                                        .orderBy('sum_score').limit(3)\
+                                        .join(tag_DF, on="tagId")
+        top_tags.show()
+        top_tags_list = [row['tag'] for row in top_tags.select('tag').collect()]
+        tags_per_split_dict[m] = top_tags_list
+    tags_dict[i] = tags_per_split_dict
