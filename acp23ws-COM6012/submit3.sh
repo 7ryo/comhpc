@@ -5,11 +5,11 @@
 ##SBATCH --reservation=rse-com6012-9  # Replace $LAB_ID with your lab session number
 #SBATCH --nodes=10  # Specify a number of nodes
 #SBATCH --mem=10G  # Request 4 gigabytes of real memory (mem)
-#SBATCH --output=./Output/Q3_small_auc.txt  #  where your output
+#SBATCH --output=./Output/Q3_output.txt  #  where your output
 
 module load Java
 module load Anaconda3
 
 source activate myspark
 
-spark-submit ./Q3_1.py
+spark-submit ./Q3_code_1.py
