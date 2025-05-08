@@ -1,51 +1,438 @@
-25/05/04 12:01:36 INFO SparkContext: Running Spark version 3.5.4
-25/05/04 12:01:36 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/04 12:01:36 INFO SparkContext: Java version 17.0.4
-25/05/04 12:01:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/04 12:01:37 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/04 12:01:37 INFO ResourceUtils: ==============================================================
-25/05/04 12:01:37 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/04 12:01:37 INFO ResourceUtils: ==============================================================
-25/05/04 12:01:37 INFO SparkContext: Submitted application: Question1
-25/05/04 12:01:37 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/04 12:01:37 INFO ResourceProfile: Limiting resource is cpu
-25/05/04 12:01:37 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/04 12:01:38 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/04 12:01:38 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/04 12:01:38 INFO SecurityManager: Changing view acls groups to: 
-25/05/04 12:01:38 INFO SecurityManager: Changing modify acls groups to: 
-25/05/04 12:01:38 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/04 12:01:39 INFO Utils: Successfully started service 'sparkDriver' on port 33656.
-25/05/04 12:01:40 INFO SparkEnv: Registering MapOutputTracker
-25/05/04 12:01:40 INFO SparkEnv: Registering BlockManagerMaster
-25/05/04 12:01:40 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/04 12:01:40 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/04 12:01:40 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/04 12:01:41 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-8860ca16-57c3-424e-bdb7-d9fe6a59ea7c
-25/05/04 12:01:41 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/04 12:01:41 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/04 12:01:42 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/04 12:01:42 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-25/05/04 12:01:42 INFO Utils: Successfully started service 'SparkUI' on port 4041.
-25/05/04 12:01:43 INFO Executor: Starting executor ID driver on host node144.pri.stanage.alces.network
-25/05/04 12:01:43 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/04 12:01:43 INFO Executor: Java version 17.0.4
-25/05/04 12:01:43 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/04 12:01:43 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@130ec5a7 for default.
-25/05/04 12:01:43 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42728.
-25/05/04 12:01:43 INFO NettyBlockTransferService: Server created on node144.pri.stanage.alces.network:42728
-25/05/04 12:01:43 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/04 12:01:43 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node144.pri.stanage.alces.network, 42728, None)
-25/05/04 12:01:43 INFO BlockManagerMasterEndpoint: Registering block manager node144.pri.stanage.alces.network:42728 with 413.9 MiB RAM, BlockManagerId(driver, node144.pri.stanage.alces.network, 42728, None)
-25/05/04 12:01:43 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node144.pri.stanage.alces.network, 42728, None)
-25/05/04 12:01:43 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node144.pri.stanage.alces.network, 42728, None)
+25/05/08 10:53:55 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 10:53:55 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 10:53:55 INFO SparkContext: Java version 17.0.4
+25/05/08 10:53:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 10:53:55 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 10:53:55 INFO ResourceUtils: ==============================================================
+25/05/08 10:53:55 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 10:53:55 INFO ResourceUtils: ==============================================================
+25/05/08 10:53:55 INFO SparkContext: Submitted application: Question1
+25/05/08 10:53:56 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 10:53:56 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 10:53:56 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 10:53:56 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 10:53:56 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 10:53:56 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 10:53:56 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 10:53:56 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 10:53:56 INFO Utils: Successfully started service 'sparkDriver' on port 33207.
+25/05/08 10:53:56 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 10:53:56 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 10:53:56 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 10:53:56 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 10:53:56 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 10:53:56 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-e5fc9510-e4f5-48b0-9321-e9bf886cd264
+25/05/08 10:53:56 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 10:53:56 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 10:53:56 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 10:53:56 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/08 10:53:56 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+25/05/08 10:53:56 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+25/05/08 10:53:56 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
+25/05/08 10:53:56 INFO Utils: Successfully started service 'SparkUI' on port 4044.
+25/05/08 10:53:57 INFO Executor: Starting executor ID driver on host node006.pri.stanage.alces.network
+25/05/08 10:53:57 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 10:53:57 INFO Executor: Java version 17.0.4
+25/05/08 10:53:57 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 10:53:57 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@60e1f50e for default.
+25/05/08 10:53:57 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42277.
+25/05/08 10:53:57 INFO NettyBlockTransferService: Server created on node006.pri.stanage.alces.network:42277
+25/05/08 10:53:57 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 10:53:57 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node006.pri.stanage.alces.network, 42277, None)
+25/05/08 10:53:57 INFO BlockManagerMasterEndpoint: Registering block manager node006.pri.stanage.alces.network:42277 with 413.9 MiB RAM, BlockManagerId(driver, node006.pri.stanage.alces.network, 42277, None)
+25/05/08 10:53:57 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node006.pri.stanage.alces.network, 42277, None)
+25/05/08 10:53:57 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node006.pri.stanage.alces.network, 42277, None)
 Hello from spark!
 
 
 
-Hosts from US: 227494.
+Hosts from US: 218451.
+
++----------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                             |
++----------------------------------------------------------------------------------------------------------------------------------+
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:00:50 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040     |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:02:25 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                               |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:03:11 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634       |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:04:04 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0915.gif HTTP/1.0" 200 29634|
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:01 -0400] "GET /shuttle/countdown/countdown.html HTTP/1.0" 200 3985                      |
+|gayle-gaston.tenet.edu - - [01/Jul/1995:00:06:03 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0917.jpg HTTP/1.0" 200 52491|
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:35 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                        |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:06:46 -0400] "GET /history/apollo/apollo-13/movies/apo13inside.mpg HTTP/1.0" 200 501126 |
+|janice.cc.wwu.edu - - [01/Jul/1995:00:06:48 -0400] "GET /shuttle/countdown/video/livevideo.jpeg HTTP/1.0" 200 48725               |
+|uconnvm.uconn.edu - - [01/Jul/1995:00:13:13 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                              |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:13:38 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                          |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:13:40 -0400] "GET /images/ksclogo-medium.gif HTTP/1.0" 200 5866                         |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:09 -0400] "GET /history/apollo/apollo-13/docs/ HTTP/1.0" 200 377                     |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:15 -0400] "GET /history/apollo/apollo-13/ HTTP/1.0" 200 1732                         |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:17 -0400] "GET /icons/text.xbm HTTP/1.0" 200 527                                     |
+|annex-p2.sci.dixie.edu - - [01/Jul/1995:00:16:20 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                   |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:25 -0400] "GET /history/apollo/apollo-13/videos/ HTTP/1.0" 200 381                   |
+|svasu.extern.ucsd.edu - - [01/Jul/1995:00:16:43 -0400] "GET /history/apollo/apollo.html HTTP/1.0" 200 3258                        |
+|kuts5p06.cc.ukans.edu - - [01/Jul/1995:00:16:44 -0400] "GET /ksc.html HTTP/1.0" 200 7074                                          |
+|cu-dialup-1005.cit.cornell.edu - - [01/Jul/1995:00:16:46 -0400] "GET /software/winvn/winvn.html HTTP/1.0" 200 9867                |
++----------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
 
 Hosts from UK: 25014.
 
++-----------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                              |
++-----------------------------------------------------------------------------------------------------------------------------------+
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:31 -0400] "GET /ksc.html" 200 7074                                                  |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:33 -0400] "GET /images/ksclogo-medium.gif" 200 5866                                 |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:34 -0400] "GET /images/NASA-logosmall.gif" 200 786                                  |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/MOSAIC-logosmall.gif" 200 363                                |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/USA-logosmall.gif" 200 234                                   |
+|columbia.acc.brad.ac.uk - - [01/Jul/1995:00:51:35 -0400] "GET /images/WORLD-logosmall.gif" 200 669                                 |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:03 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040   |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:04 -0400] "GET /shuttle/missions/sts-71/sts-71-patch-small.gif HTTP/1.0" 200 12054|
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:05 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                       |
+|penelope.physics.ox.ac.uk - - [01/Jul/1995:04:27:05 -0400] "GET /images/launch-logo.gif HTTP/1.0" 200 1713                         |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:33 -0400] "GET /shuttle/countdown/countdown.html HTTP/1.0" 200 3985                       |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:43 -0400] "GET /cgi-bin/imagemap/countdown HTTP/1.0" 200 156                              |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:20:56 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634             |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:21:34 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0589.gif HTTP/1.0" 200 45846      |
+|oak.soton.ac.uk - - [01/Jul/1995:05:22:37 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                                       |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:22:49 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0911.gif HTTP/1.0" 200 31242      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:04 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0911.jpg HTTP/1.0" 200 45966      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:20 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0912.gif HTTP/1.0" 200 48305      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:23:34 -0400] "GET /shuttle/missions/sts-71/images/KSC-95EC-0913.gif HTTP/1.0" 200 21957      |
+|cr41.staffs.ac.uk - - [01/Jul/1995:05:24:20 -0400] "GET /shuttle/missions/sts-71/movies/movies.html HTTP/1.0" 200 3092             |
++-----------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+
 Hosts from Australia: 7004.
+
++--------------------------------------------------------------------------------------------------------------------------------+
+|value                                                                                                                           |
++--------------------------------------------------------------------------------------------------------------------------------+
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:04 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                             |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /shuttle/countdown/count.gif HTTP/1.0" 200 40310                   |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /images/NASA-logosmall.gif HTTP/1.0" 200 786                       |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:22:09 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                       |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:34 -0400] "GET /cgi-bin/imagemap/countdown?104,169 HTTP/1.0" 302 110              |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:35 -0400] "GET /shuttle/missions/sts-71/images/images.html HTTP/1.0" 200 7634     |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:52 -0400] "GET /shuttle/missions/sts-71/mission-sts-71.html HTTP/1.0" 200 12040   |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:23:53 -0400] "GET /shuttle/missions/sts-71/sts-71-patch-small.gif HTTP/1.0" 200 12054|
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:24:01 -0400] "GET /images/launch-logo.gif HTTP/1.0" 200 1713                         |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:35 -0400] "GET /cgi-bin/imagemap/countdown?329,273 HTTP/1.0" 302 98               |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:36 -0400] "GET /shuttle/countdown/liftoff.html HTTP/1.0" 200 4538                 |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:25:57 -0400] "GET /shuttle/countdown/video/livevideo.gif HTTP/1.0" 200 72102         |
+|gclab040.ins.gu.edu.au - - [01/Jul/1995:00:27:37 -0400] "GET /htbin/cdt_clock.pl HTTP/1.0" 200 543                              |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:03 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985                                 |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:06 -0400] "GET /shuttle/countdown/count.gif HTTP/1.0" 200 40310                       |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:09 -0400] "GET /images/KSC-logosmall.gif HTTP/1.0" 200 1204                           |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:30:14 -0400] "GET /images/NASA-logosmall.gif HTTP/1.0" 200 786                           |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:03 -0400] "GET /cgi-bin/imagemap/countdown?107,212 HTTP/1.0" 302 95                   |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:05 -0400] "GET /shuttle/countdown/tour.html HTTP/1.0" 200 4347                        |
+|ppp31.cowan.edu.au - - [01/Jul/1995:00:32:07 -0400] "GET /images/KSC-94EC-412-small.gif HTTP/1.0" 200 20484                     |
++--------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+|host                |timestamp                 |request                                                     |HTTP reply code|bytes in the reply|country|
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+|199.72.81.55        |01/Jul/1995:00:00:01 -0400|GET /history/apollo/ HTTP/1.0                               |200            |6245              |other  |
+|unicomp6.unicomp.net|01/Jul/1995:00:00:06 -0400|GET /shuttle/countdown/ HTTP/1.0                            |200            |3985              |other  |
+|199.120.110.21      |01/Jul/1995:00:00:09 -0400|GET /shuttle/missions/sts-73/mission-sts-73.html HTTP/1.0   |200            |4085              |other  |
+|burger.letters.com  |01/Jul/1995:00:00:11 -0400|GET /shuttle/countdown/liftoff.html HTTP/1.0                |304            |0                 |other  |
+|199.120.110.21      |01/Jul/1995:00:00:11 -0400|GET /shuttle/missions/sts-73/sts-73-patch-small.gif HTTP/1.0|200            |4179              |other  |
+|burger.letters.com  |01/Jul/1995:00:00:12 -0400|GET /images/NASA-logosmall.gif HTTP/1.0                     |304            |0                 |other  |
+|burger.letters.com  |01/Jul/1995:00:00:12 -0400|GET /shuttle/countdown/video/livevideo.gif HTTP/1.0         |200            |0                 |other  |
+|205.212.115.106     |01/Jul/1995:00:00:12 -0400|GET /shuttle/countdown/countdown.html HTTP/1.0              |200            |3985              |other  |
+|d104.aa.net         |01/Jul/1995:00:00:13 -0400|GET /shuttle/countdown/ HTTP/1.0                            |200            |3985              |other  |
+|129.94.144.152      |01/Jul/1995:00:00:13 -0400|GET / HTTP/1.0                                              |200            |7074              |other  |
++--------------------+--------------------------+------------------------------------------------------------+---------------+------------------+-------+
+only showing top 10 rows
+
+total number of distinct hosts is 81622.
+
+Count of all hosts
++-------+--------------------+-----+
+|country|host                |count|
++-------+--------------------+-----+
+|other  |                    |19727|
+|other  |piweba3y.prodigy.com|17381|
+|other  |piweba4y.prodigy.com|11489|
+|other  |piweba1y.prodigy.com|9730 |
+|other  |alyssa.prodigy.com  |7766 |
+|other  |siltb10.orl.mmc.com |7573 |
+|other  |piweba2y.prodigy.com|5861 |
+|other  |edams.ksc.nasa.gov  |5403 |
+|other  |163.206.89.4        |4870 |
+|other  |news.ti.com         |4827 |
++-------+--------------------+-----+
+only showing top 10 rows
+
+Most frequent 9 hosts per country
++-------+--------------------+-----+----+
+|country|host                |count|rank|
++-------+--------------------+-----+----+
+|other  |                    |19727|1   |
+|other  |piweba3y.prodigy.com|17381|2   |
+|other  |piweba4y.prodigy.com|11489|3   |
+|other  |piweba1y.prodigy.com|9730 |4   |
+|other  |alyssa.prodigy.com  |7766 |5   |
+|other  |siltb10.orl.mmc.com |7573 |6   |
+|other  |piweba2y.prodigy.com|5861 |7   |
+|other  |edams.ksc.nasa.gov  |5403 |8   |
+|other  |163.206.89.4        |4870 |9   |
+|other  |news.ti.com         |4827 |10  |
++-------+--------------------+-----+----+
+only showing top 10 rows
+
++---------+----------------------------+-----+----+
+|country  |host                        |count|rank|
++---------+----------------------------+-----+----+
+|Australia|brother.cc.monash.edu.au    |549  |1   |
+|Australia|metabelis.rmit.edu.au       |378  |2   |
+|Australia|fatboy.gas.unsw.edu.au      |363  |3   |
+|Australia|miriworld.its.unimelb.edu.au|304  |4   |
+|Australia|ppp-2.vifp.monash.edu.au    |197  |5   |
+|Australia|morinda.cs.ntu.edu.au       |141  |6   |
+|Australia|oispc1.murdoch.edu.au       |123  |7   |
+|Australia|ge321.ssn.flinders.edu.au   |107  |8   |
+|Australia|metz.une.edu.au             |106  |9   |
+|UK       |poppy.hensa.ac.uk           |4095 |1   |
+|UK       |miranda.psychol.ucl.ac.uk   |556  |2   |
+|UK       |pcjmk.ag.rl.ac.uk           |544  |3   |
+|UK       |kayleigh.cs.man.ac.uk       |422  |4   |
+|UK       |pcmas.it.bton.ac.uk         |353  |5   |
+|UK       |hal.mic.dundee.ac.uk        |336  |6   |
+|UK       |piton.brunel.ac.uk          |270  |7   |
+|UK       |balti.cee.hw.ac.uk          |251  |8   |
+|UK       |hunter.ecs.soton.ac.uk      |231  |9   |
+|US       |currypc.fpl.msstate.edu     |1970 |1   |
+|US       |marina.cea.berkeley.edu     |1799 |2   |
+|US       |ariel.earth.nwu.edu         |1404 |3   |
+|US       |blazemonger.pc.cc.cmu.edu   |1046 |4   |
+|US       |nidhogg.srl.caltech.edu     |1013 |5   |
+|US       |pinta.csee.usf.edu          |639  |6   |
+|US       |walt.cfr.washington.edu     |615  |7   |
+|US       |farlink.ll.mit.edu          |572  |8   |
+|US       |dani.scp.caltech.edu        |559  |9   |
++---------+----------------------------+-----+----+
+only showing top 27 rows
+
+University of Sheffield:
++-------+--------------------+-----+----+
+|country|                host|count|rank|
++-------+--------------------+-----+----+
+|     UK| pc121102.shef.ac.uk|  179|  14|
+|     UK| pc005153.shef.ac.uk|   94|  38|
+|     UK| pc101042.shef.ac.uk|   62|  60|
+|     UK| pc142011.shef.ac.uk|   48|  81|
+|     UK| pc081196.shef.ac.uk|   40| 104|
+|     UK| pc021131.shef.ac.uk|   30| 149|
+|     UK|   astro1.shef.ac.uk|   25| 180|
+|     UK| pc025040.shef.ac.uk|   22| 206|
+|     UK| pc057055.shef.ac.uk|   20| 244|
+|     UK| pc017063.shef.ac.uk|   17| 298|
+|     UK|     sage.shef.ac.uk|   15| 333|
+|     UK| pc085089.shef.ac.uk|   14| 356|
+|     UK|    robin.shef.ac.uk|   12| 401|
+|     UK| pc021181.shef.ac.uk|    9| 488|
+|     UK| pc133188.shef.ac.uk|    8| 541|
+|     UK| pc021133.shef.ac.uk|    7| 586|
+|     UK|mac107070.shef.ac.uk|    6| 641|
+|     UK| pc101091.shef.ac.uk|    6| 641|
+|     UK| pc077010.shef.ac.uk|    4| 768|
+|     UK|goldfinch.shef.ac.uk|    1| 937|
+|     UK| pc057006.shef.ac.uk|    1| 937|
++-------+--------------------+-----+----+
+
+unioned
++---------+--------------------+-------+----+
+|  country|                host|  count|rank|
++---------+--------------------+-------+----+
+|Australia|brother.cc.monash...|    549|   1|
+|Australia|metabelis.rmit.ed...|    378|   2|
+|Australia|fatboy.gas.unsw.e...|    363|   3|
+|Australia|miriworld.its.uni...|    304|   4|
+|Australia|ppp-2.vifp.monash...|    197|   5|
+|Australia|morinda.cs.ntu.ed...|    141|   6|
+|Australia|oispc1.murdoch.ed...|    123|   7|
+|Australia|ge321.ssn.flinder...|    107|   8|
+|Australia|     metz.une.edu.au|    106|   9|
+|       UK|   poppy.hensa.ac.uk|   4095|   1|
+|       UK|miranda.psychol.u...|    556|   2|
+|       UK|   pcjmk.ag.rl.ac.uk|    544|   3|
+|       UK|kayleigh.cs.man.a...|    422|   4|
+|       UK| pcmas.it.bton.ac.uk|    353|   5|
+|       UK|hal.mic.dundee.ac.uk|    336|   6|
+|       UK|  piton.brunel.ac.uk|    270|   7|
+|       UK|  balti.cee.hw.ac.uk|    251|   8|
+|       UK|hunter.ecs.soton....|    231|   9|
+|       US|currypc.fpl.mssta...|   1970|   1|
+|       US|marina.cea.berkel...|   1799|   2|
+|       US| ariel.earth.nwu.edu|   1404|   3|
+|       US|blazemonger.pc.cc...|   1046|   4|
+|       US|nidhogg.srl.calte...|   1013|   5|
+|       US|  pinta.csee.usf.edu|    639|   6|
+|       US|walt.cfr.washingt...|    615|   7|
+|       US|  farlink.ll.mit.edu|    572|   8|
+|       US|dani.scp.caltech.edu|    559|   9|
+|    other|                    |  19727|   1|
+|    other|piweba3y.prodigy.com|  17381|   2|
+|    other|piweba4y.prodigy.com|  11489|   3|
+|    other|piweba1y.prodigy.com|   9730|   4|
+|    other|  alyssa.prodigy.com|   7766|   5|
+|    other| siltb10.orl.mmc.com|   7573|   6|
+|    other|piweba2y.prodigy.com|   5861|   7|
+|    other|  edams.ksc.nasa.gov|   5403|   8|
+|    other|        163.206.89.4|   4870|   9|
+|    other|  other institutions|1554399|   0|
+|       US|  other institutions| 206136|   0|
+|       UK|  other institutions|  17756|   0|
+|Australia|  other institutions|   4681|   0|
++---------+--------------------+-------+----+
+
++--------------------+-----+
+|                host|count|
++--------------------+-----+
+|   poppy.hensa.ac.uk| 4095|
+|miranda.psychol.u...|  556|
+|   pcjmk.ag.rl.ac.uk|  544|
+|kayleigh.cs.man.a...|  422|
+| pcmas.it.bton.ac.uk|  353|
+|hal.mic.dundee.ac.uk|  336|
+|  piton.brunel.ac.uk|  270|
+|  balti.cee.hw.ac.uk|  251|
+|hunter.ecs.soton....|  231|
+|  other institutions|17756|
++--------------------+-----+
+
++--------------------+------+
+|                host| count|
++--------------------+------+
+|currypc.fpl.mssta...|  1970|
+|marina.cea.berkel...|  1799|
+| ariel.earth.nwu.edu|  1404|
+|blazemonger.pc.cc...|  1046|
+|nidhogg.srl.calte...|  1013|
+|  pinta.csee.usf.edu|   639|
+|walt.cfr.washingt...|   615|
+|  farlink.ll.mit.edu|   572|
+|dani.scp.caltech.edu|   559|
+|  other institutions|206136|
++--------------------+------+
+
++--------------------+-----+
+|                host|count|
++--------------------+-----+
+|brother.cc.monash...|  549|
+|metabelis.rmit.ed...|  378|
+|fatboy.gas.unsw.e...|  363|
+|miriworld.its.uni...|  304|
+|ppp-2.vifp.monash...|  197|
+|morinda.cs.ntu.ed...|  141|
+|oispc1.murdoch.ed...|  123|
+|ge321.ssn.flinder...|  107|
+|     metz.une.edu.au|  106|
+|  other institutions| 4681|
++--------------------+-----+
+
++--------------------+
+|                host|
++--------------------+
+|currypc.fpl.mssta...|
+|   poppy.hensa.ac.uk|
+|brother.cc.monash...|
++--------------------+
+
++---------+--------------------+--------------------+
+|  country|                host|           timestamp|
++---------+--------------------+--------------------+
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:01:16...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:14...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|
++---------+--------------------+--------------------+
+only showing top 20 rows
+
++---------+--------------------+--------------------+-------------------+
+|  country|                host|           timestamp|       to_timestamp|
++---------+--------------------+--------------------+-------------------+
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|1995-07-01 06:15:44|
+|Australia|brother.cc.monash...|01/Jul/1995:01:15...|1995-07-01 06:15:47|
+|Australia|brother.cc.monash...|01/Jul/1995:01:16...|1995-07-01 06:16:29|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|1995-07-01 07:12:35|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|1995-07-01 07:12:42|
+|Australia|brother.cc.monash...|01/Jul/1995:02:12...|1995-07-01 07:12:46|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|1995-07-01 07:13:06|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|1995-07-01 07:13:40|
+|Australia|brother.cc.monash...|01/Jul/1995:02:13...|1995-07-01 07:13:47|
+|Australia|brother.cc.monash...|01/Jul/1995:02:14...|1995-07-01 07:14:39|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:02|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:13|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:13|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:13|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:15|
+|Australia|brother.cc.monash...|01/Jul/1995:02:15...|1995-07-01 07:15:20|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|1995-07-01 10:31:15|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|1995-07-01 10:31:16|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|1995-07-01 10:31:16|
+|       UK|   poppy.hensa.ac.uk|01/Jul/1995:05:31...|1995-07-01 10:31:16|
++---------+--------------------+--------------------+-------------------+
+only showing top 20 rows
+
++---------+--------------------+-------------------+------------+----+
+|  country|                host|       to_timestamp|day of month|hour|
++---------+--------------------+-------------------+------------+----+
+|Australia|brother.cc.monash...|1995-07-01 06:15:44|           1|   6|
+|Australia|brother.cc.monash...|1995-07-01 06:15:47|           1|   6|
+|Australia|brother.cc.monash...|1995-07-01 06:16:29|           1|   6|
+|Australia|brother.cc.monash...|1995-07-01 07:12:35|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:12:42|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:12:46|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:13:06|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:13:40|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:13:47|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:14:39|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:02|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:13|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:13|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:13|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:15|           1|   7|
+|Australia|brother.cc.monash...|1995-07-01 07:15:20|           1|   7|
+|       UK|   poppy.hensa.ac.uk|1995-07-01 10:31:15|           1|  10|
+|       UK|   poppy.hensa.ac.uk|1995-07-01 10:31:16|           1|  10|
+|       UK|   poppy.hensa.ac.uk|1995-07-01 10:31:16|           1|  10|
+|       UK|   poppy.hensa.ac.uk|1995-07-01 10:31:16|           1|  10|
++---------+--------------------+-------------------+------------+----+
+only showing top 20 rows
+
++-------+------------+----+-----+
+|country|day of month|hour|count|
++-------+------------+----+-----+
+|     UK|          13|   9|   68|
+|     UK|          17|  12|   69|
+|     UK|          13|  11|  115|
+|     UK|           1|  10|   67|
+|     UK|          14|  12|   66|
+|     UK|           6|  16|   74|
+|     UK|           1|  11|   64|
+|     UK|          19|  15|   77|
+|     UK|          28|  13|   83|
+|     UK|          13|  12|  114|
+|     UK|           5|  12|   72|
+|     UK|          28|  15|   64|
++-------+------------+----+-----+
 

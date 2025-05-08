@@ -116,12 +116,12 @@ top_df = top_df.withColumn('day of month', F.dayofmonth('to_timestamp'))\
 top_df.show()
 
 heatmap_df = top_df.groupBy('country', 'day of month', 'hour').count().cache()
-heatmap_df.show(10)
+heatmap_df.filter((F.col('country')=='UK') & (F.col('count')>60)).show(20)
 #sns.heatmap()
 for country in ['UK', 'US', 'Australia']:
     
     country_df = heatmap_df.filter(F.col('country')==country).toPandas()
-    country_pivot = country_df.pivot(index='day of month', columns='hour', values='count')
+    country_pivot = country_df.pivot(index='hour', columns='day of month', values='count')
 
     
     #plt.figure(figsize=(14, 8))
