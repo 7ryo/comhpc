@@ -1,0 +1,172 @@
+25/05/08 01:11:04 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 01:11:04 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:04 INFO SparkContext: Java version 17.0.4
+25/05/08 01:11:04 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 01:11:04 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 01:11:04 INFO ResourceUtils: ==============================================================
+25/05/08 01:11:04 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 01:11:04 INFO ResourceUtils: ==============================================================
+25/05/08 01:11:04 INFO SparkContext: Submitted application: Question3
+25/05/08 01:11:04 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 01:11:04 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 01:11:04 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 01:11:04 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 01:11:04 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 01:11:04 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 01:11:04 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 01:11:04 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 01:11:05 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 01:11:05 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:05 INFO SparkContext: Java version 17.0.4
+25/05/08 01:11:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 01:11:05 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 01:11:05 INFO ResourceUtils: ==============================================================
+25/05/08 01:11:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 01:11:05 INFO ResourceUtils: ==============================================================
+25/05/08 01:11:05 INFO SparkContext: Submitted application: Question3
+25/05/08 01:11:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 01:11:05 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 01:11:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 01:11:05 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 01:11:05 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 01:11:05 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 01:11:05 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 01:11:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 01:11:05 INFO Utils: Successfully started service 'sparkDriver' on port 36290.
+25/05/08 01:11:06 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 01:11:06 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 01:11:06 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 01:11:06 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 01:11:06 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 01:11:06 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-1572d3bf-9744-448e-a1ea-1f30b013743b
+25/05/08 01:11:06 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 01:11:06 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 01:11:06 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 01:11:06 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 01:11:06 INFO Executor: Starting executor ID driver on host node068.pri.stanage.alces.network
+25/05/08 01:11:06 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:06 INFO Executor: Java version 17.0.4
+25/05/08 01:11:06 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:06 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@679f1e47 for default.
+25/05/08 01:11:06 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42821.
+25/05/08 01:11:06 INFO NettyBlockTransferService: Server created on node068.pri.stanage.alces.network:42821
+25/05/08 01:11:07 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:07 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node068.pri.stanage.alces.network, 42821, None)
+25/05/08 01:11:07 INFO BlockManagerMasterEndpoint: Registering block manager node068.pri.stanage.alces.network:42821 with 413.9 MiB RAM, BlockManagerId(driver, node068.pri.stanage.alces.network, 42821, None)
+25/05/08 01:11:07 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node068.pri.stanage.alces.network, 42821, None)
+25/05/08 01:11:07 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node068.pri.stanage.alces.network, 42821, None)
+, 35348, None)
+25/05/08 01:11:05 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node026.pri.stanage.alces.network, 35348, None)
+25/05/08 01:11:05 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 01:11:05 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 01:11:05 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 01:11:05 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 01:11:05 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-78acc8dd-d3cd-4c10-8cec-73aebd764a91
+25/05/08 01:11:05 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 01:11:05 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 01:11:05 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 01:11:05 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/08 01:11:05 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+25/05/08 01:11:05 INFO Executor: Starting executor ID driver on host node026.pri.stanage.alces.network
+25/05/08 01:11:05 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/08 01:11:05 INFO Executor: Java version 17.0.4
+25/05/08 01:11:05 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:05 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@6887787c for default.
+25/05/08 01:11:05 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41221.
+25/05/08 01:11:05 INFO NettyBlockTransferService: Server created on node026.pri.stanage.alces.network:41221
+25/05/08 01:11:05 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:05 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 41221, None)
+25/05/08 01:11:05 INFO BlockManagerMasterEndpoint: Registering block manager node026.pri.stanage.alces.network:41221 with 413.9 MiB RAM, BlockManagerId(driver, node026.pri.stanage.alces.network, 41221, None)
+25/05/08 01:11:06 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node026.pri.stanage.alces.network, 41221, None)
+25/05/08 01:11:06 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node026.pri.stanage.alces.network, 41221, None)
+
+cation disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 01:11:06 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 01:11:07 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/08 01:11:07 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+25/05/08 01:11:07 INFO Utils: Successfully started service 'sparkDriver' on port 36700.
+25/05/08 01:11:07 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 01:11:07 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 01:11:07 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 01:11:07 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 01:11:07 INFO Executor: Starting executor ID driver on host node053.pri.stanage.alces.network
+25/05/08 01:11:07 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 01:11:07 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:07 INFO Executor: Java version 17.0.4
+25/05/08 01:11:07 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:07 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@130ec5a7 for default.
+25/05/08 01:11:07 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-4b0c0dae-2a1d-4c02-b032-fb1f24b960a5
+25/05/08 01:11:07 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 01:11:07 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41361.
+25/05/08 01:11:07 INFO NettyBlockTransferService: Server created on node053.pri.stanage.alces.network:41361
+25/05/08 01:11:07 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:07 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node053.pri.stanage.alces.network, 41361, None)
+25/05/08 01:11:07 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 01:11:07 INFO BlockManagerMasterEndpoint: Registering block manager node053.pri.stanage.alces.network:41361 with 413.9 MiB RAM, BlockManagerId(driver, node053.pri.stanage.alces.network, 41361, None)
+25/05/08 01:11:07 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node053.pri.stanage.alces.network, 41361, None)
+25/05/08 01:11:07 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node053.pri.stanage.alces.network, 41361, None)
+25/05/08 01:11:07 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 01:11:07 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/05/08 01:11:07 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+25/05/08 01:11:07 INFO Utils: Successfully started service 'SparkUI' on port 4042.
+
+25/05/08 01:11:04 INFO Executor: Starting executor ID driver on host node072.pri.stanage.alces.network
+25/05/08 01:11:04 INFO Executor: OS info Linux, 3.10.0-1160.133.1.el7.x86_64, amd64
+25/05/08 01:11:04 INFO Executor: Java version 17.0.4
+25/05/08 01:11:04 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:04 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@73c53141 for default.
+25/05/08 01:11:04 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 42007.
+25/05/08 01:11:04 INFO NettyBlockTransferService: Server created on node072.pri.stanage.alces.network:42007
+25/05/08 01:11:04 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:04 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node072.pri.stanage.alces.network, 42007, None)
+25/05/08 01:11:04 INFO BlockManagerMasterEndpoint: Registering block manager node072.pri.stanage.alces.network:42007 with 413.9 MiB RAM, BlockManagerId(driver, node072.pri.stanage.alces.network, 42007, None)
+25/05/08 01:11:04 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node072.pri.stanage.alces.network, 42007, None)
+25/05/08 01:11:04 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node072.pri.stanage.alces.network, 42007, None)
+1:03 INFO BlockManagerMasterEndpoint: Registering block manager node094.pri.stanage.alces.network:35896 with 413.9 MiB RAM, BlockManagerId(driver, node094.pri.stanage.alces.network, 35896, None)
+25/05/08 01:11:03 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:03 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 01:11:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 35896, None)
+25/05/08 01:11:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node094.pri.stanage.alces.network, 35896, None)
+25/05/08 01:11:03 INFO Executor: Starting executor ID driver on host node094.pri.stanage.alces.network
+25/05/08 01:11:03 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:03 INFO Executor: Java version 17.0.4
+25/05/08 01:11:03 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:03 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@73c53141 for default.
+25/05/08 01:11:03 INFO Executor: Starting executor ID driver on host node094.pri.stanage.alces.network
+25/05/08 01:11:03 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:03 INFO Executor: Java version 17.0.4
+25/05/08 01:11:03 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 40505.
+25/05/08 01:11:03 INFO NettyBlockTransferService: Server created on node094.pri.stanage.alces.network:40505
+25/05/08 01:11:03 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:03 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 37026.
+25/05/08 01:11:03 INFO NettyBlockTransferService: Server created on node094.pri.stanage.alces.network:37026
+25/05/08 01:11:03 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 40505, None)
+25/05/08 01:11:03 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:03 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:03 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@5df6ca70 for default.
+25/05/08 01:11:03 INFO BlockManagerMasterEndpoint: Registering block manager node094.pri.stanage.alces.network:40505 with 413.9 MiB RAM, BlockManagerId(driver, node094.pri.stanage.alces.network, 40505, None)
+25/05/08 01:11:03 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 37026, None)
+25/05/08 01:11:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 40505, None)
+25/05/08 01:11:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node094.pri.stanage.alces.network, 40505, None)
+25/05/08 01:11:03 INFO BlockManagerMasterEndpoint: Registering block manager node094.pri.stanage.alces.network:37026 with 413.9 MiB RAM, BlockManagerId(driver, node094.pri.stanage.alces.network, 37026, None)
+25/05/08 01:11:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 37026, None)
+25/05/08 01:11:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node094.pri.stanage.alces.network, 37026, None)
+25/05/08 01:11:03 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38523.
+25/05/08 01:11:03 INFO NettyBlockTransferService: Server created on node094.pri.stanage.alces.network:38523
+25/05/08 01:11:03 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:03 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 38523, None)
+25/05/08 01:11:03 INFO BlockManagerMasterEndpoint: Registering block manager node094.pri.stanage.alces.network:38523 with 413.9 MiB RAM, BlockManagerId(driver, node094.pri.stanage.alces.network, 38523, None)
+25/05/08 01:11:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node094.pri.stanage.alces.network, 38523, None)
+25/05/08 01:11:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node094.pri.stanage.alces.network, 38523, None)
+25/05/08 01:11:07 INFO Executor: Starting executor ID driver on host node053.pri.stanage.alces.network
+25/05/08 01:11:07 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
+25/05/08 01:11:07 INFO Executor: Java version 17.0.4
+25/05/08 01:11:07 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 01:11:07 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@73c53141 for default.
+25/05/08 01:11:07 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36727.
+25/05/08 01:11:07 INFO NettyBlockTransferService: Server created on node053.pri.stanage.alces.network:36727
+25/05/08 01:11:07 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 01:11:07 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node053.pri.stanage.alces.network, 36727, None)
+25/05/08 01:11:07 INFO BlockManagerMasterEndpoint: Registering block manager node053.pri.stanage.alces.network:36727 with 413.9 MiB RAM, BlockManagerId(driver, node053.pri.stanage.alces.network, 36727, None)
+25/05/08 01:11:07 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node053.pri.stanage.alces.network, 36727, None)
+25/05/08 01:11:07 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node053.pri.stanage.alces.network, 36727, None)

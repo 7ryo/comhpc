@@ -78,9 +78,11 @@ end_time = time.time()
 runtime = end_time - start_time
 
 # update the .csv
-runtime_DF = pd.read_csv('./log_runtime.csv')
+runtime_DF = pd.read_csv('./log_runtime.csv', index_col=0)
 
-cond = runtime_DF['model']==args.model & runtime_DF['datasize']==args.datasize
+cond = (runtime_DF['model']==args.model) & (runtime_DF['datasize']==args.datasize)
 runtime_DF.loc[cond, 'runtime'] = runtime
 runtime_DF.loc[cond, 'accuracy'] = acc
 runtime_DF.loc[cond, 'auc'] = auc
+
+runtime_DF.to_csv('./log_runtime.csv', header=True)

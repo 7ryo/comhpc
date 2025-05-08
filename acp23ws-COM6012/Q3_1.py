@@ -72,18 +72,18 @@ crossval_rf = CrossValidator(estimator=pipeline_rf,
                              estimatorParamMaps=paramGrid_rf,
                              evaluator=eval_acc)
 print("training rf")
-cvModel_rf_acc = crossval_rf.fit(small_train_DF)
+#cvModel_rf_acc = crossval_rf.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_rf_acc.bestModel
-best_rf_paramDict = {
-    'maxDepth': bestmodel.getOrDefault('maxDepth'),
-    'maxBins': bestmodel.getOrDefault('maxBins'),
-    'numTrees': bestmodel.getOrDefault('numTrees')
-}
-print(f"best param of rf (eval=acc) is {best_rf_paramDict}")
+#bestmodel = cvModel_rf_acc.bestModel.stages[-1]
+#best_rf_paramDict = {
+#    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+#    'maxBins': bestmodel.getOrDefault('maxBins'),
+#    'numTrees': bestmodel.getOrDefault('numTrees')
+#}
+#print(f"best param of rf (eval=acc) is {best_rf_paramDict}")
 
-prediction = cvModel_rf_acc.transform(small_test_DF)
-acc_rf = eval_acc.evaluate(prediction)
+#prediction = cvModel_rf_acc.transform(small_test_DF)
+#acc_rf = eval_acc.evaluate(prediction)
 
 ##no crossval##
 #pipelineModel_rf = pipeline_rf.fit(small_train_DF)
@@ -91,7 +91,7 @@ acc_rf = eval_acc.evaluate(prediction)
 ##predictions.select('features', 'labels', 'prediction').show(10)
 
 # 2) Gradient boosting 
-gbt = GBTClassifier(featuresCol="features", labelCol="labels", maxDepth=5, maxIter=5,\
+gbt = GBTClassifier(featuresCol="features", labelCol="labels",\
                     seed=rand_seed)
 pipeline_gbt = Pipeline(stages=[vecAssembler, gbt])
 paramGrid_gbt = ParamGridBuilder()\
@@ -105,7 +105,7 @@ crossval_gbt = CrossValidator(estimator=pipeline_gbt,
                              evaluator=eval_acc)
 cvModel_gbt_acc = crossval_gbt.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_gbt_acc.bestModel
+bestmodel = cvModel_gbt_acc.bestModel.stages[-1]
 best_gbt_paramDict = {
     'maxDepth': bestmodel.getOrDefault('maxDepth'),
     'maxBins': bestmodel.getOrDefault('maxBins'),
@@ -123,8 +123,8 @@ acc_gbt = eval_acc.evaluate(prediction)
 
 # 3) (shallow) Neural networks
 ### input = 23 features?
-layers = [[num_features-1, 10, 3],\
-          [num_features-1, 15, 8, 2]]
+layers = [[num_features-1, 10, 2],\
+          [num_features-1, 15, 8, 2]] #binary classification -> output layer = 2
 mpc = MultilayerPerceptronClassifier(featuresCol="features", labelCol="labels", \
                                      seed=rand_seed)
 pipeline_mpc = Pipeline(stages=[vecAssembler, mpc])
@@ -137,17 +137,17 @@ paramGrid_mpc = ParamGridBuilder()\
 crossval_mpc = CrossValidator(estimator=pipeline_mpc,
                              estimatorParamMaps=paramGrid_mpc,
                              evaluator=eval_acc)
-cvModel_mpc_acc = crossval_mpc.fit(small_train_DF)
+#cvModel_mpc_acc = crossval_mpc.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_mpc_acc.bestModel
-best_mpc_paramDict = {
-    'blockSize': bestmodel.getOrDefault('blockSize'),
-    'layers': bestmodel.getOrDefault('layers'),
-    'maxIter': bestmodel.getOrDefault('maxIter')
-}
-print(f"best param of mpc (eval=acc) is {best_mpc_paramDict}")
-prediction = cvModel_mpc_acc.transform(small_test_DF)
-acc_mpc = eval_acc.evaluate(prediction)
+#bestmodel = cvModel_mpc_acc.bestModel.stages[-1]
+#best_mpc_paramDict = {
+#    'blockSize': bestmodel.getOrDefault('blockSize'),
+#    'layers': bestmodel.getOrDefault('layers'),
+#    'maxIter': bestmodel.getOrDefault('maxIter')
+#}
+#print(f"best param of mpc (eval=acc) is {best_mpc_paramDict}")
+#prediction = cvModel_mpc_acc.transform(small_test_DF)
+#acc_mpc = eval_acc.evaluate(prediction)
 
 # pipelineModel_mpc = pipeline_mpc.fit(small_train_DF)
 # predictions_mpc = pipelineModel_mpc.transform(small_test_DF)
@@ -158,33 +158,33 @@ acc_mpc = eval_acc.evaluate(prediction)
 
 
 #accuracy_rf = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of rf using cvModel_ = {acc_rf}")
+#print(f"Accuracy of rf using cvModel_ = {acc_rf}")
 #accuracy_gbt = eval_multi.evaluate(predictions_gbt)
-print(f"Accuracy of gbt = {acc_gbt}")
+#print(f"Accuracy of gbt = {acc_gbt}")
 #accuracy_mpc = eval_multi.evaluate(predictions_rf)
-print(f"Accuracy of mpc = {acc_mpc}")
+#print(f"Accuracy of mpc = {acc_mpc}")
 
 # Eval: area under the curve
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 eval_auc = BinaryClassificationEvaluator(rawPredictionCol="rawPrediction", labelCol="labels", metricName="areaUnderROC")
 
 ## create another crossvalidator
-crossval_rf2 = CrossValidator(estimator=pipeline_rf,
-                              estimatorParamMaps=paramGrid_rf,
-                              evaluator=eval_auc)
-cvModel_rf_auc = crossval_rf2.fit(small_train_DF)
+#crossval_rf2 = CrossValidator(estimator=pipeline_rf,
+#                              estimatorParamMaps=paramGrid_rf,
+#                              evaluator=eval_auc)
+#cvModel_rf_auc = crossval_rf2.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_rf_auc.bestModel
-best_rf_paramDict = {
-    'maxDepth': bestmodel.getOrDefault('maxDepth'),
-    'maxBins': bestmodel.getOrDefault('maxBins'),
-    'numTrees': bestmodel.getOrDefault('numTrees')
-}
-print(f"best param of rf (eval=auc) is {best_rf_paramDict}") #TODO: compare?
+#bestmodel = cvModel_rf_auc.bestModel.stages[-1]
+#best_rf_paramDict = {
+#    'maxDepth': bestmodel.getOrDefault('maxDepth'),
+#    'maxBins': bestmodel.getOrDefault('maxBins'),
+#    'numTrees': bestmodel.getOrDefault('numTrees')
+#}
+#print(f"best param of rf (eval=auc) is {best_rf_paramDict}") #TODO: compare?
 
-prediction = cvModel_rf_auc.transform(small_test_DF)
-auc_rf = eval_auc.evaluate(prediction)
-print(f"AUC of rf using cvModel_ = {auc_rf}")
+#prediction = cvModel_rf_auc.transform(small_test_DF)
+#auc_rf = eval_auc.evaluate(prediction)
+#print(f"AUC of rf using cvModel_ = {auc_rf}")
 
 # gbt
 crossval_gbt2 = CrossValidator(estimator=pipeline_gbt,
@@ -192,7 +192,7 @@ crossval_gbt2 = CrossValidator(estimator=pipeline_gbt,
                              evaluator=eval_auc)
 cvModel_gbt_auc = crossval_gbt2.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_gbt_auc.bestModel
+bestmodel = cvModel_gbt_auc.bestModel.stages[-1]
 best_gbt_paramDict = {
     'maxDepth': bestmodel.getOrDefault('maxDepth'),
     'maxBins': bestmodel.getOrDefault('maxBins'),
@@ -205,18 +205,20 @@ auc_gbt = eval_auc.evaluate(prediction)
 print(f"AUC of gbt using cvModel_ = {auc_gbt}")
 
 # (shallow) Neural networks
-crossval_mpc2 = CrossValidator(estimator=pipeline_mpc,
-                             estimatorParamMaps=paramGrid_mpc,
-                             evaluator=eval_auc)
-cvModel_mpc_auc = crossval_mpc2.fit(small_train_DF)
+#crossval_mpc2 = CrossValidator(estimator=pipeline_mpc,
+#                             estimatorParamMaps=paramGrid_mpc,
+#                             evaluator=eval_auc)
+#cvModel_mpc_auc = crossval_mpc2.fit(small_train_DF)
 #### select best model param
-bestmodel = cvModel_mpc_auc.bestModel
-best_mpc_paramDict = {
-    'blockSize': bestmodel.getOrDefault('blockSize'),
-    'layers': bestmodel.getOrDefault('layers'),
-    'maxIter': bestmodel.getOrDefault('maxIter')
-}
-print(f"best param of mpc (eval=auc) is {best_mpc_paramDict}")
-prediction = cvModel_mpc_auc.transform(small_test_DF)
-auc_mpc = eval_auc.evaluate(prediction)
-print(f"AUC of mpc using cvModel_ = {auc_mpc}")
+#bestmodel = cvModel_mpc_auc.bestModel.stages[-1]
+#best_mpc_paramDict = {
+#    'blockSize': bestmodel.getOrDefault('blockSize'),
+#    'layers': bestmodel.getOrDefault('layers'),
+#    'maxIter': bestmodel.getOrDefault('maxIter')
+#}
+#print(f"best param of mpc (eval=auc) is {best_mpc_paramDict}")
+#prediction = cvModel_mpc_auc.transform(small_test_DF)
+##test what prdiction looks like
+#prediction.select('features', 'labels', 'rawPrediction').show(5)
+#auc_mpc = eval_auc.evaluate(prediction)
+#print(f"AUC of mpc using cvModel_ = {auc_mpc}")

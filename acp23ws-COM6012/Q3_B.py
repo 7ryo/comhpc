@@ -24,7 +24,7 @@ sc.setLogLevel("ERROR")
 # 1. Initialize the .csv
 model_list = ['RF', 'GBT', 'MPC']
 ####size_list = [0.05, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 1]
-size_list = [0.05, 0.3, 0.8]
+size_list = [0.1, 0.5, 0.7, 0.8, 0.9, 1.0]
 
 # data = [(model, float(size), 1800, 0.0, 0.0) for model in model_list for size in size_list]
 # init_DF = spark.createDataFrame(data, schema=['model', 'datasize', 'runtime', 'accuracy', 'auc'])
@@ -33,4 +33,6 @@ size_list = [0.05, 0.3, 0.8]
 
 # 2. Pass model and datasize to .sh to submit jobs
 import subprocess
-subprocess.run(["sbatch","submitTrain.sh", model, size] for model in model_list for size in size_list)
+for model in model_list:
+	for size in size_list:
+		subprocess.run(["sbatch","submitTrain.sh", model, str(size)])
