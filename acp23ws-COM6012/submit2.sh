@@ -12,4 +12,4 @@ module load Anaconda3
 
 source activate myspark
 
-spark-submit ./Q4_code_train.py
+spark-submit ./Q4_code_3.py

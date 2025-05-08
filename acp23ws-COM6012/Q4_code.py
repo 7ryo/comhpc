@@ -126,19 +126,29 @@ for name in column_name:
     columns_mean.append(F.mean(name).alias(f"{name}_mean"))
     columns_std.append(F.stddev(name).alias(f"{name}_std"))
 
-df = log_eval_DF.select(*columns_mean, *columns_std)
-
+df = log_eval_DF.select(*columns_mean)
+columns_mean_list = df.collect()[0]
 
 #df = log_evla_DF.select(*[F.mean(name).alias(name), F.std(name).alias(name) for name in column_name])
 df.show()
 
 log_eval_DF = log_eval_DF.union(df)
+df = log_eval_DF.select(*columns_std)
+columns_std_list = df.collect()[0]
+
+df.show()
+log_eval_DF = log_eval_DF.union(df)
+
+
 log_eval_DF.show()
                         
 # plot => mean&std of RMSE and MAE for each of 3ver ALS
 import matplotlib.pyplot as plt
 
-
+print(columns_std_list[1:])
+plt.errorbar(column_name[1:], columns_mean_list[1:], yerr=columns_std_list[1:], fmt='o', capsize=5)
+plt.savefig('rmse_mae.png')
+plt.close()
 
 
 # ===================================================== #

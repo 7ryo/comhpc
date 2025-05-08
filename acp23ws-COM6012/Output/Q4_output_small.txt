@@ -1,43 +1,43 @@
-25/05/08 20:54:49 INFO SparkContext: Running Spark version 3.5.4
-25/05/08 20:54:49 INFO SparkContext: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/08 20:54:49 INFO SparkContext: Java version 17.0.4
-25/05/08 20:54:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-25/05/08 20:54:49 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-25/05/08 20:54:49 INFO ResourceUtils: ==============================================================
-25/05/08 20:54:49 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/05/08 20:54:49 INFO ResourceUtils: ==============================================================
-25/05/08 20:54:49 INFO SparkContext: Submitted application: Question2
-25/05/08 20:54:49 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/05/08 20:54:49 INFO ResourceProfile: Limiting resource is cpu
-25/05/08 20:54:49 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/05/08 20:54:49 INFO SecurityManager: Changing view acls to: acp23ws
-25/05/08 20:54:49 INFO SecurityManager: Changing modify acls to: acp23ws
-25/05/08 20:54:49 INFO SecurityManager: Changing view acls groups to: 
-25/05/08 20:54:49 INFO SecurityManager: Changing modify acls groups to: 
-25/05/08 20:54:49 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
-25/05/08 20:54:49 INFO Utils: Successfully started service 'sparkDriver' on port 34701.
-25/05/08 20:54:49 INFO SparkEnv: Registering MapOutputTracker
-25/05/08 20:54:49 INFO SparkEnv: Registering BlockManagerMaster
-25/05/08 20:54:49 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/05/08 20:54:49 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/05/08 20:54:49 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/05/08 20:54:49 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-8f16ec34-e4b5-477b-99a8-6e5c20c841b2
-25/05/08 20:54:49 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
-25/05/08 20:54:49 INFO SparkEnv: Registering OutputCommitCoordinator
-25/05/08 20:54:49 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/05/08 20:54:50 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-25/05/08 20:54:50 INFO Executor: Starting executor ID driver on host node049.pri.stanage.alces.network
-25/05/08 20:54:50 INFO Executor: OS info Linux, 3.10.0-1160.132.1.el7.x86_64, amd64
-25/05/08 20:54:50 INFO Executor: Java version 17.0.4
-25/05/08 20:54:50 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
-25/05/08 20:54:50 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@679f1e47 for default.
-25/05/08 20:54:50 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33602.
-25/05/08 20:54:50 INFO NettyBlockTransferService: Server created on node049.pri.stanage.alces.network:33602
-25/05/08 20:54:50 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/05/08 20:54:50 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node049.pri.stanage.alces.network, 33602, None)
-25/05/08 20:54:50 INFO BlockManagerMasterEndpoint: Registering block manager node049.pri.stanage.alces.network:33602 with 413.9 MiB RAM, BlockManagerId(driver, node049.pri.stanage.alces.network, 33602, None)
-25/05/08 20:54:50 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node049.pri.stanage.alces.network, 33602, None)
-25/05/08 20:54:50 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node049.pri.stanage.alces.network, 33602, None)
+25/05/08 22:03:04 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 22:03:04 INFO SparkContext: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/08 22:03:04 INFO SparkContext: Java version 17.0.4
+25/05/08 22:03:04 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 22:03:05 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 22:03:05 INFO ResourceUtils: ==============================================================
+25/05/08 22:03:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 22:03:05 INFO ResourceUtils: ==============================================================
+25/05/08 22:03:05 INFO SparkContext: Submitted application: Question2
+25/05/08 22:03:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 22:03:05 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 22:03:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 22:03:05 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 22:03:05 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 22:03:05 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 22:03:05 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 22:03:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 22:03:05 INFO Utils: Successfully started service 'sparkDriver' on port 37007.
+25/05/08 22:03:05 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 22:03:05 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 22:03:05 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 22:03:05 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 22:03:05 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 22:03:05 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-3648a907-ceaf-43e7-8976-16cb7cdd574e
+25/05/08 22:03:05 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 22:03:05 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 22:03:05 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 22:03:05 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 22:03:06 INFO Executor: Starting executor ID driver on host node117.pri.stanage.alces.network
+25/05/08 22:03:06 INFO Executor: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/08 22:03:06 INFO Executor: Java version 17.0.4
+25/05/08 22:03:06 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 22:03:06 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 22:03:06 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43946.
+25/05/08 22:03:06 INFO NettyBlockTransferService: Server created on node117.pri.stanage.alces.network:43946
+25/05/08 22:03:06 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 22:03:06 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 43946, None)
+25/05/08 22:03:06 INFO BlockManagerMasterEndpoint: Registering block manager node117.pri.stanage.alces.network:43946 with 413.9 MiB RAM, BlockManagerId(driver, node117.pri.stanage.alces.network, 43946, None)
+25/05/08 22:03:06 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 43946, None)
+25/05/08 22:03:06 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node117.pri.stanage.alces.network, 43946, None)
 +------+-------+------+----------+
 |userId|movieId|rating| timestamp|
 +------+-------+------+----------+
@@ -57,22 +57,27 @@ root
  |-- rating: double (nullable = true)
  |-- timestamp: string (nullable = true)
 
-+--------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
-|_c0_mean|       rmse_1_mean|        mae_1_mean|       rmse_2_mean|        mae_2_mean|       rmse_3_mean|        mae_3_mean|           _c0_std|          rmse_1_std|           mae_1_std|          rmse_2_std|           mae_2_std|          rmse_3_std|           mae_3_std|
-+--------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
-|     1.5|0.8110152132708441|0.6285553382350486|0.8037216357362769|0.6217277296834256|0.7906840919364756|0.6090288438003473|1.2909944487358056|2.247552864309500...|1.914798747211064...|1.532910278097945...|1.767595269860602...|1.581275932438840...|1.828190515431370...|
-+--------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
++--------+------------------+------------------+------------------+------------------+------------------+------------------+
+|_c0_mean|       rmse_1_mean|        mae_1_mean|       rmse_2_mean|        mae_2_mean|       rmse_3_mean|        mae_3_mean|
++--------+------------------+------------------+------------------+------------------+------------------+------------------+
+|     1.5|0.8110152132708441|0.6285553382350486|0.8037216357362769|0.6217277296834256|0.7906840919364756|0.6090288438003473|
++--------+------------------+------------------+------------------+------------------+------------------+------------------+
 
-Traceback (most recent call last):
-  File "/users/acp23ws/com6012/comhpc/acp23ws-COM6012/Q4_code.py", line 135, in <module>
-    log_eval_DF = log_eval_DF.union(df)
-                  ^^^^^^^^^^^^^^^^^^^^^
-  File "/users/acp23ws/.conda/envs/myspark/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 3929, in union
-  File "/users/acp23ws/.conda/envs/myspark/lib/python3.12/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
-  File "/users/acp23ws/.conda/envs/myspark/lib/python3.12/site-packages/pyspark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 185, in deco
-pyspark.errors.exceptions.captured.AnalysisException: [NUM_COLUMNS_MISMATCH] UNION can only be performed on inputs with the same number of columns, but the first input has 7 columns and the second input has 14 columns.;
-'Union false, false
-:- Relation [_c0#288,rmse_1#289,mae_1#290,rmse_2#291,mae_2#292,rmse_3#293,mae_3#294] csv
-+- Aggregate [avg(cast(_c0#1025 as double)) AS _c0_mean#303, avg(cast(rmse_1#1026 as double)) AS rmse_1_mean#306, avg(cast(mae_1#1027 as double)) AS mae_1_mean#309, avg(cast(rmse_2#1028 as double)) AS rmse_2_mean#312, avg(cast(mae_2#1029 as double)) AS mae_2_mean#315, avg(cast(rmse_3#1030 as double)) AS rmse_3_mean#318, avg(cast(mae_3#1031 as double)) AS mae_3_mean#321, stddev(cast(_c0#1025 as double)) AS _c0_std#304, stddev(cast(rmse_1#1026 as double)) AS rmse_1_std#307, stddev(cast(mae_1#1027 as double)) AS mae_1_std#310, stddev(cast(rmse_2#1028 as double)) AS rmse_2_std#313, stddev(cast(mae_2#1029 as double)) AS mae_2_std#316, stddev(cast(rmse_3#1030 as double)) AS rmse_3_std#319, stddev(cast(mae_3#1031 as double)) AS mae_3_std#322]
-   +- Relation [_c0#1025,rmse_1#1026,mae_1#1027,rmse_2#1028,mae_2#1029,rmse_3#1030,mae_3#1031] csv
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|          _c0_std|          rmse_1_std|           mae_1_std|          rmse_2_std|           mae_2_std|          rmse_3_std|           mae_3_std|
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|1.118033988749895|1.946437876840507E-4|1.658264358219399...|1.327539242555089...|1.530782407308492E-4|1.369425127884961...|1.583259429321333...|
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
 
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|              _c0|              rmse_1|               mae_1|              rmse_2|               mae_2|              rmse_3|               mae_3|
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|                0|   0.811330898876177|  0.6288105527247798|  0.8039371327983843|  0.6219517102392743|  0.7908655146552536|  0.6091951616574388|
+|                1|  0.8107994016783404|  0.6284441063111159|  0.8035742120342911|  0.6217028343927375|  0.7906710598179255|  0.6091746678329302|
+|                2|  0.8109780309154091|  0.6285885162465565|   0.803686066940408|  0.6217357213589576|  0.7904821017487178|  0.6088365384857045|
+|                3|  0.8109525216134497|  0.6283781776577424|  0.8036891311720239|  0.6215206527427333|  0.7907176915240056|  0.6089090072253156|
+|              1.5|  0.8110152132708441|  0.6285553382350486|  0.8037216357362769|  0.6217277296834256|  0.7906840919364756|  0.6090288438003473|
+|1.118033988749895|1.946437876840507E-4|1.658264358219399...|1.327539242555089...|1.530782407308492E-4|1.369425127884961...|1.583259429321333...|
++-----------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+
+(0.0001946437876840507, 0.00016582643582193995, 0.00013275392425550895, 0.0001530782407308492, 0.00013694251278849613, 0.00015832594293213335)

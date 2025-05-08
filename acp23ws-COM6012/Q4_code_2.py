@@ -88,14 +88,14 @@ evals_DF = pd.DataFrame([[0,0,0,0,0,0]], columns=['rmse_1', 'mae_1', 'rmse_2', '
 itemFactors_dict = {}
 
 
-# for i in range(1):
-#     print(f"i={i}")
-#     test = splits[i].cache()
-#     training = raw_rating_DF.subtract(test).cache()
-#     model_1 = als_1.fit(training)
-#     itemFactors_dict[i] = model_1.itemFactors
-#     test.unpersist()
-#     training.unpersist()
+for i in range(1):
+    print(f"i={i}")
+    test = splits[i].cache()
+    training = raw_rating_DF.subtract(test).cache()
+    model_1 = als_1.fit(training)
+    itemFactors_dict[i] = model_1.itemFactors
+    test.unpersist()
+    training.unpersist()
 #    predictions = model_1.transform(test)
 #    rmse_1 = evaluator_RMSE.evaluate(predictions)
 #    mae_1 = evaluator_MAE.evaluate(predictions)
@@ -150,8 +150,8 @@ top_clusters = cluster_counts.orderBy(F.desc("count")).limit(3)
 top_clusters.show()
 
 ## pick out the movieids that belong to the cluster
-movie_tag_DF = spark.read.csv('./Data/ml-25m/genome-scores.csv')
-tag_DF = spark.read.csv('./Data/ml-25m/genome-tags.csv')
+movie_tag_DF = spark.read.csv('./Data/ml-25m/genome-scores.csv', header=True)
+tag_DF = spark.read.csv('./Data/ml-25m/genome-tags.csv', header=True)
 
 movieids_in_cluster_1 = transformed.filter(F.col('prediction')==16).select('id')
 movieids_in_cluster_1.show(5)
