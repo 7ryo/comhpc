@@ -56,11 +56,11 @@ als_1 = ALS(userCol="userId", itemCol="movieId", \
 # setting2)
 als_2 = ALS(userCol="userId", itemCol="movieId", \
 		seed=rand_seed, coldStartStrategy="drop",\
-                alpha=0.5, maxIter=20, rank=5)
+                rank=30, blockSize=512)
 # setting3)
 als_3 = ALS(userCol="userId", itemCol="movieId", \
 		seed=rand_seed, coldStartStrategy="drop",
-                alpha=0.5, regParam=0.01, maxIter=30)
+                rank=20, blockSize=512, regParam=0.01)
 # eg. changing rank, regParam, alpha
 # improve the model
 from pyspark.sql.types import StructType, StructField, StringType, DoubleType
@@ -89,15 +89,15 @@ for i in range(4):
     rmse_1 = evaluator_RMSE.evaluate(predictions)
     mae_1 = evaluator_MAE.evaluate(predictions)
 
-#    model_2 = als_2.fit(training)
-#    predictions = model_2.transform(test)
-#    rmse_2 = evaluator_RMSE.evaluate(predictions)
-#    mae_2 = evaluator_MAE.evaluate(predictions)
+    model_2 = als_2.fit(training)
+    predictions = model_2.transform(test)
+    rmse_2 = evaluator_RMSE.evaluate(predictions)
+    mae_2 = evaluator_MAE.evaluate(predictions)
 
-#    model_3 = als_3.fit(training)
-#    predictions = model_3.transform(test)
-#    rmse_3 = evaluator_RMSE.evaluate(predictions)
-#    mae_3 = evaluator_MAE.evaluate(predictions)
+    model_3 = als_3.fit(training)
+    predictions = model_3.transform(test)
+    rmse_3 = evaluator_RMSE.evaluate(predictions)
+    mae_3 = evaluator_MAE.evaluate(predictions)
     
 #    new_row = spark.createDataFrame([(i, rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3)])
 #    new_row = spark.createDataFrame([(i, 100, 100, 100, 100, 100, 100)])
@@ -108,8 +108,8 @@ for i in range(4):
     test.unpersist()
     training.unpersist()
 
-#    evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3
-    evals_DF.loc[i] = [rmse_1, mae_1, 111, 111, 111, 111]
+    evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+#    evals_DF.loc[i] = [rmse_1, mae_1, 111, 111, 111, 111]
 #evals_DF.show()
 evals_DF.to_csv('log_evals.csv')
 
