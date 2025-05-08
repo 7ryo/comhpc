@@ -83,47 +83,51 @@ schema = StructType([
 #evals_DF = spark.createDataFrame([], schema)
 #evals_DF = spark.createDataFrame([], ['no_split','model1_RMSE', 'model1_MAE', 'model2_RMSE', 'model2_MAE', 'model3_RMSE', 'model3_MAE'])
 import pandas as pd
-evals_DF = pd.DataFrame([[0,0,0,0,0,0]], columns=['rmse_1', 'mae_1', 'rmse_2', 'mae_2', 'rmse_3', 'mae_3'])
+# evals_DF = pd.DataFrame([[0,0,0,0,0,0]], columns=['rmse_1', 'mae_1', 'rmse_2', 'mae_2', 'rmse_3', 'mae_3'])
 
-for i in range(4):
-    print(f"i={i}")
-    test = splits[i].cache()
-    training = raw_rating_DF.subtract(test).cache()
-    model_1 = als_1.fit(training)
-    predictions = model_1.transform(test)
-    rmse_1 = evaluator_RMSE.evaluate(predictions)
-    mae_1 = evaluator_MAE.evaluate(predictions)
+# for i in range(4):
+#     print(f"i={i}")
+#     test = splits[i].cache()
+#     training = raw_rating_DF.subtract(test).cache()
+#     model_1 = als_1.fit(training)
+#     predictions = model_1.transform(test)
+#     rmse_1 = evaluator_RMSE.evaluate(predictions)
+#     mae_1 = evaluator_MAE.evaluate(predictions)
 
-    model_2 = als_2.fit(training)
-    predictions = model_2.transform(test)
-    rmse_2 = evaluator_RMSE.evaluate(predictions)
-    mae_2 = evaluator_MAE.evaluate(predictions)
+#     model_2 = als_2.fit(training)
+#     predictions = model_2.transform(test)
+#     rmse_2 = evaluator_RMSE.evaluate(predictions)
+#     mae_2 = evaluator_MAE.evaluate(predictions)
 
-    model_3 = als_3.fit(training)
-    predictions = model_3.transform(test)
-    rmse_3 = evaluator_RMSE.evaluate(predictions)
-    mae_3 = evaluator_MAE.evaluate(predictions)
-    
-#    new_row = spark.createDataFrame([(i, rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3)])
-#    new_row = spark.createDataFrame([(i, 100, 100, 100, 100, 100, 100)])
-#    new_row.show()
-#    evals_DF = evals_DF.union(new_row)
+#     model_3 = als_3.fit(training)
+#     predictions = model_3.transform(test)
+#     rmse_3 = evaluator_RMSE.evaluate(predictions)
+#     mae_3 = evaluator_MAE.evaluate(predictions)
 
-    # free cache
-    test.unpersist()
-    training.unpersist()
+#     # free cache
+#     test.unpersist()
+#     training.unpersist()
 
-    evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
-#    evals_DF.loc[i] = [rmse_1, mae_1, 111, 111, 111, 111]
-#evals_DF.show()
-evals_DF.to_csv('log_evals.csv')
+#     evals_DF.loc[i] = [rmse_1, mae_1, rmse_2, mae_2, rmse_3, mae_3]
+# evals_DF.to_csv('log_evals.csv')
 
 # Eval: 
 # for each split - mean RMSE and mean MAE for 3 ALSs
 # over four splits -
 # [mean&standard deviation] of RMSE and MAE
 # report => put all 36 numbers in a table
+log_eval_DF = spark.read.csv('log_evals.csv', header=True)
+log_eval_DF = log_eval_DF.withColumn('mean_rmse', (F.col('rmse_1')+F.col('rmse_2')+F.col('rmse_3')/3))\
+                        .withColumn('mean_mae', (F.col('mae_1')+F.col('mae_2')+F.col('mae_3')/3))
 
+df = log_eval_DF.select(
+    F.mean("mean_rmse").alias("mean_mean_rmse"),
+    F.stddev("mean_rmse").alias("std_mean_rmse"),
+    F.mean("mean_mae").alias("mean_mean_mae"),
+    F.stddev("mean_mae").alias("std_mean_mae")
+)
+df.show()
+                        
 # plot => mean&std of RMSE and MAE for each of 3ver ALS
 
 # ===================================================== #

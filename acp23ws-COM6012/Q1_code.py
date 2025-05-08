@@ -36,8 +36,6 @@ hostAU.show(20, False)
 # in the order of host, timestamp, request, http reply code, bytes in the reply
 
 # use regex to extract each part
-# 
-
 pattern = r'^(.*?) - - \[(.*?)\] "(.*?)" (\d+) (\d+)'
 
 df = logFile.withColumn('host', F.regexp_extract('value', pattern, 1))\
@@ -59,7 +57,6 @@ print("total number of distinct hosts is %i.\n" % num_host)
 
 
 # top 9 most frequent visitors (9 per country)
-#hostcount_uk = df.select('host').groupBy('')
 counted_host = df.select('country', 'host').groupBy('country', 'host').count().sort('count', ascending=False).cache()
 
 print("Count of all hosts")
@@ -82,7 +79,6 @@ ranked_host.filter(F.col('host').contains('.shef.ac.uk')).show(30)
 
 # visualize: show top 9 and "other"
 # sum hosts ranked after 9
-## agg(sum(col('count')).alias('count')).withColumn('host', lit('other'))
 rear = ranked_host.filter(F.col('rank') > 9)\
                     .groupBy('country')\
                     .agg(F.sum(F.col('count')).alias('count'))\
@@ -118,8 +114,6 @@ top_df = df.join(top_hosts, 'host').select('country', 'host', 'timestamp').cache
 top_df.show()
 
 
-
-
 # convert str to timestamp
 # [01/Aug/1995:00:00:01 -0400]
 top_df = top_df.withColumn('to_timestamp', F.to_timestamp(F.col('timestamp'), 'dd/MMM/yyyy:HH:mm:ss Z')).cache()
@@ -131,18 +125,13 @@ top_df.show()
 
 heatmap_df = top_df.groupBy('country', 'day of month', 'hour').count().cache()
 heatmap_df.filter((F.col('country')=='UK') & (F.col('count')>60)).show(20)
-#sns.heatmap()
 for country in ['UK', 'US', 'Australia']:
     
     country_df = heatmap_df.filter(F.col('country')==country).toPandas()
     country_pivot = country_df.pivot(index='hour', columns='day of month', values='count')
 
-    
-    #plt.figure(figsize=(14, 8))
     sns.heatmap(country_pivot, annot=True)
     plt.title(f"Heatmap of {country}")
-    #legend_txt = [f'{host}: {count}' for host, count in zip(pd_df['host'], pd_df['count'])]
-    #plt.legend(legend_txt, loc='upper left', bbox_to_anchor=(1.5, 0.5))
     plt.tight_layout()
     plt.savefig(f"{country}_heatmap.png")
 
