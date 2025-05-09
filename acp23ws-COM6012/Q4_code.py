@@ -33,9 +33,6 @@ raw_rating_DF.printSchema()
 
 rand_seed = 1840977
 
-# reduce the size
-raw_rating_DF = raw_rating_DF.sample(fraction=0.1, seed=rand_seed)
-
 # pre processing
 # rand_seed = 1840977
 splits = raw_rating_DF.randomSplit([0.25, 0.25, 0.25, 0.25], seed=rand_seed)
@@ -66,22 +63,7 @@ als_2 = ALS(userCol="userId", itemCol="movieId", \
 als_3 = ALS(userCol="userId", itemCol="movieId", \
 		seed=rand_seed, coldStartStrategy="drop",
                 rank=20, blockSize=512, regParam=0.01)
-# eg. changing rank, regParam, alpha
-# improve the model
-from pyspark.sql.types import StructType, StructField, StringType, DoubleType
 
-schema = StructType([
-    StructField("no_split", StringType(), True),
-    StructField("model1_RMSE", DoubleType(), True),
-    StructField("model1_MAE", DoubleType(), True),
-    StructField("model2_RMSE", DoubleType(), True),
-    StructField("model2_MAE", DoubleType(), True),
-    StructField("model3_RMSE", DoubleType(), True),
-    StructField("model3_MAE", DoubleType(), True),
-])
-
-#evals_DF = spark.createDataFrame([], schema)
-#evals_DF = spark.createDataFrame([], ['no_split','model1_RMSE', 'model1_MAE', 'model2_RMSE', 'model2_MAE', 'model3_RMSE', 'model3_MAE'])
 import pandas as pd
 # evals_DF = pd.DataFrame([[0,0,0,0,0,0]], columns=['rmse_1', 'mae_1', 'rmse_2', 'mae_2', 'rmse_3', 'mae_3'])
 
@@ -116,9 +98,8 @@ import pandas as pd
 # over four splits -
 # [mean&standard deviation] of RMSE and MAE
 # report => put all 36 numbers in a table
-log_eval_DF = spark.read.csv('log_evals_2.csv', header=True)
+log_eval_DF = spark.read.csv('log_evals_3.csv', header=True)
 column_name = log_eval_DF.columns
-schema = log_eval_DF.schema
 
 columns_mean = []
 columns_std = []
@@ -128,17 +109,11 @@ for name in column_name:
 
 df = log_eval_DF.select(*columns_mean)
 columns_mean_list = df.collect()[0]
-
-#df = log_evla_DF.select(*[F.mean(name).alias(name), F.std(name).alias(name) for name in column_name])
-df.show()
-
 log_eval_DF = log_eval_DF.union(df)
+
 df = log_eval_DF.select(*columns_std)
 columns_std_list = df.collect()[0]
-
-df.show()
 log_eval_DF = log_eval_DF.union(df)
-
 
 log_eval_DF.show()
                         
