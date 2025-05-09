@@ -92,7 +92,7 @@ for i in range(4):
     for m in top_clusters_id_list:
         print(f"cluster {i}:")
         movie_tag_in_cluster = transformed.filter(F.col('prediction')==m).select('id')\
-                                        .join(movie_tag_DF, movie_tag_DF.movieId == movie_tag_in_cluster.id)
+                                        .join(movie_tag_DF, movie_tag_DF.movieId == transformed.id)
         movie_tag_in_cluster.show(5)
 
         # top tag id -> names

@@ -1,0 +1,327 @@
+25/05/08 23:56:21 INFO SparkContext: Running Spark version 3.5.4
+25/05/08 23:56:21 INFO SparkContext: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/08 23:56:21 INFO SparkContext: Java version 17.0.4
+25/05/08 23:56:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/08 23:56:21 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/08 23:56:21 INFO ResourceUtils: ==============================================================
+25/05/08 23:56:21 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/08 23:56:21 INFO ResourceUtils: ==============================================================
+25/05/08 23:56:21 INFO SparkContext: Submitted application: Question2
+25/05/08 23:56:21 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/08 23:56:21 INFO ResourceProfile: Limiting resource is cpu
+25/05/08 23:56:21 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/08 23:56:21 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/08 23:56:21 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/08 23:56:21 INFO SecurityManager: Changing view acls groups to: 
+25/05/08 23:56:21 INFO SecurityManager: Changing modify acls groups to: 
+25/05/08 23:56:21 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/08 23:56:21 INFO Utils: Successfully started service 'sparkDriver' on port 35796.
+25/05/08 23:56:22 INFO SparkEnv: Registering MapOutputTracker
+25/05/08 23:56:22 INFO SparkEnv: Registering BlockManagerMaster
+25/05/08 23:56:22 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/08 23:56:22 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/08 23:56:22 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/08 23:56:22 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-09c8d2b2-79d7-4509-b191-c2cf5cb52575
+25/05/08 23:56:22 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/08 23:56:22 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/08 23:56:22 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/08 23:56:22 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/08 23:56:22 INFO Executor: Starting executor ID driver on host node117.pri.stanage.alces.network
+25/05/08 23:56:22 INFO Executor: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/08 23:56:22 INFO Executor: Java version 17.0.4
+25/05/08 23:56:22 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/08 23:56:22 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@65926fa for default.
+25/05/08 23:56:22 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33443.
+25/05/08 23:56:22 INFO NettyBlockTransferService: Server created on node117.pri.stanage.alces.network:33443
+25/05/08 23:56:22 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/08 23:56:22 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 33443, None)
+25/05/08 23:56:22 INFO BlockManagerMasterEndpoint: Registering block manager node117.pri.stanage.alces.network:33443 with 413.9 MiB RAM, BlockManagerId(driver, node117.pri.stanage.alces.network, 33443, None)
+25/05/08 23:56:22 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 33443, None)
+25/05/08 23:56:22 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node117.pri.stanage.alces.network, 33443, None)
++------+-------+------+----------+
+|userId|movieId|rating| timestamp|
++------+-------+------+----------+
+|     1|    296|   5.0|1147880044|
+|     1|    306|   3.5|1147868817|
+|     1|    307|   5.0|1147868828|
+|     1|    665|   5.0|1147878820|
+|     1|    899|   3.5|1147868510|
++------+-------+------+----------+
+only showing top 5 rows
+
+there are 25000095 rows of data in ratings.csv
+
+root
+ |-- userId: long (nullable = true)
+ |-- movieId: long (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: string (nullable = true)
+
+i=0
+i=1
+i=2
+i=3
++---+--------------------+
+| id|            features|
++---+--------------------+
+| 10|[-0.15643336, -0....|
+| 20|[0.14728937, 0.05...|
+| 30|[-0.0060944185, -...|
+| 40|[-0.17809917, -0....|
+| 50|[0.040620826, -0....|
+| 60|[-0.050595306, -0...|
+| 70|[0.17588615, -0.4...|
+| 80|[0.24743745, -0.2...|
+| 90|[-0.16233912, 0.0...|
+|100|[0.07855226, -0.3...|
++---+--------------------+
+only showing top 10 rows
+
+split0
+top 3 clusters: [14, 12, 1]
+cluster 0:
++----+-------+-----+-------------------+
+|  id|movieId|tagId|          relevance|
++----+-------+-----+-------------------+
+|2659|   2659|    1|0.04275000000000001|
+|2659|   2659|    2|0.05299999999999999|
+|2659|   2659|    3|            0.03375|
+|2659|   2659|    4|0.07074999999999998|
+|2659|   2659|    5|0.44925000000000004|
++----+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  117|10.221249999999992|         batman|
+|  489| 9.926749999999979|hannibal lecter|
+| 1069|10.286999999999985|       vampires|
++-----+------------------+---------------+
+
+cluster 0:
++---+-------+-----+--------------------+
+| id|movieId|tagId|           relevance|
++---+-------+-----+--------------------+
+|137|    137|    1|0.036250000000000004|
+|137|    137|    2| 0.03799999999999998|
+|137|    137|    3|             0.03375|
+|137|    137|    4| 0.05349999999999999|
+|137|    137|    5| 0.05575000000000002|
++---+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  489| 0.741999999999997|hannibal lecter|
+|  573|1.1302499999999975|     james bond|
+|  784|0.8709999999999971|        pirates|
++-----+------------------+---------------+
+
+cluster 0:
++---+-------+-----+--------------------+
+| id|movieId|tagId|           relevance|
++---+-------+-----+--------------------+
+|463|    463|    1|0.048250000000000015|
+|463|    463|    2| 0.05449999999999999|
+|463|    463|    3|0.019500000000000017|
+|463|    463|    4|0.026249999999999996|
+|463|    463|    5|0.035499999999999976|
++---+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+-----------------+-------------+
+|tagId|        sum_score|          tag|
++-----+-----------------+-------------+
+|  119| 5.07874999999998|      beatles|
+|  219|4.666499999999983|   claymation|
+|  976|5.576249999999992|studio ghibli|
++-----+-----------------+-------------+
+
+split1
+top 3 clusters: [10, 5, 3]
+cluster 1:
++----+-------+-----+-------------------+
+|  id|movieId|tagId|          relevance|
++----+-------+-----+-------------------+
+|1580|   1580|    1|            0.09175|
+|1580|   1580|    2|0.09150000000000003|
+|1580|   1580|    3|0.05375000000000002|
+|1580|   1580|    4|0.12824999999999998|
+|1580|   1580|    5|            0.09525|
++----+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  119| 5.846499999999982|        beatles|
+|  489| 8.055999999999985|hannibal lecter|
+|  976|7.2429999999999914|  studio ghibli|
++-----+------------------+---------------+
+
+cluster 1:
++----+-------+-----+--------------------+
+|  id|movieId|tagId|           relevance|
++----+-------+-----+--------------------+
+|3834|   3834|    1|0.029000000000000026|
+|3834|   3834|    2|0.033499999999999974|
+|3834|   3834|    3|0.026500000000000024|
+|3834|   3834|    4| 0.04625000000000001|
+|3834|   3834|    5| 0.21350000000000002|
++----+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  489|0.5794999999999978|hannibal lecter|
+|  784|0.7209999999999983|        pirates|
+| 1080|0.8102499999999981|    vietnam war|
++-----+------------------+---------------+
+
+cluster 1:
++---+-------+-----+-------------------+
+| id|movieId|tagId|          relevance|
++---+-------+-----+-------------------+
+|471|    471|    1|0.02174999999999999|
+|471|    471|    2|0.02300000000000002|
+|471|    471|    3|0.09499999999999997|
+|471|    471|    4|0.20950000000000002|
+|471|    471|    5|            0.60275|
++---+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+-----------------+----------+
+|tagId|        sum_score|       tag|
++-----+-----------------+----------+
+|  106| 8.67449999999999|  baseball|
+|  117|8.814999999999985|    batman|
+|  573|8.130499999999978|james bond|
++-----+-----------------+----------+
+
+split2
+top 3 clusters: [10, 6, 8]
+cluster 2:
++----+-------+-----+--------------------+
+|  id|movieId|tagId|           relevance|
++----+-------+-----+--------------------+
+|2580|   2580|    1|0.027749999999999997|
+|2580|   2580|    2|0.025500000000000023|
+|2580|   2580|    3|0.031000000000000028|
+|2580|   2580|    4| 0.05149999999999999|
+|2580|   2580|    5|0.055999999999999994|
++----+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+-----------------+---------------+
+|tagId|        sum_score|            tag|
++-----+-----------------+---------------+
+|  117|8.420999999999985|         batman|
+|  489|9.932749999999983|hannibal lecter|
+|  573|9.953749999999985|     james bond|
++-----+-----------------+---------------+
+
+cluster 2:
++----+-------+-----+--------------------+
+|  id|movieId|tagId|           relevance|
++----+-------+-----+--------------------+
+|4294|   4294|    1| 0.02300000000000002|
+|4294|   4294|    2|0.025500000000000023|
+|4294|   4294|    3|0.048250000000000015|
+|4294|   4294|    4| 0.08024999999999999|
+|4294|   4294|    5| 0.13324999999999998|
++----+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  489|1.2797499999999944|hannibal lecter|
+|  784|1.5064999999999946|        pirates|
+| 1069| 2.031749999999996|       vampires|
++-----+------------------+---------------+
+
+cluster 2:
++----+-------+-----+-------------------+
+|  id|movieId|tagId|          relevance|
++----+-------+-----+-------------------+
+|1580|   1580|    1|            0.09175|
+|1580|   1580|    2|0.09150000000000003|
+|1580|   1580|    3|0.05375000000000002|
+|1580|   1580|    4|0.12824999999999998|
+|1580|   1580|    5|            0.09525|
++----+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+------------------+-------------+
+|tagId|         sum_score|          tag|
++-----+------------------+-------------+
+|  119| 4.409249999999987|      beatles|
+|  219|4.9227499999999855|   claymation|
+|  976| 4.448999999999991|studio ghibli|
++-----+------------------+-------------+
+
+split3
+top 3 clusters: [16, 13, 12]
+cluster 3:
++----+-------+-----+--------------------+
+|  id|movieId|tagId|           relevance|
++----+-------+-----+--------------------+
+|3834|   3834|    1|0.029000000000000026|
+|3834|   3834|    2|0.033499999999999974|
+|3834|   3834|    3|0.026500000000000024|
+|3834|   3834|    4| 0.04625000000000001|
+|3834|   3834|    5| 0.21350000000000002|
++----+-------+-----+--------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  106|0.2329999999999991|       baseball|
+|  489|0.2734999999999992|hannibal lecter|
+| 1002|0.2987499999999991|        swedish|
++-----+------------------+---------------+
+
+cluster 3:
++----+-------+-----+-------------------+
+|  id|movieId|tagId|          relevance|
++----+-------+-----+-------------------+
+|1580|   1580|    1|            0.09175|
+|1580|   1580|    2|0.09150000000000003|
+|1580|   1580|    3|0.05375000000000002|
+|1580|   1580|    4|0.12824999999999998|
+|1580|   1580|    5|            0.09525|
++----+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+-----------------+---------------+
+|tagId|        sum_score|            tag|
++-----+-----------------+---------------+
+|  119| 6.60099999999998|        beatles|
+|  489|6.538499999999983|hannibal lecter|
+|  976| 5.63649999999999|  studio ghibli|
++-----+-----------------+---------------+
+
+cluster 3:
++----+-------+-----+-------------------+
+|  id|movieId|tagId|          relevance|
++----+-------+-----+-------------------+
+|1896|   1896|    1|            0.03275|
+|1896|   1896|    2|0.03999999999999998|
+|1896|   1896|    3|            0.22275|
+|1896|   1896|    4|0.11049999999999999|
+|1896|   1896|    5|             0.1335|
++----+-------+-----+-------------------+
+only showing top 5 rows
+
++-----+------------------+---------------+
+|tagId|         sum_score|            tag|
++-----+------------------+---------------+
+|  489|1.5497499999999937|hannibal lecter|
+|  573|2.4519999999999937|     james bond|
+|  784| 2.039749999999994|        pirates|
++-----+------------------+---------------+
+
