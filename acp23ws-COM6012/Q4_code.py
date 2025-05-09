@@ -122,6 +122,7 @@ import matplotlib.pyplot as plt
 
 print(columns_std_list[1:])
 plt.errorbar(column_name[1:], columns_mean_list[1:], yerr=columns_std_list[1:], fmt='o', capsize=5)
+plt.title("Mean and Std of RMSE and MAE")
 plt.savefig('rmse_mae.png')
 plt.close()
 
