@@ -1,0 +1,71 @@
+25/05/09 02:53:39 INFO SparkContext: Running Spark version 3.5.4
+25/05/09 02:53:39 INFO SparkContext: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/09 02:53:39 INFO SparkContext: Java version 17.0.4
+25/05/09 02:53:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/09 02:53:39 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+25/05/09 02:53:39 INFO ResourceUtils: ==============================================================
+25/05/09 02:53:39 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/09 02:53:39 INFO ResourceUtils: ==============================================================
+25/05/09 02:53:39 INFO SparkContext: Submitted application: Question2
+25/05/09 02:53:40 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/09 02:53:40 INFO ResourceProfile: Limiting resource is cpu
+25/05/09 02:53:40 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/09 02:53:40 INFO SecurityManager: Changing view acls to: acp23ws
+25/05/09 02:53:40 INFO SecurityManager: Changing modify acls to: acp23ws
+25/05/09 02:53:40 INFO SecurityManager: Changing view acls groups to: 
+25/05/09 02:53:40 INFO SecurityManager: Changing modify acls groups to: 
+25/05/09 02:53:40 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: acp23ws; groups with view permissions: EMPTY; users with modify permissions: acp23ws; groups with modify permissions: EMPTY
+25/05/09 02:53:40 INFO Utils: Successfully started service 'sparkDriver' on port 33187.
+25/05/09 02:53:40 INFO SparkEnv: Registering MapOutputTracker
+25/05/09 02:53:40 INFO SparkEnv: Registering BlockManagerMaster
+25/05/09 02:53:40 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/09 02:53:40 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/09 02:53:40 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/09 02:53:40 INFO DiskBlockManager: Created local directory at /mnt/parscratch/users/acp23ws/blockmgr-cb97be89-9927-4e46-8a0d-3385315810f7
+25/05/09 02:53:40 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+25/05/09 02:53:40 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/09 02:53:40 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/09 02:53:40 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/09 02:53:40 INFO Executor: Starting executor ID driver on host node117.pri.stanage.alces.network
+25/05/09 02:53:40 INFO Executor: OS info Linux, 3.10.0-1160.134.1.el7.x86_64, amd64
+25/05/09 02:53:40 INFO Executor: Java version 17.0.4
+25/05/09 02:53:40 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/09 02:53:40 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@679f1e47 for default.
+25/05/09 02:53:40 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 40600.
+25/05/09 02:53:40 INFO NettyBlockTransferService: Server created on node117.pri.stanage.alces.network:40600
+25/05/09 02:53:40 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/09 02:53:40 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 40600, None)
+25/05/09 02:53:40 INFO BlockManagerMasterEndpoint: Registering block manager node117.pri.stanage.alces.network:40600 with 413.9 MiB RAM, BlockManagerId(driver, node117.pri.stanage.alces.network, 40600, None)
+25/05/09 02:53:40 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, node117.pri.stanage.alces.network, 40600, None)
+25/05/09 02:53:40 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, node117.pri.stanage.alces.network, 40600, None)
++------+-------+------+----------+
+|userId|movieId|rating| timestamp|
++------+-------+------+----------+
+|     1|    296|   5.0|1147880044|
+|     1|    306|   3.5|1147868817|
+|     1|    307|   5.0|1147868828|
+|     1|    665|   5.0|1147878820|
+|     1|    899|   3.5|1147868510|
++------+-------+------+----------+
+only showing top 5 rows
+
+there are 25000095 rows of data in ratings.csv
+
+root
+ |-- userId: long (nullable = true)
+ |-- movieId: long (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: string (nullable = true)
+
++-----------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+
+|              _c0|              rmse_1|               mae_1|              rmse_2|               mae_2|             rmse_3|               mae_3|
++-----------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+
+|                0|  0.8097691012801538|  0.6280157485874622|  0.8025825006170371|  0.6211655807188411| 0.7790471297247147|  0.6000207897136268|
+|                1|   0.809118891001471|  0.6276024781857473|  0.8023483785848383|    0.62096606338354| 0.7792845666446424|   0.600345148291494|
+|                2|   0.808794721238246|  0.6271714179355917|  0.8021933244061137|  0.6207864583075599| 0.7789806502198682|  0.5999425869412918|
+|                3|  0.8096560105329562|  0.6278378363081123|  0.8029213475512904|  0.6213448831535314| 0.7797440976570359|  0.6006757050239193|
+|              1.5|  0.8093346810132067|  0.6276568702542284|  0.8025113877898198|  0.6210657463908681| 0.7792641110615653|   0.600246057492583|
+|1.118033988749895|3.968927803378707E-4|3.162929107277078...|2.742536951360872E-4|2.096561236524767E-4|2.99264311281674E-4|2.903687032675141E-4|
++-----------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+
+
+(0.0003968927803378707, 0.00031629291072770785, 0.0002742536951360872, 0.0002096561236524767, 0.000299264311281674, 0.0002903687032675141)
